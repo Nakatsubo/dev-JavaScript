@@ -251,6 +251,21 @@ function loop() {
 }
 ```
 
+### 文字列の長さを取得するサンプル
+
+```
+let textarea = document.querySelector('.textarea');
+let strNum = document.querySelector('.str_num');
+textarea.addEventListener('keyup', onKeyUp, false);
+function onKeyUp() {
+  const inputText = textarea.value;
+  console.log(inputText.length);
+  strNum.innerHTML = inputText.length;
+}
+```
+
+
+
 
 ```
 ```

@@ -46,19 +46,19 @@ console.log(10 + Math.floor(Math.random() * 10));
 // => 0 <= x < 20
 
 // ランダム数を使用したサンプル
-const rec = document.querySelector('.rectangle');
-// console.log(rec);
-const btn = document.querySelector('.button');
-// console.log(btn);
-btn.addEventListener('click', onClickbutton, false);
-function onClickbutton() {
-  const randomHue = Math.trunc(Math.random() * 360);
-  const randomColorStart = `hsl(${randomHue}, 100%, 50%)`;
-  const randomColorEnd = `hsl(${randomHue + 40}, 100%, 50%)`;
-  // setProperty Keyとvalueをセット
-  rec.style.setProperty('--start', randomColorStart);
-  rec.style.setProperty('--end', randomColorEnd);
-}
+// const rec = document.querySelector('.rectangle');
+// // console.log(rec);
+// const btn = document.querySelector('.button');
+// // console.log(btn);
+// btn.addEventListener('click', onClickbutton, false);
+// function onClickbutton() {
+//   const randomHue = Math.trunc(Math.random() * 360);
+//   const randomColorStart = `hsl(${randomHue}, 100%, 50%)`;
+//   const randomColorEnd = `hsl(${randomHue + 40}, 100%, 50%)`;
+//   // setProperty Keyとvalueをセット
+//   rec.style.setProperty('--start', randomColorStart);
+//   rec.style.setProperty('--end', randomColorEnd);
+// }
 
 // crypto.getRandomValues 安全な乱数を設定
 const randomArray = crypto.getRandomValues(new Uint16Array(10));
@@ -100,18 +100,28 @@ console.log(Math.acos(1));
 console.log(Math.atan2(1, 1) * 180 / Math.PI);
 
 // 三角関数を使用したサンプル
-const character = document.querySelector('.character');
-// 角度 ラジアン
-let degree = 0;
-loop();
-function loop() {
-  const rotation = (degree * Math.PI) / 180;
-  const targetX = window.innerWidth / 2 + 100 * Math.cos(rotation) - 50;
-  const targetY = window.innerHeight / 2 + 100 * Math.sin(rotation) - 50;
-  // 初期位置
-  character.style.left = `${targetX}px`;
-  character.style.top = `${targetY}px`;
-  degree += 1;
-  // ブラウザが描画されるタイミングでアニメーションを実行
-  requestAnimationFrame(loop);
+// const character = document.querySelector('.character');
+// // 角度 ラジアン
+// let degree = 0;
+// loop();
+// function loop() {
+//   const rotation = (degree * Math.PI) / 180;
+//   const targetX = window.innerWidth / 2 + 100 * Math.cos(rotation) - 50;
+//   const targetY = window.innerHeight / 2 + 100 * Math.sin(rotation) - 50;
+//   // 初期位置
+//   character.style.left = `${targetX}px`;
+//   character.style.top = `${targetY}px`;
+//   degree += 1;
+//   // ブラウザが描画されるタイミングでアニメーションを実行
+//   requestAnimationFrame(loop);
+// }
+
+// 文字列の長さを取得するサンプル
+let textarea = document.querySelector('.textarea');
+let strNum = document.querySelector('.str_num');
+textarea.addEventListener('keyup', onKeyUp, false);
+function onKeyUp() {
+  const inputText = textarea.value;
+  console.log(inputText.length);
+  strNum.innerHTML = inputText.length;
 }
