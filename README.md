@@ -170,8 +170,84 @@ function onClickbutton() {
   const randomHue = Math.trunc(Math.random() * 360);
   const randomColorStart = `hsl(${randomHue}, 100%, 50%)`;
   const randomColorEnd = `hsl(${randomHue + 40}, 100%, 50%)`;
+  // setProperty Keyとvalueをセット
   rec.style.setProperty('--start', randomColorStart);
   rec.style.setProperty('--end', randomColorEnd);
+}
+```
+
+- crypto.getRandomValues 安全な乱数を設定
+
+```
+const randomArray = crypto.getRandomValues(new Uint16Array(10));
+console.log(randomArray.join(''));
+```
+
+- 数学的な計算
+
+```
+// 数学的な計算
+// abs 絶対値
+console.log(Math.abs(-10));
+// => 10
+// pow べき乗
+console.log(Math.pow(2, 10));
+// => 1024
+// sign 数値符号
+console.log(Math.sign(2));
+// => 1
+console.log(Math.sign(-2));
+// => -1
+// sqrt 平方根
+console.log(Math.sqrt(16));
+// => 4
+// log 自然対数
+console.log(Math.log(Math.E));
+// => 1
+// exp 指数関数
+// console.log(Math.exp());
+```
+
+- 三角関数
+
+```
+// 円周率
+console.log(Math.PI);
+// サイン
+console.log(Math.sin((90 * Math.PI) / 180));
+// コサイン
+console.log(Math.cos((90 * Math.PI) / 180));
+// タンジェント
+console.log(Math.tan((45 * Math.PI) / 180));
+// アークコサイン
+console.log(Math.acos(1));
+// 座標の例
+console.log(Math.atan2(1, 1) * 180 / Math.PI);
+```
+
+### 三角関数を使用したサンプル
+
+```
+HTML
+<div class="character"></div>
+// => imgの入れ方が不明
+
+JavaScript
+// 三角関数を使用したサンプル
+const character = document.querySelector('.character');
+// 角度 ラジアン
+let degree = 0;
+loop();
+function loop() {
+  const rotation = (degree * Math.PI) / 180;
+  const targetX = window.innerWidth / 2 + 100 * Math.cos(rotation) - 50;
+  const targetY = window.innerHeight / 2 + 100 * Math.sin(rotation) - 50;
+  // 初期位置
+  character.style.left = `${targetX}px`;
+  character.style.top = `${targetY}px`;
+  degree += 1;
+  // ブラウザが描画されるタイミングでアニメーションを実行
+  requestAnimationFrame(loop);
 }
 ```
 
