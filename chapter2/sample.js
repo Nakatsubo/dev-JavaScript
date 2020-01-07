@@ -37,4 +37,25 @@ console.log(Math.trunc(6.24));
 console.log(Math.trunc(-6.24));
 // => -6
 
+// ランダム数
+console.log(Math.random());
+// => 0 <= x < 1
+console.log(Math.floor(Math.random() * 100));
+// => 0 <= x < 100
+console.log(10 + Math.floor(Math.random() * 10));
+// => 0 <= x < 20
+
+// ランダム数を使用したサンプル
+const rec = document.querySelector('.rectangle');
+// console.log(rec);
+const btn = document.querySelector('.button');
+// console.log(btn);
+btn.addEventListener('click', onClickbutton, false);
+function onClickbutton() {
+  const randomHue = Math.trunc(Math.random() * 360);
+  const randomColorStart = `hsl(${randomHue}, 100%, 50%)`;
+  const randomColorEnd = `hsl(${randomHue + 40}, 100%, 50%)`;
+  rec.style.setProperty('--start', randomColorStart);
+  rec.style.setProperty('--end', randomColorEnd);
+}
 

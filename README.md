@@ -134,7 +134,46 @@ console.log(Math.trunc(-6.24));
 // => -6
 ```
 
+### ランダム数を使用したサンプル
 
+```
+HTML
+<button class="button">カラー変更</button>
+<div class="wrapper">
+  <div class="rectangle"></div>
+</div>
+<script src="sample.js" defar></script>
+
+SCSS
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+}
+
+.rectangle {
+  width: 100%;
+  height: calc(100% - 50px);
+  /* 変数 --start --end を定義 */
+  --start: hsl(0, 100%, 50%);
+  --end: hsl(322, 100%, 50%);
+  /* 初期値 */
+  background-image: linear-gradient(-135deg, var(--start), var(--end));
+}
+
+JavaScript
+const rec = document.querySelector('.rectangle');
+// console.log(rec);
+const btn = document.querySelector('.button');
+// console.log(btn);
+btn.addEventListener('click', onClickbutton, false);
+function onClickbutton() {
+  const randomHue = Math.trunc(Math.random() * 360);
+  const randomColorStart = `hsl(${randomHue}, 100%, 50%)`;
+  const randomColorEnd = `hsl(${randomHue + 40}, 100%, 50%)`;
+  rec.style.setProperty('--start', randomColorStart);
+  rec.style.setProperty('--end', randomColorEnd);
+}
+```
 
 
 ```
