@@ -251,6 +251,60 @@ function loop() {
 }
 ```
 
+### 文字列の長さを取得するサンプル
 
 ```
+HTML
+<textarea class="textarea"></textarea>
+<p>現在 <span class="str_num">0</span>文字入力中です。</p>
+
+JavaScript
+let textarea = document.querySelector('.textarea');
+let strNum = document.querySelector('.str_num');
+textarea.addEventListener('keyup', onKeyUp, false);
+function onKeyUp() {
+  const inputText = textarea.value;
+  console.log(inputText.length);
+  strNum.innerHTML = inputText.length;
+}
+```
+- trim 文字列の両端の空白を取り除く
+
+```
+const targetStr1 = "  Hello, World!  "
+const trimmedStr1 = targetStr1.trim();
+console.log(trimmedStr1);
+const targetStr2 = "Hello, World!\n"
+const trimmedStr2 = targetStr2.trim();
+console.log(trimmedStr2);
+// => Hello, World!
+const targetStr3 = "  Hello, World!  Hello, JavaScript!  "
+const trimmedStr3 = targetStr3.trim();
+console.log(trimmedStr3);
+// => Hello, World!  Hello, JavaScript!
+```
+
+- indexOf lastIndexOf serach(正規表現) 文字列を検索する 戻り値は数値
+
+```
+const myStr = "Hello, World!"
+const a1 = myStr.indexOf('Hello');
+console.log(a1);
+// => 0
+const a2 = myStr.indexOf('World');
+console.log(a2);
+// => 7
+const a3 = myStr.lastIndexOf('o');
+console.log(a3);
+// => 8
+const a4 = myStr.lastIndexOf('JavaScript');
+console.log(a4);
+// => -1
+// 正規表現で検索する
+const a5 = myStr.search(/Hello/);
+console.log(a5);
+// => 0
+const a6 = myStr.search(/JavaScript/);
+console.log(a6);
+// => -1
 ```
