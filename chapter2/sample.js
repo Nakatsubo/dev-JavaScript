@@ -125,3 +125,38 @@ function onKeyUp() {
   console.log(inputText.length);
   strNum.innerHTML = inputText.length;
 }
+
+// trim 文字列の両端の空白を取り除く
+const targetStr1 = "  Hello, World!  "
+const trimmedStr1 = targetStr1.trim();
+console.log(trimmedStr1);
+const targetStr2 = "Hello, World!\n"
+const trimmedStr2 = targetStr2.trim();
+console.log(trimmedStr2);
+// => Hello, World!
+const targetStr3 = "  Hello, World!  Hello, JavaScript!  "
+const trimmedStr3 = targetStr3.trim();
+console.log(trimmedStr3);
+// => Hello, World!  Hello, JavaScript!
+
+// indexOf lastIndexOf 文字列を検索する 戻り値は数値
+const myStr = "Hello, World!"
+const a1 = myStr.indexOf('Hello');
+console.log(a1);
+// => 0
+const a2 = myStr.indexOf('World');
+console.log(a2);
+// => 7
+const a3 = myStr.lastIndexOf('o');
+console.log(a3);
+// => 8
+const a4 = myStr.lastIndexOf('JavaScript');
+console.log(a4);
+// => -1
+// 正規表現で検索する
+const a5 = myStr.search(/Hello/);
+console.log(a5);
+// => 0
+const a6 = myStr.search(/JavaScript/);
+console.log(a6);
+// => -1
