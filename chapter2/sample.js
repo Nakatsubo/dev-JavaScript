@@ -117,14 +117,14 @@ console.log(Math.atan2(1, 1) * 180 / Math.PI);
 // }
 
 // 文字列の長さを取得するサンプル
-let textarea = document.querySelector('.textarea');
-let strNum = document.querySelector('.str_num');
-textarea.addEventListener('keyup', onKeyUp, false);
-function onKeyUp() {
-  const inputText = textarea.value;
-  console.log(inputText.length);
-  strNum.innerHTML = inputText.length;
-}
+// let textarea = document.querySelector('.textarea');
+// let strNum = document.querySelector('.str_num');
+// textarea.addEventListener('keyup', onKeyUp, false);
+// function onKeyUp() {
+//   const inputText = textarea.value;
+//   console.log(inputText.length);
+//   strNum.innerHTML = inputText.length;
+// }
 
 // trim 文字列の両端の空白を取り除く
 const targetStr1 = "  Hello, World!  "
@@ -140,23 +140,60 @@ console.log(trimmedStr3);
 // => Hello, World!  Hello, JavaScript!
 
 // indexOf lastIndexOf 文字列を検索する 戻り値は数値
-const myStr = "Hello, World!"
-const a1 = myStr.indexOf('Hello');
+// const myStr = "Hello, World!"
+// const a1 = myStr.indexOf('Hello');
+// console.log(a1);
+// // => 0
+// const a2 = myStr.indexOf('World');
+// console.log(a2);
+// // => 7
+// const a3 = myStr.lastIndexOf('o');
+// console.log(a3);
+// // => 8
+// const a4 = myStr.lastIndexOf('JavaScript');
+// console.log(a4);
+// // => -1
+// // 正規表現で検索する
+// const a5 = myStr.search(/Hello/);
+// console.log(a5);
+// // => 0
+// const a6 = myStr.search(/JavaScript/);
+// console.log(a6);
+// // => -1
+
+// includes startsWith endsWith 文字列を検索する 戻り値は真偽値
+const myStr = 'Hello, World';
+const a1 = myStr.includes('Hello');
 console.log(a1);
-// => 0
-const a2 = myStr.indexOf('World');
+// => true
+const a2 = myStr.startsWith('World');
 console.log(a2);
-// => 7
-const a3 = myStr.lastIndexOf('o');
+// => false
+const a3 = myStr.endsWith('World');
 console.log(a3);
-// => 8
-const a4 = myStr.lastIndexOf('JavaScript');
-console.log(a4);
-// => -1
-// 正規表現で検索する
-const a5 = myStr.search(/Hello/);
-console.log(a5);
-// => 0
-const a6 = myStr.search(/JavaScript/);
-console.log(a6);
-// => -1
+// => true
+
+// charAt 指定したインデックス(位置)の文字列を取り出す
+console.log('JavaScript'.charAt(3));
+// => a
+
+// 文字列を検索するサンプル
+const searchWordText = document.querySelector('#search-word-input');
+const prefectureList = document.querySelectorAll('#prefecture-list button');
+searchWordText.addEventListener('keyup', () => {
+  const searchWord = searchWordText.value;
+  prefectureList.forEach((element) => {
+    //console.log(element);
+    if (!searchWord || searchWord === '') {
+      element.classList.remove('hide');
+      return;
+    }
+    const prefectureName = element.dataset.name;
+    const phonetic = element.dataset.phonetic;
+    if (searchWord.charAt(0) === prefectureName.charAt(0) || searchWord.charAt(0) === phonetic.charAt(0)) {
+      element.classList.remove('hide');
+    } else {
+      element.classList.add('hide');
+    }
+  });
+});

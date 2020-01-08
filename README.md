@@ -284,7 +284,7 @@ console.log(trimmedStr3);
 // => Hello, World!  Hello, JavaScript!
 ```
 
-- indexOf lastIndexOf serach(正規表現) 文字列を検索する 戻り値は数値
+- indexOf lastIndexOf serach(正規表現) 文字列をインデックス(位置)検索する 戻り値は数値
 
 ```
 const myStr = "Hello, World!"
@@ -307,4 +307,123 @@ console.log(a5);
 const a6 = myStr.search(/JavaScript/);
 console.log(a6);
 // => -1
+```
+
+- includes startsWith endsWith 文字列を検索する 戻り値は真偽値
+
+```
+const myStr = 'Hello, World';
+const a1 = myStr.includes('Hello');
+console.log(a1);
+// => true
+const a2 = myStr.startsWith('World');
+console.log(a2);
+// => false
+const a3 = myStr.endsWith('World');
+console.log(a3);
+// => true
+```
+
+- charAt 指定したインデックス(位置)の文字列を取り出す
+
+```
+console.log('JavaScript'.charAt(3));
+// => a
+```
+
+### 文字列を検索するサンプル
+
+```
+HTML
+<header>
+  <label>県名の最初の一文字を入力してください <input id="search-word-input" maxlength="1" type="text"></label>
+</header>
+<div id="prefecture-list">
+  <button data-name="北海道" data-phonetic="ほっかいどう">北海道</button>
+  <button data-name="青森" data-phonetic="あおもり">青森</button>
+  <button data-name="岩手" data-phonetic="いわて">岩手</button>
+  <button data-name="宮城" data-phonetic="みやぎ">宮城</button>
+  <button data-name="秋田" data-phonetic="あきた">秋田</button>
+  <button data-name="山形" data-phonetic="やまがた">山形</button>
+  <button data-name="福島" data-phonetic="ふくしま">福島</button>
+  <button data-name="茨城" data-phonetic="いばらき">茨城</button>
+  <button data-name="栃木" data-phonetic="とちぎ">栃木</button>
+  <button data-name="群馬" data-phonetic="ぐんま">群馬</button>
+  <button data-name="埼玉" data-phonetic="さいたま">埼玉</button>
+  <button data-name="千葉" data-phonetic="ちば">千葉</button>
+  <button data-name="東京" data-phonetic="とうきょうと">東京</button>
+  <button data-name="神奈川" data-phonetic="かながわ">神奈川</button>
+  <button data-name="新潟" data-phonetic="にいがた">新潟</button>
+  <button data-name="富山" data-phonetic="とやま">富山</button>
+  <button data-name="石川" data-phonetic="いしかわ">石川</button>
+  <button data-name="福井" data-phonetic="ふくい">福井</button>
+  <button data-name="山梨" data-phonetic="やまなし">山梨</button>
+  <button data-name="長野" data-phonetic="ながの">長野</button>
+  <button data-name="岐阜" data-phonetic="ぎふ">岐阜</button>
+  <button data-name="静岡" data-phonetic="しずおか">静岡</button>
+  <button data-name="愛知" data-phonetic="あいち">愛知</button>
+  <button data-name="三重" data-phonetic="みえ">三重</button>
+  <button data-name="滋賀" data-phonetic="しが">滋賀</button>
+  <button data-name="京都" data-phonetic="きょうと">京都</button>
+  <button data-name="大阪" data-phonetic="おおさか">大阪</button>
+  <button data-name="兵庫" data-phonetic="ひょうご">兵庫</button>
+  <button data-name="奈良" data-phonetic="なら">奈良</button>
+  <button data-name="和歌山" data-phonetic="わかやま">和歌山</button>
+  <button data-name="鳥取" data-phonetic="とっとり">鳥取</button>
+  <button data-name="島根" data-phonetic="しまね">島根</button>
+  <button data-name="岡山" data-phonetic="おかやま">岡山</button>
+  <button data-name="広島" data-phonetic="ひろしま">広島</button>
+  <button data-name="山口" data-phonetic="やまぐち">山口</button>
+  <button data-name="徳島" data-phonetic="とくしま">徳島</button>
+  <button data-name="香川" data-phonetic="かがわ">香川</button>
+  <button data-name="愛媛" data-phonetic="えひめ">愛媛</button>
+  <button data-name="高知" data-phonetic="こうち">高知</button>
+  <button data-name="福岡" data-phonetic="ふくおか">福岡</button>
+  <button data-name="佐賀" data-phonetic="さが">佐賀</button>
+  <button data-name="長崎" data-phonetic="ながさき">長崎</button>
+  <button data-name="熊本" data-phonetic="くまもと">熊本</button>
+  <button data-name="大分" data-phonetic="おおいた">大分</button>
+  <button data-name="宮崎" data-phonetic="みやぎ">宮崎</button>
+  <button data-name="鹿児島" data-phonetic="かごしま">鹿児島</button>
+  <button data-name="沖縄" data-phonetic="おきなわ">沖縄</button>
+</div>
+
+CSS
+#prefecture-list button.hide {
+  display: none;
+}
+
+JavaScript
+const searchWordText = document.querySelector('#search-word-input');
+const prefectureList = document.querySelectorAll('#prefecture-list button');
+searchWordText.addEventListener('keyup', () => {
+  const searchWord = searchWordText.value;
+  prefectureList.forEach((element) => {
+    //console.log(element);
+    if (!searchWord || searchWord === '') {
+      element.classList.remove('hide');
+      return;
+    }
+    const prefectureName = element.dataset.name;
+    const phonetic = element.dataset.phonetic;
+    if (searchWord.charAt(0) === prefectureName.charAt(0) || searchWord.charAt(0) === phonetic.charAt(0)) {
+      element.classList.remove('hide');
+    } else {
+      element.classList.add('hide');
+    }
+  });
+});
+```
+
+data-* グローバル属性によって、HTMLとJavaScriptとの間でDOM操作ができるようになる。
+classList.remove で要素からクラスを削除する。
+
+- 指定範囲の文字列を取得する
+
+```
+
+```
+
+```
+
 ```
