@@ -587,12 +587,44 @@ main.innerHTML = `
 `;
 ```
 
-```
+- 正規表現
+正規表現を使って、検索や置換を簡単に行う。
 
 ```
-
+// 正規表現で記述した場合
+if (/iPhone|iPod|iPad/.test(navigator.userAgent)) {
+  alert('アクセスしているブラウザはiOS端末です');
+}
+// 正規表現で記述しなかった場合
+if (
+  navigator.userAgent.includes('iPhone') ||
+  navigator.userAgent.includes('iPod') ||
+  navigator.userAgent.includes('iPad')
+) {
+  alert('アクセスしているブラウザはiOS端末です');
+}
 ```
 
+### 正規表現のtestメソッドのサンプル
+
+```
+HTML
+<h2>電話番号を入力してください</h2>
+<input id="phoneNumberText" placeholder="電話番号" type="tel">
+<p class="warning-message"></p>
+
+JavaScript
+const phoneNumberText = document.querySelector('#phoneNumberText');
+const warningMessage = document.querySelector('.warning-message');
+phoneNumberText.addEventListener('keyup', () => {
+  const phoneNumber = phoneNumberText.value;
+  const trimmedPhoneNumber = phoneNumber.replace(/-/g, '');
+  if (/^[0][0-9]{9,10}$/.test(trimmedPhoneNumber) === false) {
+    warningMessage.innerText = '電話番号を正しく入力してください';
+  } else {
+    warningMessage.innerText = '';
+  }
+}, false);
 ```
 
 ```
