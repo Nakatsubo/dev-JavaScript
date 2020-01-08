@@ -415,10 +415,44 @@ searchWordText.addEventListener('keyup', () => {
 });
 ```
 
-data-* グローバル属性によって、HTMLとJavaScriptとの間でDOM操作ができるようになる。
+data-* グローバル属性によって、HTMLとJavaScriptとの間でDOM操作ができるようになる。<br>
 classList.remove で要素からクラスを削除する。
 
-- 指定範囲の文字列を取得する
+- slice substring 指定範囲の文字列を取得する
+
+```
+console.log('JavaScript'.slice(0, 4));
+// => Java
+console.log('JavaScript'.slice(0));
+// => JavaScript
+console.log('JavaScript'.substring(0, 4));
+// => Java
+console.log('JavaScript'.substring(0));
+// => JavaScript
+// slice と substring は開始インデックスが終了インデックスより大きくなった場合、挙動が異なる。
+console.log('JavaScript'.slice(3, 1));
+// => ''
+console.log('JavaScript'.substring(3, 1));
+// => av
+```
+
+- substr 文字数を指定して取得する
+
+```
+console.log('JavaScript'.substr(4, 6));
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
 
 ```
 

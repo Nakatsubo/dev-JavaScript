@@ -178,22 +178,43 @@ console.log('JavaScript'.charAt(3));
 // => a
 
 // 文字列を検索するサンプル
-const searchWordText = document.querySelector('#search-word-input');
-const prefectureList = document.querySelectorAll('#prefecture-list button');
-searchWordText.addEventListener('keyup', () => {
-  const searchWord = searchWordText.value;
-  prefectureList.forEach((element) => {
-    //console.log(element);
-    if (!searchWord || searchWord === '') {
-      element.classList.remove('hide');
-      return;
-    }
-    const prefectureName = element.dataset.name;
-    const phonetic = element.dataset.phonetic;
-    if (searchWord.charAt(0) === prefectureName.charAt(0) || searchWord.charAt(0) === phonetic.charAt(0)) {
-      element.classList.remove('hide');
-    } else {
-      element.classList.add('hide');
-    }
-  });
-});
+// const searchWordText = document.querySelector('#search-word-input');
+// const prefectureList = document.querySelectorAll('#prefecture-list button');
+// searchWordText.addEventListener('keyup', () => {
+//   const searchWord = searchWordText.value;
+//   prefectureList.forEach((element) => {
+//     //console.log(element);
+//     if (!searchWord || searchWord === '') {
+//       element.classList.remove('hide');
+//       return;
+//     }
+//     const prefectureName = element.dataset.name;
+//     const phonetic = element.dataset.phonetic;
+//     if (searchWord.charAt(0) === prefectureName.charAt(0) || searchWord.charAt(0) === phonetic.charAt(0)) {
+//       element.classList.remove('hide');
+//     } else {
+//       element.classList.add('hide');
+//     }
+//   });
+// });
+
+// 指定範囲の文字列を取得する
+console.log('JavaScript'.slice(0, 4));
+// => Java
+console.log('JavaScript'.slice(0));
+// => JavaScript
+console.log('JavaScript'.substring(0, 4));
+// => Java
+console.log('JavaScript'.substring(0));
+// => JavaScript
+// slice と substring は開始インデックスが終了インデックスより大きくなった場合、挙動が異なる。
+console.log('JavaScript'.slice(3, 1));
+// => ''
+console.log('JavaScript'.substring(3, 1));
+// => av
+
+// 文字数を指定して取得する
+console.log('JavaScript'.substr(4, 6));
+// => Script
+
+//
