@@ -247,3 +247,43 @@ submitBtn.addEventListener('click', (event) => {
   alert(`電話番号は${trimmedPhoneNumber}です`);
   event.preventDefault();
 }, false);
+
+// 文字列を分割する
+// split
+const myUrl = 'https://example.com/?id=123456&name=Hello&age=0';
+console.log(myUrl.split('&'));
+// => ["https://example.com/?id=123456", "name=Hello", "age=0"]
+// split(正規表現)
+console.log(myUrl.split(/&|\?/));
+// => ["https://example.com/", "id=123456", "name=Hello", "age=0"]
+console.log('JavaScript'.split(''));
+// =>  ["J", "a", "v", "a", "S", "c", "r", "i", "p", "t"]
+
+// 文字列を分割するサンプル
+const hushes = {};
+const parameters = location.search.split(/&|\?/).filter((value) => {
+  // URLに'='が含まれるvalueのみreturn
+  return value.includes('=');
+})
+console.log(parameters);
+// => ["id=123456", "name=Hello", "age=0"]
+parameters.forEach((parameter) => {
+  const parameterList = parameter.split('=');
+  console.log(parameterList);
+  // => ["id", "123456"] ["name", "Hello"] ["age", "0"]
+  const key = parameterList[0];
+  // decodeURIComponent => URLをデコード(復号化)する
+  const value = decodeURIComponent(parameterList[1]);
+  hushes[key] = value;
+})
+console.log(hushes);
+// => {id: "123456", name: "Hello", age: "0"}
+if (hushes['id'] != null) {
+  document.querySelector('.id').innerHTML = hushes['id'];
+}
+if (hushes['name'] != null) {
+  document.querySelector('.name').innerHTML = hushes['name'];
+}
+if (hushes['age'] != null) {
+  document.querySelector('.age').innerHTML = hushes['age'];
+}
