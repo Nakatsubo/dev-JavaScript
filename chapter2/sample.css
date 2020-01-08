@@ -11,3 +11,7 @@
   --end: hsl(322, 100%, 50%);
   background-image: linear-gradient(-135deg, var(--start), var(--end));
 }
+
+#prefecture-list button.hide {
+  display: none;
+}
