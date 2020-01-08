@@ -287,3 +287,24 @@ if (hushes['name'] != null) {
 if (hushes['age'] != null) {
   document.querySelector('.age').innerHTML = hushes['age'];
 }
+
+// 文字列を大文字・小文字に変換する
+// toLowerCase
+console.log('JavaScript'.toLowerCase());
+// => javascript
+// toUpperCase
+console.log('JavaScript'.toUpperCase());
+// => JAVASCRIPT
+
+// 文字列を大文字・小文字に変換するサンプル
+const nameInput = document.querySelector('.name-input');
+const warningMessage = document.querySelector('.warning-message');
+nameInput.addEventListener('input', () => {
+  const inputStr = nameInput.value;
+  const normalStr = inputStr.toLowerCase();
+  if (normalStr === 'test') {
+    warningMessage.textContent = '「test」が含まれています'
+  } else {
+    warningMessage.textContent = '';
+  }
+}, false);
