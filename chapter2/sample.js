@@ -308,3 +308,11 @@ nameInput.addEventListener('input', () => {
     warningMessage.textContent = '';
   }
 }, false);
+
+// 文字列を動的に扱うサンプル
+const today = new Date();
+const main = document.querySelector('#main');
+main.innerHTML = `
+  <h1>今日${today.getMonth() + 1}/${today.getDate()}の天気</h1>
+  <p>東京は、晴れでしょう</p>
+`;
