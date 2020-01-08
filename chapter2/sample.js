@@ -162,13 +162,16 @@ console.log(trimmedStr3);
 // // => -1
 
 // includes startsWith endsWith 文字列を検索する 戻り値は真偽値
+// includes
 const myStr = 'Hello, World';
 const a1 = myStr.includes('Hello');
 console.log(a1);
 // => true
+// startsWith
 const a2 = myStr.startsWith('World');
 console.log(a2);
 // => false
+// endsWith
 const a3 = myStr.endsWith('World');
 console.log(a3);
 // => true
@@ -199,10 +202,12 @@ console.log('JavaScript'.charAt(3));
 // });
 
 // 指定範囲の文字列を取得する
+// slice
 console.log('JavaScript'.slice(0, 4));
 // => Java
 console.log('JavaScript'.slice(0));
 // => JavaScript
+// substring
 console.log('JavaScript'.substring(0, 4));
 // => Java
 console.log('JavaScript'.substring(0));
@@ -214,7 +219,31 @@ console.log('JavaScript'.substring(3, 1));
 // => av
 
 // 文字数を指定して取得する
+// substr
 console.log('JavaScript'.substr(4, 6));
 // => Script
 
-//
+// 文字列を置換する
+// // replace
+// const imageName = 'image1.png';
+// console.log(imageName.replace('1.png', '2.png'));
+// // => image2.png
+// const inputText = 'Hello, \nWorld!';
+// console.log(inputText.replace('\n', ''));
+// // => Hello, World!
+// let phoneNumber = '123-4567-8901'
+// console.log(phoneNumber.replace('-', ''));
+// // => 1234567-8901
+// // 正規表現を使い、gオプションで文字列全体をマッチさせる
+// phoneNumber = '123-4567-8901'
+// console.log(phoneNumber.replace(/-/g, ''));
+// // => 12345678901
+
+// 文字列の置換するサンプル
+const submitBtn = document.getElementById('submitButton');
+submitBtn.addEventListener('click', (event) => {
+  const phoneNumber = document.getElementById('phoneNumberText').value;
+  const trimmedPhoneNumber = phoneNumber.replace(/-/g, '');
+  alert(`電話番号は${trimmedPhoneNumber}です`);
+  event.preventDefault();
+}, false);
