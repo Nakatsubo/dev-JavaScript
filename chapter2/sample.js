@@ -343,3 +343,21 @@ phoneNumberText.addEventListener('keyup', () => {
     warningMessage.innerText = '';
   }
 }, false);
+
+// 数値の桁数を指定する
+// toFixed 小数点以下を指定桁数に
+console.log((0.333333).toFixed(2));
+// => 0.33
+console.log((123.456).toFixed(1));
+// => 123.5 近似値に丸められる
+console.log((1.2).toFixed(4));
+// => 1.2000 桁数が揃えられる
+// toPrecision 指定桁数の精度に
+console.log((0.333333).toPrecision(2));
+// => 0.33
+console.log((123.456).toPrecision(3));
+// => 123
+console.log((123.456).toPrecision(1));
+// => 1e+2 近似値に丸められる
+console.log((1.2).toPrecision(4));
+// => 1.200 桁数が揃えられる
