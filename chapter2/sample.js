@@ -162,13 +162,16 @@ console.log(trimmedStr3);
 // // => -1
 
 // includes startsWith endsWith 文字列を検索する 戻り値は真偽値
+// includes
 const myStr = 'Hello, World';
 const a1 = myStr.includes('Hello');
 console.log(a1);
 // => true
+// startsWith
 const a2 = myStr.startsWith('World');
 console.log(a2);
 // => false
+// endsWith
 const a3 = myStr.endsWith('World');
 console.log(a3);
 // => true
@@ -178,22 +181,69 @@ console.log('JavaScript'.charAt(3));
 // => a
 
 // 文字列を検索するサンプル
-const searchWordText = document.querySelector('#search-word-input');
-const prefectureList = document.querySelectorAll('#prefecture-list button');
-searchWordText.addEventListener('keyup', () => {
-  const searchWord = searchWordText.value;
-  prefectureList.forEach((element) => {
-    //console.log(element);
-    if (!searchWord || searchWord === '') {
-      element.classList.remove('hide');
-      return;
-    }
-    const prefectureName = element.dataset.name;
-    const phonetic = element.dataset.phonetic;
-    if (searchWord.charAt(0) === prefectureName.charAt(0) || searchWord.charAt(0) === phonetic.charAt(0)) {
-      element.classList.remove('hide');
-    } else {
-      element.classList.add('hide');
-    }
-  });
-});
+// const searchWordText = document.querySelector('#search-word-input');
+// const prefectureList = document.querySelectorAll('#prefecture-list button');
+// searchWordText.addEventListener('keyup', () => {
+//   const searchWord = searchWordText.value;
+//   prefectureList.forEach((element) => {
+//     //console.log(element);
+//     if (!searchWord || searchWord === '') {
+//       element.classList.remove('hide');
+//       return;
+//     }
+//     const prefectureName = element.dataset.name;
+//     const phonetic = element.dataset.phonetic;
+//     if (searchWord.charAt(0) === prefectureName.charAt(0) || searchWord.charAt(0) === phonetic.charAt(0)) {
+//       element.classList.remove('hide');
+//     } else {
+//       element.classList.add('hide');
+//     }
+//   });
+// });
+
+// 指定範囲の文字列を取得する
+// slice
+console.log('JavaScript'.slice(0, 4));
+// => Java
+console.log('JavaScript'.slice(0));
+// => JavaScript
+// substring
+console.log('JavaScript'.substring(0, 4));
+// => Java
+console.log('JavaScript'.substring(0));
+// => JavaScript
+// slice と substring は開始インデックスが終了インデックスより大きくなった場合、挙動が異なる。
+console.log('JavaScript'.slice(3, 1));
+// => ''
+console.log('JavaScript'.substring(3, 1));
+// => av
+
+// 文字数を指定して取得する
+// substr
+console.log('JavaScript'.substr(4, 6));
+// => Script
+
+// 文字列を置換する
+// // replace
+// const imageName = 'image1.png';
+// console.log(imageName.replace('1.png', '2.png'));
+// // => image2.png
+// const inputText = 'Hello, \nWorld!';
+// console.log(inputText.replace('\n', ''));
+// // => Hello, World!
+// let phoneNumber = '123-4567-8901'
+// console.log(phoneNumber.replace('-', ''));
+// // => 1234567-8901
+// // 正規表現を使い、gオプションで文字列全体をマッチさせる
+// phoneNumber = '123-4567-8901'
+// console.log(phoneNumber.replace(/-/g, ''));
+// // => 12345678901
+
+// 文字列の置換するサンプル
+const submitBtn = document.getElementById('submitButton');
+submitBtn.addEventListener('click', (event) => {
+  const phoneNumber = document.getElementById('phoneNumberText').value;
+  const trimmedPhoneNumber = phoneNumber.replace(/-/g, '');
+  alert(`電話番号は${trimmedPhoneNumber}です`);
+  event.preventDefault();
+}, false);

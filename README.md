@@ -176,7 +176,7 @@ function onClickbutton() {
 }
 ```
 
-- crypto.getRandomValues 安全な乱数を設定
+- <strong>crypto.getRandomValues</strong> 安全な乱数を設定
 
 ```
 const randomArray = crypto.getRandomValues(new Uint16Array(10));
@@ -268,9 +268,10 @@ function onKeyUp() {
   strNum.innerHTML = inputText.length;
 }
 ```
-- trim 文字列の両端の空白を取り除く
+- 文字列の両端の空白を取り除く
 
 ```
+// trim
 const targetStr1 = "  Hello, World!  "
 const trimmedStr1 = targetStr1.trim();
 console.log(trimmedStr1);
@@ -284,9 +285,10 @@ console.log(trimmedStr3);
 // => Hello, World!  Hello, JavaScript!
 ```
 
-- indexOf lastIndexOf serach(正規表現) 文字列をインデックス(位置)検索する 戻り値は数値
+- 文字列をインデックス(位置)検索する 戻り値は数値
 
 ```
+// indexOf
 const myStr = "Hello, World!"
 const a1 = myStr.indexOf('Hello');
 console.log(a1);
@@ -294,12 +296,14 @@ console.log(a1);
 const a2 = myStr.indexOf('World');
 console.log(a2);
 // => 7
+// lastIndexOf
 const a3 = myStr.lastIndexOf('o');
 console.log(a3);
 // => 8
 const a4 = myStr.lastIndexOf('JavaScript');
 console.log(a4);
 // => -1
+// search(正規表現)
 // 正規表現で検索する
 const a5 = myStr.search(/Hello/);
 console.log(a5);
@@ -309,22 +313,25 @@ console.log(a6);
 // => -1
 ```
 
-- includes startsWith endsWith 文字列を検索する 戻り値は真偽値
+- 文字列を検索する 戻り値は真偽値
 
 ```
+// includes
 const myStr = 'Hello, World';
 const a1 = myStr.includes('Hello');
 console.log(a1);
 // => true
+// startsWith
 const a2 = myStr.startsWith('World');
 console.log(a2);
 // => false
+// endsWith
 const a3 = myStr.endsWith('World');
 console.log(a3);
 // => true
 ```
 
-- charAt 指定したインデックス(位置)の文字列を取り出す
+- <strong>charAt</strong> 指定したインデックス(位置)の文字列を取り出す
 
 ```
 console.log('JavaScript'.charAt(3));
@@ -415,10 +422,71 @@ searchWordText.addEventListener('keyup', () => {
 });
 ```
 
-data-* グローバル属性によって、HTMLとJavaScriptとの間でDOM操作ができるようになる。
+data-* グローバル属性によって、HTMLとJavaScriptとの間でDOM操作ができるようになる。<br>
 classList.remove で要素からクラスを削除する。
 
 - 指定範囲の文字列を取得する
+
+```
+// slice
+console.log('JavaScript'.slice(0, 4));
+// => Java
+console.log('JavaScript'.slice(0));
+// => JavaScript
+// substring
+console.log('JavaScript'.substring(0, 4));
+// => Java
+console.log('JavaScript'.substring(0));
+// => JavaScript
+// slice と substring は開始インデックスが終了インデックスより大きくなった場合、挙動が異なる。
+console.log('JavaScript'.slice(3, 1));
+// => ''
+console.log('JavaScript'.substring(3, 1));
+// => av
+```
+
+- 文字数を指定して取得する
+
+```
+// substr
+console.log('JavaScript'.substr(4, 6));
+// => Script
+```
+
+- 文字列を置換する
+
+```
+// replace
+const imageName = 'image1.png';
+console.log(imageName.replace('1.png', '2.png'));
+// => image2.png
+const inputText = 'Hello, \nWorld!';
+console.log(inputText.replace('\n', ''));
+// => Hello, World!
+let phoneNumber = '123-4567-8901'
+console.log(phoneNumber.replace('-', ''));
+// => 1234567-8901
+// 正規表現を使い、gオプションで文字列全体をマッチさせる
+phoneNumber = '123-4567-8901'
+console.log(phoneNumber.replace(/-/g, ''));
+// => 12345678901
+```
+
+### 文字列の置換するサンプル
+
+```
+const submitBtn = document.getElementById('submitButton');
+submitBtn.addEventListener('click', (event) => {
+  const phoneNumber = document.getElementById('phoneNumberText').value;
+  const trimmedPhoneNumber = phoneNumber.replace(/-/g, '');
+  alert(`電話番号は${trimmedPhoneNumber}です`);
+  event.preventDefault();
+}, false);
+```
+
+```
+
+```
 
 ```
 
