@@ -715,7 +715,7 @@ function addZeroPadding(num) {
 };
 ```
 
-- 文字列をURIエスケープする
+- 文字列URIをエスケープする
 
 ```
 // encodeURI
@@ -726,7 +726,7 @@ console.log(encodeURIComponent('https://example.com/可愛いあんりちゃん�
 // => https%3A%2F%2Fexample.com%2F%E5%8F%AF%E6%84%9B%E3%81%84%E3%81%82%E3%82%93%E3%82%8A%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E3%83%9A%E3%83%BC%E3%82%B8
 ```
 
-### 文字列をURIエスケープするサンプル
+### 文字列URIをエスケープするサンプル
 
 ```
 HTML
@@ -745,8 +745,15 @@ tweetButton.addEventListener('click', () => {
 });
 ```
 
-```
+- 文字列URIをデコードする
 
+```
+// decodeURI
+console.log(decodeURI('https://example.com/%E5%8F%AF%E6%84%9B%E3%81%84%E3%81%82%E3%82%93%E3%82%8A%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E3%83%9A%E3%83%BC%E3%82%B8'));
+// => https://example.com/可愛いあんりちゃんのページ
+// decodeURIComponent
+console.log(decodeURIComponent('https%3A%2F%2Fexample.com%2F%E5%8F%AF%E6%84%9B%E3%81%84%E3%81%82%E3%82%93%E3%82%8A%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E3%83%9A%E3%83%BC%E3%82%B8'));
+// => https://example.com/可愛いあんりちゃんのページ
 ```
 
 ```
