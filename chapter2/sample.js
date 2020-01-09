@@ -331,18 +331,18 @@
 //   alert('アクセスしているブラウザはiOS端末です');
 // }
 
-// 正規表現のtestメソッドのサンプル
-const phoneNumberText = document.querySelector('#phoneNumberText');
-const warningMessage = document.querySelector('.warning-message');
-phoneNumberText.addEventListener('keyup', () => {
-  const phoneNumber = phoneNumberText.value;
-  const trimmedPhoneNumber = phoneNumber.replace(/-/g, '');
-  if (/^[0][0-9]{9,10}$/.test(trimmedPhoneNumber) === false) {
-    warningMessage.innerText = '電話番号を正しく入力してください';
-  } else {
-    warningMessage.innerText = '';
-  }
-}, false);
+// // 正規表現のtestメソッドのサンプル
+// const phoneNumberText = document.querySelector('#phoneNumberText');
+// const warningMessage = document.querySelector('.warning-message');
+// phoneNumberText.addEventListener('keyup', () => {
+//   const phoneNumber = phoneNumberText.value;
+//   const trimmedPhoneNumber = phoneNumber.replace(/-/g, '');
+//   if (/^[0][0-9]{9,10}$/.test(trimmedPhoneNumber) === false) {
+//     warningMessage.innerText = '電話番号を正しく入力してください';
+//   } else {
+//     warningMessage.innerText = '';
+//   }
+// }, false);
 
 // 数値の桁数を指定する
 // toFixed 小数点以下を指定桁数に
@@ -361,3 +361,15 @@ console.log((123.456).toPrecision(1));
 // => 1e+2 近似値に丸められる
 console.log((1.2).toPrecision(4));
 // => 1.200 桁数が揃えられる
+
+// 数値の桁数を指定するサンプル
+const secondElement = document.querySelector('.second');
+const goalTime = new Date().getTime() + 15 * 1000;
+update();
+function update() {
+  const currentTime = new Date().getTime();
+  const leftTime = goalTime - currentTime;
+  secondElement.innerText = (leftTime / 1000).toFixed(2);
+  // requestAnimationFrame 再描画の前に関数を呼び出す
+  requestAnimationFrame(update);
+};

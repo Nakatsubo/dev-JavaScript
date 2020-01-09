@@ -648,8 +648,25 @@ console.log((1.2).toPrecision(4));
 // => 1.200 桁数が揃えられる
 ```
 
-```
+### 数値の桁数を指定するサンプル
 
+```
+HTML
+<div class="timer">
+  <div class="second"></div>
+</div>
+
+JavaScript
+const secondElement = document.querySelector('.second');
+const goalTime = new Date().getTime() + 15 * 1000;
+update();
+function update() {
+  const currentTime = new Date().getTime();
+  const leftTime = goalTime - currentTime;
+  secondElement.innerText = (leftTime / 1000).toFixed(2);
+  // requestAnimationFrame 再描画の前に関数を呼び出す
+  requestAnimationFrame(update);
+};
 ```
 
 ```
