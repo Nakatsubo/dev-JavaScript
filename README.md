@@ -669,12 +669,50 @@ function update() {
 };
 ```
 
-```
+- 文字列を指定の長さになるように繰り返す
 
 ```
-
+// padStart 文字列の冒頭に指定した数の文字を追加する
+console.log('5'.padStart(2, '0'));
+// => 05
+// padStart 文字列の末尾に指定した数の文字を追加する
+console.log('ff'.padEnd(6, '0'));
+// => ff0000
+// 指定した数が文字列の長さを超えている場合、文字列を返す
+console.log('123'.padStart(3, '0'));
+// => 123
+// 文字の指定を省略すると空文字を返す
+console.log('ff'.padStart(6));
+// => 「    ff
 ```
 
+### 文字列を指定の長さになるように繰り返すサンプル
+
+```
+HTML
+<span class="hour"></span>
+<span class="minute"></span>
+<span class="second"></span>
+
+JavaScript
+const hourElement = document.querySelector('.hour');
+const minuteElement = document.querySelector('.minute');
+const secondElement = document.querySelector('.second');
+update();
+function update() {
+  const currentTime = new Date();
+  const hour = currentTime.getHours();
+  hourElement.innerText = addZeroPadding(hour);
+  const minute = currentTime.getMinutes();
+  minuteElement.innerText = addZeroPadding(minute);
+  const second = currentTime.getSeconds();
+  secondElement.innerText = addZeroPadding(second);
+  // requestAnimationFrame 再描画の前に関数を呼び出す
+  requestAnimationFrame(update);
+};
+function addZeroPadding(num) {
+  return String(num).padStart(2, '0');
+};
 ```
 
 ```

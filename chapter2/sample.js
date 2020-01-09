@@ -344,32 +344,66 @@
 //   }
 // }, false);
 
-// 数値の桁数を指定する
-// toFixed 小数点以下を指定桁数に
-console.log((0.333333).toFixed(2));
-// => 0.33
-console.log((123.456).toFixed(1));
-// => 123.5 近似値に丸められる
-console.log((1.2).toFixed(4));
-// => 1.2000 桁数が揃えられる
-// toPrecision 指定桁数の精度に
-console.log((0.333333).toPrecision(2));
-// => 0.33
-console.log((123.456).toPrecision(3));
-// => 123
-console.log((123.456).toPrecision(1));
-// => 1e+2 近似値に丸められる
-console.log((1.2).toPrecision(4));
-// => 1.200 桁数が揃えられる
+// // 数値の桁数を指定する
+// // toFixed 小数点以下を指定桁数に
+// console.log((0.333333).toFixed(2));
+// // => 0.33
+// console.log((123.456).toFixed(1));
+// // => 123.5 近似値に丸められる
+// console.log((1.2).toFixed(4));
+// // => 1.2000 桁数が揃えられる
+// // toPrecision 指定桁数の精度に
+// console.log((0.333333).toPrecision(2));
+// // => 0.33
+// console.log((123.456).toPrecision(3));
+// // => 123
+// console.log((123.456).toPrecision(1));
+// // => 1e+2 近似値に丸められる
+// console.log((1.2).toPrecision(4));
+// // => 1.200 桁数が揃えられる
 
-// 数値の桁数を指定するサンプル
+// // 数値の桁数を指定するサンプル
+// const secondElement = document.querySelector('.second');
+// const goalTime = new Date().getTime() + 15 * 1000;
+// update();
+// function update() {
+//   const currentTime = new Date().getTime();
+//   const leftTime = goalTime - currentTime;
+//   secondElement.innerText = (leftTime / 1000).toFixed(2);
+//   // requestAnimationFrame 再描画の前に関数を呼び出す
+//   requestAnimationFrame(update);
+// };
+
+// 文字列を指定の長さになるように繰り返す
+// padStart 文字列の冒頭に指定した数の文字を追加する
+console.log('5'.padStart(2, '0'));
+// => 05
+// padStart 文字列の末尾に指定した数の文字を追加する
+console.log('ff'.padEnd(6, '0'));
+// => ff0000
+// 指定した数が文字列の長さを超えている場合、文字列を返す
+console.log('123'.padStart(3, '0'));
+// => 123
+// 文字の指定を省略すると空文字を返す
+console.log('ff'.padStart(6));
+// => 「    ff
+
+// 文字列を指定の長さになるように繰り返すサンプル
+const hourElement = document.querySelector('.hour');
+const minuteElement = document.querySelector('.minute');
 const secondElement = document.querySelector('.second');
-const goalTime = new Date().getTime() + 15 * 1000;
 update();
 function update() {
-  const currentTime = new Date().getTime();
-  const leftTime = goalTime - currentTime;
-  secondElement.innerText = (leftTime / 1000).toFixed(2);
+  const currentTime = new Date();
+  const hour = currentTime.getHours();
+  hourElement.innerText = addZeroPadding(hour);
+  const minute = currentTime.getMinutes();
+  minuteElement.innerText = addZeroPadding(minute);
+  const second = currentTime.getSeconds();
+  secondElement.innerText = addZeroPadding(second);
   // requestAnimationFrame 再描画の前に関数を呼び出す
   requestAnimationFrame(update);
+};
+function addZeroPadding(num) {
+  return String(num).padStart(2, '0');
 };
