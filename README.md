@@ -669,6 +669,93 @@ function update() {
 };
 ```
 
+- 文字列を指定の長さになるように繰り返す
+
+```
+// padStart 文字列の冒頭に指定した数の文字を追加する
+console.log('5'.padStart(2, '0'));
+// => 05
+// padStart 文字列の末尾に指定した数の文字を追加する
+console.log('ff'.padEnd(6, '0'));
+// => ff0000
+// 指定した数が文字列の長さを超えている場合、文字列を返す
+console.log('123'.padStart(3, '0'));
+// => 123
+// 文字の指定を省略すると空文字を返す
+console.log('ff'.padStart(6));
+// => 「    ff
+```
+
+### 文字列を指定の長さになるように繰り返すサンプル
+
+```
+HTML
+<span class="hour"></span>
+<span class="minute"></span>
+<span class="second"></span>
+
+JavaScript
+const hourElement = document.querySelector('.hour');
+const minuteElement = document.querySelector('.minute');
+const secondElement = document.querySelector('.second');
+update();
+function update() {
+  const currentTime = new Date();
+  const hour = currentTime.getHours();
+  hourElement.innerText = addZeroPadding(hour);
+  const minute = currentTime.getMinutes();
+  minuteElement.innerText = addZeroPadding(minute);
+  const second = currentTime.getSeconds();
+  secondElement.innerText = addZeroPadding(second);
+  // requestAnimationFrame 再描画の前に関数を呼び出す
+  requestAnimationFrame(update);
+};
+function addZeroPadding(num) {
+  return String(num).padStart(2, '0');
+};
+```
+
+- 文字列URIをエスケープする
+
+```
+// encodeURI
+console.log(encodeURI('https://example.com/可愛いあんりちゃんのページ'));
+// => https://example.com/%E5%8F%AF%E6%84%9B%E3%81%84%E3%81%82%E3%82%93%E3%82%8A%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E3%83%9A%E3%83%BC%E3%82%B8
+// encodeURIComponent 「/ ? & = + : @ $ ; , # 」をエスケープする
+console.log(encodeURIComponent('https://example.com/可愛いあんりちゃんのページ'));
+// => https%3A%2F%2Fexample.com%2F%E5%8F%AF%E6%84%9B%E3%81%84%E3%81%82%E3%82%93%E3%82%8A%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E3%83%9A%E3%83%BC%E3%82%B8
+```
+
+### 文字列URIをエスケープするサンプル
+
+```
+HTML
+<h1>つぶやきたい文字列を入力してください</h1>
+<textarea id="tweetTextArea"></textarea>
+<button id="tweetTextButton"></button>
+
+JavaScript
+const tweetButton = document.querySelector('#tweetTextButton');
+tweetButton.addEventListener('click', () => {
+  let tweetText = document.querySelector('#tweetTextArea').value;
+  tweetText += ' #JavaScript';
+  const encodedText = encodeURIComponent(tweetText);
+  const tweetURL = `https://twitter.com/intent/tweet?text=${encodedText}`;
+  window.open(tweetURL);
+});
+```
+
+- 文字列URIをデコードする
+
+```
+// decodeURI
+console.log(decodeURI('https://example.com/%E5%8F%AF%E6%84%9B%E3%81%84%E3%81%82%E3%82%93%E3%82%8A%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E3%83%9A%E3%83%BC%E3%82%B8'));
+// => https://example.com/可愛いあんりちゃんのページ
+// decodeURIComponent
+console.log(decodeURIComponent('https%3A%2F%2Fexample.com%2F%E5%8F%AF%E6%84%9B%E3%81%84%E3%81%82%E3%82%93%E3%82%8A%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E3%83%9A%E3%83%BC%E3%82%B8'));
+// => https://example.com/可愛いあんりちゃんのページ
+```
+
 ```
 
 ```
