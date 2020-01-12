@@ -298,3 +298,42 @@ function updateList(filteredList) {
   };
   document.querySelector('.user-list').innerHTML = listHTML;
 };
+
+// 各要素から単一の値をつくる
+// reduce(callback) 要素を左から右に処理する
+const priceList = [100, 200, 300];
+const sum1 = priceList.reduce((previous, current) => {
+  return previous + current;
+});
+console.log(sum1);
+// => 600
+// reduceを使わずforを使ったほうが便利
+let sum2 = 0;
+for(const value of priceList) {
+  sum2 += value;
+};
+console.log(sum2);
+// => 600
+
+// 多次元配列を一次元配列にする(フラット化する)
+const fruitList = [['apple', 'banana', 'starwberry'], ['orange', 'grape']];
+const flattendFruitList = fruitList.reduce((previous, current) => {
+  return previous.concat(current);
+});
+console.log(flattendFruitList);
+// => ["apple", "banana", "starwberry", "orange", "grape"]
+
+// reduceRight(callback) 要素を右から左に処理する
+const fruitList1 = ['apple', 'banana', 'starwberry' ,'orange', 'grape'];
+const flattendList1 = fruitList1.reduce((previous, current) => {
+  return `${previous}と${current}`;
+});
+console.log(flattendList1);
+// => appleとbananaとstarwberryとorangeとgrape
+const fruitList2 = ['apple', 'banana', 'starwberry' ,'orange', 'grape'];
+const flattendList2 = fruitList2.reduceRight((previous, current) => {
+  return `${previous}と${current}`;
+});
+console.log(flattendList2);
+// => grapeとorangeとstarwberryとbananaとapple
+
