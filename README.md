@@ -792,6 +792,13 @@ a3.forEach((value, index) => {
   console.log(value);
 });
 // => 0, 2, 4, 6, 8
+
+// for(const value of array) {};
+const a4 = ['apple', 'banana', 'starwberry'];
+for(const value of a4) {
+  console.log(value);
+}
+// => apple, banana, starwberry
 ```
 
 ### APIデータなどから配列を出力するサンプル
