@@ -1368,3 +1368,87 @@ const copyObbject2 = { ...object2 };
 console.log(copyObbject2);
 // => {result: true, list: Array(2)}
 ```
+
+- オブジェクトのプロパティ・キー・値を調べる
+
+```
+// hasOwnProperty(key)
+const userData = {
+  result: true,
+  id: 1,
+  name: 'apple',
+  age: 24
+};
+
+console.log(userData.hasOwnProperty('id'));
+console.log(userData.hasOwnProperty('gender'));
+console.log('age' in userData);
+// => true
+// => false
+// => true
+
+console.log(userData.id != null);
+console.log(userData.gender != null);
+console.log(userData['id'] != null);
+// => true
+// => false
+// => true
+
+// オブジェクトのキーを調べる
+console.log(Object.keys(userData));
+// => ["result", "id", "name", "age"]
+
+// オブジェクトの値を調べる
+console.log(Object.values(userData));
+// => [true, 1, "apple", 24]
+
+// オブジェクトのプロパティを調べる
+console.log(Object.entries(userData));
+// => [Array(2), Array(2), Array(2), Array(2)]
+```
+
+- 分割代入
+
+```
+const userData = {
+  result: true,
+  id: 1,
+  name: 'apple',
+  age: 24
+};
+const { id, name, age } = userData;
+
+console.log(id);
+console.log(name);
+console.log(age);
+
+// => 1
+// => apple
+// => 24
+
+// 変数に保持する
+const { name: myName } = userData;
+console.log(myName);
+// => apple
+```
+
+- オブジェクトを編集不可能にする
+
+```
+// Object.freeze()
+'user strict';
+const myObject = {
+  id: 1,
+  name: 'apple',
+  age: 24
+}
+Object.freeze(myObject);
+myObject.id = 2;
+myObject.name = 'banana';
+// => Error
+// => Error
+
+// Object.isFrozen() 真偽値を返す
+console.log(Object.isFrozen(myObject));
+// => true
+```

@@ -35,21 +35,21 @@ for(const value of a4) {
 // => apple, banana, starwberry
 
 // APIデータなどから配列を出力するサンプル
-// const userList = [
-//   {id: 1, name: 'apple', address: 'shibuya'},
-//   {id: 2, name: 'banana', address: 'shinjyuku'},
-//   {id: 3, name: 'starwberry', address: 'ikebukuro'}
-// ];
-// const container = document.querySelector('.container');
-// userList.forEach((userData) => {
-//   // console.log(userData);
-//   container.innerHTML += `
-//     <div class="card">
-//       <h2>${userData.name}</h2>
-//       <p>出身地:${userData.address}</p>
-//     </div>
-//   `;
-// });
+const userList = [
+  {id: 1, name: 'apple', address: 'shibuya'},
+  {id: 2, name: 'banana', address: 'shinjyuku'},
+  {id: 3, name: 'starwberry', address: 'ikebukuro'}
+];
+const container = document.querySelector('.container');
+userList.forEach((userData) => {
+  // console.log(userData);
+  container.innerHTML += `
+    <div class="card">
+      <h2>${userData.name}</h2>
+      <p>出身地:${userData.address}</p>
+    </div>
+  `;
+});
 
 // 配列の先頭/末尾に要素を追加する
 // unshift => 先頭
@@ -150,27 +150,27 @@ console.log(targetA21);
 // => 1
 
 // ユーザー情報の配列から検索ユーザーの情報を表示するサンプル
-// const userDataList = [
-//   {id: 1, name: 'nakatsubo'},
-//   {id: 2, name: 'sakita'},
-//   {id: 3, name: 'kouda'}
-// ]
-// const searchIdInput = document.querySelector('#search-id-input');
-// const searchResult = document.querySelector('.search-result');
-// searchIdInput.addEventListener('keyup', (event) => {
-//   const searchId = Number(event.target.value);
-//   findUser(searchId);
-// }, false);
-// function findUser(searchId) {
-//   const targetData = userDataList.find((element) => element.id === searchId);
-//   // console.log(targetData === null);
-//   // => Error
-//   if (targetData == null) {
-//     searchResult.textContent = '該当者なし';
-//     return;
-//   }
-//   searchResult.textContent = targetData.name;
-// }
+const userDataList = [
+  {id: 1, name: 'nakatsubo'},
+  {id: 2, name: 'sakita'},
+  {id: 3, name: 'kouda'}
+]
+const searchIdInput = document.querySelector('#search-id-input');
+const searchResult = document.querySelector('.search-result');
+searchIdInput.addEventListener('keyup', (event) => {
+  const searchId = Number(event.target.value);
+  findUser(searchId);
+}, false);
+function findUser(searchId) {
+  const targetData = userDataList.find((element) => element.id === searchId);
+  // console.log(targetData === null);
+  // => Error
+  if (targetData == null) {
+    searchResult.textContent = '該当者なし';
+    return;
+  }
+  searchResult.textContent = targetData.name;
+}
 
 // 配列の並び順を逆にする
 // reverse
@@ -201,42 +201,42 @@ console.log(a24.sort());
 // => 1, 10, 5 => 期待通りの結果が得られない
 
 // オブジェクトを含む配列をソートするサンプル
-// const userDataList = [
-//   {id: 2, name: 'nakatsubo'},
-//   {id: 10, name: 'sakita'},
-//   {id: 4, name: 'kouda'},
-//   {id: 29, name: 'yuki'},
-//   {id: 101, name: 'yamazaki'}
-// ]
-// // 並び替え処理
-// function updateList() {
-//   let listHTML = '';
-//   for(const value of userDataList) {
-//     listHTML += `<li>${value.id}：${value.name}</li>`;
-//   };
-//   document.querySelector('.user-list').innerHTML = listHTML;
-// };
-// // 昇順
-// document.querySelector('.ascending').addEventListener('click', () => {
-//   sortByAscending();
-// }, false);
-// function sortByAscending() {
-//   userDataList.sort((a, b) => {
-//     return a.id - b.id;
-//   });
-//   updateList();
-// };
-// // 降順
-// document.querySelector('.descending').addEventListener('click', () => {
-//   sortByDescending();
-// }, false);
-// sortByAscending();
-// function sortByDescending() {
-//   userDataList.sort((a, b) => {
-//     return b.id - a.id;
-//   });
-//   updateList();
-// }
+const userDataList = [
+  {id: 2, name: 'nakatsubo'},
+  {id: 10, name: 'sakita'},
+  {id: 4, name: 'kouda'},
+  {id: 29, name: 'yuki'},
+  {id: 101, name: 'yamazaki'}
+]
+// 並び替え処理
+function updateList() {
+  let listHTML = '';
+  for(const value of userDataList) {
+    listHTML += `<li>${value.id}：${value.name}</li>`;
+  };
+  document.querySelector('.user-list').innerHTML = listHTML;
+};
+// 昇順
+document.querySelector('.ascending').addEventListener('click', () => {
+  sortByAscending();
+}, false);
+function sortByAscending() {
+  userDataList.sort((a, b) => {
+    return a.id - b.id;
+  });
+  updateList();
+};
+// 降順
+document.querySelector('.descending').addEventListener('click', () => {
+  sortByDescending();
+}, false);
+sortByAscending();
+function sortByDescending() {
+  userDataList.sort((a, b) => {
+    return b.id - a.id;
+  });
+  updateList();
+}
 
 // 文字列の順番で配列をソートする
 // a.localCompare(b)
@@ -367,15 +367,15 @@ console.log(a27);
 // => ["banana", "apple"]
 
 // 配列を偏りなく高速にシャッフルする
-// const array = [1, 2, 3, 4, 5];
-// const arrayLength = array.length;
+const array = [1, 2, 3, 4, 5];
+const arrayLength = array.length;
 // Fisher Yates
-// for(let i = arrayLength - 1; i >= 0; i--) {
-//   const randomIndex = Math.floor(Math.random() * (i + 1));
-//   [array[i], array[randomIndex]] = [array[randomIndex], array[i]];
-// };
-// console.log(shuffulArray);
-// // => [3, 5, 2, 4, 1]
+for(let i = arrayLength - 1; i >= 0; i--) {
+  const randomIndex = Math.floor(Math.random() * (i + 1));
+  [array[i], array[randomIndex]] = [array[randomIndex], array[i]];
+};
+console.log(shuffulArray);
+// => [3, 5, 2, 4, 1]
 function shuffulArray(sourseArray) {
   const array = sourseArray.concat();
   const arrayLength = array.length;
@@ -475,3 +475,69 @@ const object2 = {
 const copyObbject2 = { ...object2 };
 console.log(copyObbject2);
 // => {result: true, list: Array(2)}
+
+// オブジェクトのプロパティを調べる
+// hasOwnProperty(key)
+const userData = {
+  result: true,
+  id: 1,
+  name: 'apple',
+  age: 24
+};
+console.log(userData.hasOwnProperty('id'));
+console.log(userData.hasOwnProperty('gender'));
+console.log('age' in userData);
+// => true
+// => false
+// => true
+console.log(userData.id != null);
+console.log(userData.gender != null);
+console.log(userData['id'] != null);
+// => true
+// => false
+// => true
+// オブジェクトのキーを調べる
+console.log(Object.keys(userData));
+// => ["result", "id", "name", "age"]
+// オブジェクトの値を調べる
+console.log(Object.values(userData));
+// => [true, 1, "apple", 24]
+// オブジェクトのプロパティを調べる
+console.log(Object.entries(userData));
+// => [Array(2), Array(2), Array(2), Array(2)]
+
+// 分割代入
+const userData = {
+  result: true,
+  id: 1,
+  name: 'apple',
+  age: 24
+};
+const { id, name, age } = userData;
+console.log(id);
+console.log(name);
+console.log(age);
+// => 1
+// => apple
+// => 24
+// 変数に保持する
+const { name: myName } = userData;
+console.log(myName);
+// => apple
+
+// オブジェクトを編集不可能にする
+// Object.freeze()
+'user strict';
+const myObject = {
+  id: 1,
+  name: 'apple',
+  age: 24
+}
+Object.freeze(myObject);
+// myObject.id = 2;
+// myObject.name = 'banana';
+// => Error
+// => Error
+// Object.isFrozen()
+console.log(Object.isFrozen(myObject));
+// => true
