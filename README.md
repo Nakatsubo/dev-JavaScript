@@ -1262,20 +1262,82 @@ console.log(resultStr);
 // => ["orange", "grape", "banana", "apple", "strawberry"]
 ```
 
-```
+### オブジェクト
+- オブジェクト型
 
 ```
-
+const object = {
+  list: [1, 2, 3],
+  subObject: { id: 1, name: 'apple' },
+  method: () => {
+    console.log('Hello, World');
+  }
+};
+console.log(object);
+// => {list: Array(3), subObject: {…}, method: ƒ}
 ```
 
-```
+- オブジェクトの定義、値の取得、値の更新
+
+|構文|意味|
+|-----|-----|
+|{}|オブジェクトを初期化|
+|{key: value, key: value}|オブジェクトを初期化|
+|object[key]|値を取得|
+|object.key|値を取得|
+|object[key] = value|値を更新|
+|object.key = value|値を更新|
 
 ```
-
+const myObject = {};
+const person = {
+  id: 1,
+  name: 'apple',
+  age: 24
+};
+console.log(myObject);
+// => undefined
+console.log(person.id);
+// => 1
+console.log(person['name']);
+// => apple
+person.id = 2;
+person['name'] = 'banana';
+console.log(person.id);
+// => 2
+console.log(person['name']);
+// => banana
 ```
 
+- APIのレスポンスを想定したオブジェクト
+
+```
+const respose = {
+  result: true,
+  list: [
+    { id: 1, name: 'apple', age: 24 },
+    { id: 2, name: 'banana', age: 32 }
+  ]
+};
+console.log(respose.list[0].name);
+// => apple
+respose.list[1].name = 'strawberry';
+console.log(respose.list[1].name);
+// => strawberry
 ```
 
+- クラスを想定したオブジェクト
+
+```
+const myClass = {
+  method1: function() {
+    console.log('Do method1');
+  },
+  method2: function() {
+    console.log('Do method2');
+  },
+};
+myClass.method2();
 ```
 
 ```
