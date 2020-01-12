@@ -870,16 +870,38 @@ console.log(a10);
 // => ["apple", "orange", "starwberry"]
 ```
 
-```
+- 配列を連結する
 
 ```
-
+// concat
+const a11 = ['apple', 'banana'];
+const a12 = ['starwberry', 'orange'];
+const a13 = a11.concat(a12);
+console.log(a13);
+// => ["apple", "banana", "starwberry", "orange"]
 ```
 
-```
+- スプレッド演算子(...)<br>
+[...配列]のように指定すると、配列の要素をすべて展開した配列が得られる
 
 ```
+const a14 = ['apple', 'banana'];
+const a15 = ['starwberry', 'orange'];
+const a16 = [...a14, ...a15];
+console.log(a16);
+// => ["apple", "banana", "starwberry", "orange"]
+```
 
+- 配列の要素を結合して文字列にする
+
+```
+const a17 = [2, 4, 10];
+console.log(a17.join());
+// オプションの文字列を省略した場合、,(コンマ)で結合される
+// => 2,4,10
+const a18 = ['a', 'b', 'c'];
+console.log(a18.join(''));
+// => abc
 ```
 
 ```
