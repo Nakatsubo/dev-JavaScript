@@ -920,6 +920,86 @@ console.log(['apple', 'banana', 'starwberry'].includes('orange'));
 // => false
 ```
 
+- 配列から特定の条件の要素を取り出す
+
+```
+// find
+const a19 = ['apple', 'banana', 'starwberry'];
+const targetA19 = a19.find((element) => {
+  return element === 'banana';
+});
+console.log(targetA19);
+// => banana
+// 省略した書き方
+const a20 = ['apple', 'banana', 'starwberry'];
+const targetA20 = a20.find((element) => element === 'banana');
+console.log(targetA20);
+// => banana
+// findIndex 条件に最初に合致した要素のインデックス番号を取り出す
+const a21 = ['apple', 'banana', 'starwberry'];
+const targetA21 = a21.findIndex((element) => {
+  return element === 'banana';
+});
+console.log(targetA21);
+// => 1
+```
+
+### ユーザー情報の配列から検索ユーザーの情報を表示するサンプル
+
+```
+HTML
+<div class="search-word-wrapper">
+  <label>
+    ユーザーID
+    <input type="text" id="search-id-input">
+  </label>
+  <p class="search-result">該当者なし</p>
+</div>
+
+JavaScript
+const userDataList = [
+  {id: 1, name: 'nakatsubo'},
+  {id: 2, name: 'sakita'},
+  {id: 3, name: 'kouda'}
+]
+const searchIdInput = document.querySelector('#search-id-input');
+const searchResult = document.querySelector('.search-result');
+searchIdInput.addEventListener('keyup', (event) => {
+  const searchId = Number(event.target.value);
+  findUser(searchId);
+}, false);
+function findUser(searchId) {
+  const targetData = userDataList.find((element) => element.id === searchId);
+  // console.log(targetData === null);
+  // => Error
+  if (targetData == null) {
+    searchResult.textContent = '該当者なし';
+    return;
+  }
+  searchResult.textContent = targetData.name;
+}
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
 ```
 
 ```

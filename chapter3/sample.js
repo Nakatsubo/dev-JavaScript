@@ -35,21 +35,21 @@ for(const value of a4) {
 // => apple, banana, starwberry
 
 // APIデータなどから配列を出力するサンプル
-const userList = [
-  {id: 1, name: 'apple', address: 'shibuya'},
-  {id: 2, name: 'banana', address: 'shinjyuku'},
-  {id: 1, name: 'starwberry', address: 'ikebukuro'}
-];
-const container = document.querySelector('.container');
-userList.forEach((userData) => {
-  // console.log(userData);
-  container.innerHTML += `
-    <div class="card">
-      <h2>${userData.name}</h2>
-      <p>出身地:${userData.address}</p>
-    </div>
-  `;
-});
+// const userList = [
+//   {id: 1, name: 'apple', address: 'shibuya'},
+//   {id: 2, name: 'banana', address: 'shinjyuku'},
+//   {id: 3, name: 'starwberry', address: 'ikebukuro'}
+// ];
+// const container = document.querySelector('.container');
+// userList.forEach((userData) => {
+//   // console.log(userData);
+//   container.innerHTML += `
+//     <div class="card">
+//       <h2>${userData.name}</h2>
+//       <p>出身地:${userData.address}</p>
+//     </div>
+//   `;
+// });
 
 // 配列の先頭/末尾に要素を追加する
 // unshift => 先頭
@@ -127,3 +127,47 @@ console.log(['apple', 'banana', 'starwberry'].includes('apple'));
 // => true
 console.log(['apple', 'banana', 'starwberry'].includes('orange'));
 // => false
+
+// 配列から特定の条件の要素を取り出す
+// find
+const a19 = ['apple', 'banana', 'starwberry'];
+const targetA19 = a19.find((element) => {
+  return element === 'banana';
+});
+console.log(targetA19);
+// => banana
+// 省略した書き方
+const a20 = ['apple', 'banana', 'starwberry'];
+const targetA20 = a20.find((element) => element === 'banana');
+console.log(targetA20);
+// => banana
+// findIndex 条件に最初に合致した要素のインデックス番号を取り出す
+const a21 = ['apple', 'banana', 'starwberry'];
+const targetA21 = a21.findIndex((element) => {
+  return element === 'banana';
+});
+console.log(targetA21);
+// => 1
+
+// ユーザー情報の配列から検索ユーザーの情報を表示するサンプル
+const userDataList = [
+  {id: 1, name: 'nakatsubo'},
+  {id: 2, name: 'sakita'},
+  {id: 3, name: 'kouda'}
+]
+const searchIdInput = document.querySelector('#search-id-input');
+const searchResult = document.querySelector('.search-result');
+searchIdInput.addEventListener('keyup', (event) => {
+  const searchId = Number(event.target.value);
+  findUser(searchId);
+}, false);
+function findUser(searchId) {
+  const targetData = userDataList.find((element) => element.id === searchId);
+  // console.log(targetData === null);
+  // => Error
+  if (targetData == null) {
+    searchResult.textContent = '該当者なし';
+    return;
+  }
+  searchResult.textContent = targetData.name;
+}
