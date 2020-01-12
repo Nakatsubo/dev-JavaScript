@@ -904,6 +904,287 @@ console.log(a18.join(''));
 // => abc
 ```
 
+- 配列の検索をする
+
+```
+// indexOf 要素のインデックスを調べる
+console.log(['apple', 'banana', 'starwberry'].indexOf('apple'));
+//=> 0
+// lastIndexOf 要素の末尾からのインデックスを調べる
+console.log(['apple', 'banana', 'starwberry', 'apple', 'banana', 'starwberry'].lastIndexOf('apple'));
+// => 3
+// includes 要素が含まれているかどうか調べる
+console.log(['apple', 'banana', 'starwberry'].includes('apple'));
+// => true
+console.log(['apple', 'banana', 'starwberry'].includes('orange'));
+// => false
+```
+
+- 配列から特定の条件の要素を取り出す
+
+```
+// find
+const a19 = ['apple', 'banana', 'starwberry'];
+const targetA19 = a19.find((element) => {
+  return element === 'banana';
+});
+console.log(targetA19);
+// => banana
+// 省略した書き方
+const a20 = ['apple', 'banana', 'starwberry'];
+const targetA20 = a20.find((element) => element === 'banana');
+console.log(targetA20);
+// => banana
+// findIndex 条件に最初に合致した要素のインデックス番号を取り出す
+const a21 = ['apple', 'banana', 'starwberry'];
+const targetA21 = a21.findIndex((element) => {
+  return element === 'banana';
+});
+console.log(targetA21);
+// => 1
+```
+
+### ユーザー情報の配列から検索ユーザーの情報を表示するサンプル
+
+```
+HTML
+<div class="search-word-wrapper">
+  <label>
+    ユーザーID
+    <input type="text" id="search-id-input">
+  </label>
+  <p class="search-result">該当者なし</p>
+</div>
+
+JavaScript
+const userDataList = [
+  {id: 1, name: 'nakatsubo'},
+  {id: 2, name: 'sakita'},
+  {id: 3, name: 'kouda'}
+]
+const searchIdInput = document.querySelector('#search-id-input');
+const searchResult = document.querySelector('.search-result');
+searchIdInput.addEventListener('keyup', (event) => {
+  const searchId = Number(event.target.value);
+  findUser(searchId);
+}, false);
+function findUser(searchId) {
+  const targetData = userDataList.find((element) => element.id === searchId);
+  // console.log(targetData === null);
+  // => Error
+  if (targetData == null) {
+    searchResult.textContent = '該当者なし';
+    return;
+  }
+  searchResult.textContent = targetData.name;
+}
+```
+
+- 配列の並び順を逆にする
+
+```
+// reverse
+const a22 = [1, 3, 5];
+console.log(a22.reverse());
+// => [5, 3, 1]
+```
+
+- 配列をソートする<br>
+配列を比較関数に従ってソートする。比較関数は、二つの要素を受け取り、戻り値の数値の要素の大小によって順番を決定づける。
+
+```
+const a23 = [1, 2, 3, 3, 4, 5];
+a23.sort((a, b) => {
+  // 比較関数の結果の戻り値を、1, 0, -1 とする
+  if (a < b) {
+    return 1;
+  };
+  if (a === b) {
+    return 0;
+  };
+  if (a > b) {
+    return -1;
+  }
+});
+console.log(a23);
+// => [5, 4, 3, 3, 2, 1]
+
+// 比較関数を省略するとユニコード(文字列コード)の順にソートされる
+const a24 = [5, 1, 10]
+console.log(a24.sort());
+// => 1, 10, 5 => 期待通りの結果が得られない
+```
+
+### オブジェクトを含む配列をソートするサンプル
+
+```
+HTML
+<div class="button-wrapper">
+  <button class="ascending">昇順</button>
+  <button class="descending">降順</button>
+</div>
+<ul class="user-list"></ul>
+
+JavaScript
+const userDataList = [
+  {id: 2, name: 'nakatsubo'},
+  {id: 10, name: 'sakita'},
+  {id: 4, name: 'kouda'},
+  {id: 29, name: 'yuki'},
+  {id: 101, name: 'yamazaki'}
+]
+// 並び替え処理
+function updateList() {
+  let listHTML = '';
+  for(const value of userDataList) {
+    listHTML += `<li>${value.id}：${value.name}</li>`;
+  };
+  document.querySelector('.user-list').innerHTML = listHTML;
+};
+// 昇順
+document.querySelector('.ascending').addEventListener('click', () => {
+  sortByAscending();
+}, false);
+function sortByAscending() {
+  userDataList.sort((a, b) => {
+    return a.id - b.id;
+  });
+  updateList();
+};
+// 降順
+document.querySelector('.descending').addEventListener('click', () => {
+  sortByDescending();
+}, false);
+sortByAscending();
+function sortByDescending() {
+  userDataList.sort((a, b) => {
+    return b.id - a.id;
+  });
+  updateList();
+}
+```
+
+- 比較関数を使って、文字列の順番で配列をソートする
+
+```
+// a.localCompare(b)
+const a25 = ['starwberry', 'banana', 'apple'];
+a25.sort((a, b) => a.localeCompare(b));
+console.log(a25);
+// => ["apple", "banana", "starwberry"]
+```
+
+- ある配列を元に別の配列をつくる
+
+```
+// map(callback)
+const idList = [4, 10, 20];
+const userIdList1 = idList.map((value) => `userid_${value}`);
+console.log(userIdList1);
+// => ["userid_4", "userid_10", "userid_20"]
+const userIdList2 = idList.map((value, index) => `userid_${index + 1}_${value}`);
+console.log(userIdList2);
+// => ["userid_1_4", "userid_2_10", "userid_3_20"]
+```
+
+### オブジェクトの配列から別の配列をつくるサンプル
+
+```
+const apiResponseData = [
+  {id: 2, name: 'nakatsubo'},
+  {id: 10, name: 'sakita'},
+  {id: 4, name: 'kouda'},
+  {id: 29, name: 'yuki'},
+  {id: 101, name: 'yamazaki'}
+];
+const apiIdList = apiResponseData.map((value) => value.id);
+console.log(apiIdList);
+// => [2, 10, 4, 29, 101]
+```
+
+- ある配列を元に条件を満たす別の配列をつくる
+
+```
+// filter(callback)
+const a26 = [1, 2, 3, 4].filter((value) => value >= 3);
+console.log(a26);
+// => [3, 4]
+```
+
+### ある配列を元に条件を満たす別の配列をつくるサンプル
+
+```
+HTML
+<div class="button-wrapper">
+  <button class="button" data-age="20">20歳以上</button>
+  <button class="button" data-age="30">30歳以上</button>
+  <button class="button" data-age="40">40歳以上</button>
+</div>
+<ul class="user-list"></ul>
+
+JavaScript
+const userDataList = [
+  {id: 2, age: 22},
+  {id: 10, age: 25},
+  {id: 4, age: 38},
+  {id: 29, age: 32},
+  {id: 101, age: 44}
+];
+document.querySelectorAll('.button').forEach((element) => {
+  element.addEventListener('click', (event) => {
+    onClickButton(event);
+  });
+});
+function onClickButton(event) {
+  const button = event.target;
+  const targetAge = button.dataset.age;
+  const filteredList = userDataList.filter((value) => value.age >= targetAge);
+  updateList(filteredList);
+};
+function updateList(filteredList) {
+  let listHTML = '';
+  for(const value of filteredList) {
+    listHTML += `<li>${value.id}：${value.age}歳</li>`
+  };
+  document.querySelector('.user-list').innerHTML = listHTML;
+};
+
+
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
 ```
 
 ```
