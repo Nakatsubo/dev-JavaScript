@@ -353,3 +353,43 @@ console.log(Array.from(myString2));
 const newArray = Array.from(myString2, (character) => `${character}!`);
 console.log(newArray);
 // => ["H!", "e!", "l!", "l!", "o!", ",!", " !", "W!", "o!", "r!", "l!", "d!"]
+
+// 分割代入
+let a;
+let b;
+let c;
+[a, b, c] = [1, 2, 3];
+console.log(a, b, c);
+// => 1 2 3
+const a27 = ['apple', 'banana'];
+[a27[0], a27[1]] = [a27[1], a27[0]];
+console.log(a27);
+// => ["banana", "apple"]
+
+// 配列を偏りなく高速にシャッフルする
+// const array = [1, 2, 3, 4, 5];
+// const arrayLength = array.length;
+// Fisher Yates
+// for(let i = arrayLength - 1; i >= 0; i--) {
+//   const randomIndex = Math.floor(Math.random() * (i + 1));
+//   [array[i], array[randomIndex]] = [array[randomIndex], array[i]];
+// };
+// console.log(shuffulArray);
+// // => [3, 5, 2, 4, 1]
+function shuffulArray(sourseArray) {
+  const array = sourseArray.concat();
+  const arrayLength = array.length;
+  for(let i = arrayLength - 1; i >= 0; i--) {
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+    [array[i], array[randomIndex]] = [array[randomIndex], array[i]];
+  };
+  return array;
+};
+const testNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const resultNum = shuffulArray(testNum)
+console.log(resultNum);
+// => [8, 6, 7, 3, 2, 4, 5, 10, 9, 1]
+const testStr = ['apple', 'banana', 'strawberry', 'orange', 'grape'];
+const resultStr = shuffulArray(testStr);
+console.log(resultStr);
+// => ["orange", "grape", "banana", "apple", "strawberry"]
