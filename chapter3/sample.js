@@ -150,24 +150,89 @@ console.log(targetA21);
 // => 1
 
 // ユーザー情報の配列から検索ユーザーの情報を表示するサンプル
-const userDataList = [
-  {id: 1, name: 'nakatsubo'},
-  {id: 2, name: 'sakita'},
-  {id: 3, name: 'kouda'}
-]
-const searchIdInput = document.querySelector('#search-id-input');
-const searchResult = document.querySelector('.search-result');
-searchIdInput.addEventListener('keyup', (event) => {
-  const searchId = Number(event.target.value);
-  findUser(searchId);
-}, false);
-function findUser(searchId) {
-  const targetData = userDataList.find((element) => element.id === searchId);
-  // console.log(targetData === null);
-  // => Error
-  if (targetData == null) {
-    searchResult.textContent = '該当者なし';
-    return;
+// const userDataList = [
+//   {id: 1, name: 'nakatsubo'},
+//   {id: 2, name: 'sakita'},
+//   {id: 3, name: 'kouda'}
+// ]
+// const searchIdInput = document.querySelector('#search-id-input');
+// const searchResult = document.querySelector('.search-result');
+// searchIdInput.addEventListener('keyup', (event) => {
+//   const searchId = Number(event.target.value);
+//   findUser(searchId);
+// }, false);
+// function findUser(searchId) {
+//   const targetData = userDataList.find((element) => element.id === searchId);
+//   // console.log(targetData === null);
+//   // => Error
+//   if (targetData == null) {
+//     searchResult.textContent = '該当者なし';
+//     return;
+//   }
+//   searchResult.textContent = targetData.name;
+// }
+
+// 配列の並び順を逆にする
+// reverse
+const a22 = [1, 3, 5];
+console.log(a22.reverse());
+// => [5, 3, 1]
+
+// 配列をソートする
+const a23 = [1, 2, 3, 3, 4, 5];
+a23.sort((a, b) => {
+  // 比較関数の結果の戻り値を、1, 0, -1 とする
+  if (a < b) {
+    return 1;
+  };
+  if (a === b) {
+    return 0;
+  };
+  if (a > b) {
+    return -1;
   }
-  searchResult.textContent = targetData.name;
+});
+console.log(a23);
+// => [5, 4, 3, 3, 2, 1]
+// 比較関数を省略するとユニコード(文字列コード)の順にソートされる
+const a24 = [5, 1, 10]
+console.log(a24.sort());
+// => 1, 10, 5 => 期待通りの結果が得られない
+
+// オブジェクトを含む配列をソートするサンプル
+const userDataList = [
+  {id: 2, name: 'nakatsubo'},
+  {id: 10, name: 'sakita'},
+  {id: 4, name: 'kouda'},
+  {id: 29, name: 'yuki'},
+  {id: 101, name: 'yamazaki'}
+]
+// 並び替え処理
+function updateList() {
+  let listHTML = '';
+  for(const value of userDataList) {
+    listHTML += `<li>${value.id}：${value.name}</li>`;
+  };
+  document.querySelector('.user-list').innerHTML = listHTML;
+};
+// 昇順
+document.querySelector('.ascending').addEventListener('click', () => {
+  sortByAscending();
+}, false);
+function sortByAscending() {
+  userDataList.sort((a, b) => {
+    return a.id - b.id;
+  });
+  updateList();
+};
+// 降順
+document.querySelector('.descending').addEventListener('click', () => {
+  sortByDescending();
+}, false);
+sortByAscending();
+function sortByDescending() {
+  userDataList.sort((a, b) => {
+    return b.id - a.id;
+  });
+  updateList();
 }
