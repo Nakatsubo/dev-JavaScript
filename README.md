@@ -1148,47 +1148,307 @@ function updateList(filteredList) {
   };
   document.querySelector('.user-list').innerHTML = listHTML;
 };
+```
 
+- 各要素から単一の値をつくる
 
+```
+// reduce(callback) 要素を左から右に処理する
+const priceList = [100, 200, 300];
+const sum1 = priceList.reduce((previous, current) => {
+  return previous + current;
+});
+console.log(sum1);
+// => 600
+// reduceを使わずforを使ったほうが便利
+let sum2 = 0;
+for(const value of priceList) {
+  sum2 += value;
+};
+console.log(sum2);
+// => 600
 
+// 多次元配列を一次元配列にする(フラット化する)
+const fruitList = [['apple', 'banana', 'starwberry'], ['orange', 'grape']];
+const flattendFruitList = fruitList.reduce((previous, current) => {
+  return previous.concat(current);
+});
+console.log(flattendFruitList);
+// => ["apple", "banana", "starwberry", "orange", "grape"]
+
+// reduceRight(callback) 要素を右から左に処理する
+const fruitList1 = ['apple', 'banana', 'starwberry' ,'orange', 'grape'];
+const flattendList1 = fruitList1.reduce((previous, current) => {
+  return `${previous}と${current}`;
+});
+console.log(flattendList1);
+// => appleとbananaとstarwberryとorangeとgrape
+const fruitList2 = ['apple', 'banana', 'starwberry' ,'orange', 'grape'];
+const flattendList2 = fruitList2.reduceRight((previous, current) => {
+  return `${previous}と${current}`;
+});
+console.log(flattendList2);
+// => grapeとorangeとstarwberryとbananaとapple
+```
+
+- 配列に似たオブジェクトを配列に変換する<br>
+lengthやインデックスによるアクセスが可能な、配列のようなオブジェクト(ArrayLike)を配列に変換する(querySelectorAllで取得したNodeListOfなど)
+
+```
+//[...変換対象]
+const allDivElementList = document.querySelectorAll('div');
+const elementArray = [...allDivElementList];
+elementArray.filter((element) => element.classList.contains('on'));
+// 文字列もArrayLikeオブジェクト
+const myString1 = 'Hello, World';
+console.log([...myString1]);
+// => ["H", "e", "l", "l", "o", ",", " ", "W", "o", "r", "l", "d"]
+// Array.fromでも変換可能
+const myString2 = 'Hello, World';
+console.log(Array.from(myString2));
+// => ["H", "e", "l", "l", "o", ",", " ", "W", "o", "r", "l", "d"]
+const newArray = Array.from(myString2, (character) => `${character}!`);
+console.log(newArray);
+// => ["H!", "e!", "l!", "l!", "o!", ",!", " !", "W!", "o!", "r!", "l!", "d!"]
+```
+
+- 分割代入
+
+```
+let a;
+let b;
+let c;
+[a, b, c] = [1, 2, 3];
+console.log(a, b, c);
+// => 1 2 3
+const a27 = ['apple', 'banana'];
+[a27[0], a27[1]] = [a27[1], a27[0]];
+console.log(a27);
+// => ["banana", "apple"]
+```
+
+- 配列を偏りなく高速にシャッフルする<br>
+「Fisher Yates」(フィッシャーイェーツ)のアルゴリズムを使用する。
+
+```
+const array = [1, 2, 3, 4, 5];
+const arrayLength = array.length;
+Fisher Yates
+for(let i = arrayLength - 1; i >= 0; i--) {
+  const randomIndex = Math.floor(Math.random() * (i + 1));
+  [array[i], array[randomIndex]] = [array[randomIndex], array[i]];
+};
+console.log(shuffulArray);
+// => [3, 5, 2, 4, 1]
 ```
 
 ```
-
+function shuffulArray(sourseArray) {
+  const array = sourseArray.concat();
+  const arrayLength = array.length;
+  for(let i = arrayLength - 1; i >= 0; i--) {
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+    [array[i], array[randomIndex]] = [array[randomIndex], array[i]];
+  };
+  return array;
+};
+const testNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const resultNum = shuffulArray(testNum)
+console.log(resultNum);
+// => [8, 6, 7, 3, 2, 4, 5, 10, 9, 1]
+const testStr = ['apple', 'banana', 'strawberry', 'orange', 'grape'];
+const resultStr = shuffulArray(testStr);
+console.log(resultStr);
+// => ["orange", "grape", "banana", "apple", "strawberry"]
 ```
 
-```
+### オブジェクト
+- オブジェクト型
 
 ```
-
+const object = {
+  list: [1, 2, 3],
+  subObject: { id: 1, name: 'apple' },
+  method: () => {
+    console.log('Hello, World');
+  }
+};
+console.log(object);
+// => {list: Array(3), subObject: {…}, method: ƒ}
 ```
 
-```
+- オブジェクトの定義、値の取得、値の更新
+
+|構文|意味|
+|-----|-----|
+|{}|オブジェクトを初期化|
+|{key: value, key: value}|オブジェクトを初期化|
+|object[key]|値を取得|
+|object.key|値を取得|
+|object[key] = value|値を更新|
+|object.key = value|値を更新|
 
 ```
-
+const myObject = {};
+const person = {
+  id: 1,
+  name: 'apple',
+  age: 24
+};
+console.log(myObject);
+// => undefined
+console.log(person.id);
+// => 1
+console.log(person['name']);
+// => apple
+person.id = 2;
+person['name'] = 'banana';
+console.log(person.id);
+// => 2
+console.log(person['name']);
+// => banana
 ```
 
-```
+- APIのレスポンスを想定したオブジェクト
 
 ```
-
+const respose = {
+  result: true,
+  list: [
+    { id: 1, name: 'apple', age: 24 },
+    { id: 2, name: 'banana', age: 32 }
+  ]
+};
+console.log(respose.list[0].name);
+// => apple
+respose.list[1].name = 'strawberry';
+console.log(respose.list[1].name);
+// => strawberry
 ```
 
-```
+- クラスを想定したオブジェクト
 
 ```
-
+const myClass = {
+  method1: function() {
+    console.log('Do method1');
+  },
+  method2: function() {
+    console.log('Do method2');
+  },
+};
+myClass.method2();
 ```
 
-```
+- オブジェクトを複製する<br>
+複製したオブジェクトはシャローコピーとなり、複製元のオブジェクトが複製先のオブジェクトに影響する。
 
 ```
+// Object.assign({},)
+const object1 = {
+  result: true,
+  list: [
+    { id: 1, name: 'apple', age: 24 },
+    { id: 2, name: 'banana', age: 32 }
+  ]
+};
+const copyObbject1 = Object.assign({}, object1);
+console.log(copyObbject1);
+// => {result: true, list: Array(2)}
 
+// スプレッド演算子[...]
+const object2 = {
+  result: true,
+  list: [
+    { id: 1, name: 'apple', age: 24 },
+    { id: 2, name: 'banana', age: 32 }
+  ]
+};
+const copyObbject2 = { ...object2 };
+console.log(copyObbject2);
+// => {result: true, list: Array(2)}
 ```
 
-```
+- オブジェクトのプロパティ・キー・値を調べる
 
 ```
+// hasOwnProperty(key)
+const userData = {
+  result: true,
+  id: 1,
+  name: 'apple',
+  age: 24
+};
 
+console.log(userData.hasOwnProperty('id'));
+console.log(userData.hasOwnProperty('gender'));
+console.log('age' in userData);
+// => true
+// => false
+// => true
+
+console.log(userData.id != null);
+console.log(userData.gender != null);
+console.log(userData['id'] != null);
+// => true
+// => false
+// => true
+
+// オブジェクトのキーを調べる
+console.log(Object.keys(userData));
+// => ["result", "id", "name", "age"]
+
+// オブジェクトの値を調べる
+console.log(Object.values(userData));
+// => [true, 1, "apple", 24]
+
+// オブジェクトのプロパティを調べる
+console.log(Object.entries(userData));
+// => [Array(2), Array(2), Array(2), Array(2)]
+```
+
+- 分割代入
+
+```
+const userData = {
+  result: true,
+  id: 1,
+  name: 'apple',
+  age: 24
+};
+const { id, name, age } = userData;
+
+console.log(id);
+console.log(name);
+console.log(age);
+
+// => 1
+// => apple
+// => 24
+
+// 変数に保持する
+const { name: myName } = userData;
+console.log(myName);
+// => apple
+```
+
+- オブジェクトを編集不可能にする
+
+```
+// Object.freeze()
+'user strict';
+const myObject = {
+  id: 1,
+  name: 'apple',
+  age: 24
+}
+Object.freeze(myObject);
+myObject.id = 2;
+myObject.name = 'banana';
+// => Error
+// => Error
+
+// Object.isFrozen() 真偽値を返す
+console.log(Object.isFrozen(myObject));
+// => true
 ```
