@@ -114,3 +114,16 @@ console.log(a17.join());
 const a18 = ['a', 'b', 'c'];
 console.log(a18.join(''));
 // => abc
+
+// 配列の検索をする
+// indexOf 要素のインデックスを調べる
+console.log(['apple', 'banana', 'starwberry'].indexOf('apple'));
+//=> 0
+// lastIndexOf 要素の末尾からのインデックスを調べる
+console.log(['apple', 'banana', 'starwberry', 'apple', 'banana', 'starwberry'].lastIndexOf('apple'));
+// => 3
+// includes 要素が含まれているかどうか調べる
+console.log(['apple', 'banana', 'starwberry'].includes('apple'));
+// => true
+console.log(['apple', 'banana', 'starwberry'].includes('orange'));
+// => false
