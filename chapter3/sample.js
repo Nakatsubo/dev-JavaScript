@@ -450,3 +450,28 @@ const myClass = {
 };
 myClass.method2();
 // => Do method2
+
+// オブジェクトを複製する
+// Object.assign({},)
+const object1 = {
+  result: true,
+  list: [
+    { id: 1, name: 'apple', age: 24 },
+    { id: 2, name: 'banana', age: 32 }
+  ]
+};
+const copyObbject1 = Object.assign({}, object1);
+console.log(copyObbject1);
+// => {result: true, list: Array(2)}
+
+// スプレッド演算子[...]
+const object2 = {
+  result: true,
+  list: [
+    { id: 1, name: 'apple', age: 24 },
+    { id: 2, name: 'banana', age: 32 }
+  ]
+};
+const copyObbject2 = { ...object2 };
+console.log(copyObbject2);
+// => {result: true, list: Array(2)}
