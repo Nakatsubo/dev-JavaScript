@@ -1191,8 +1191,25 @@ console.log(flattendList2);
 // => grapeとorangeとstarwberryとbananaとapple
 ```
 
-```
+- 配列に似たオブジェクトを配列に変換する<br>
+lengthやインデックスによるアクセスが可能な、配列のようなオブジェクト(ArrayLike)を配列に変換する(querySelectorAllで取得したNodeListOfなど)
 
+```
+//[...変換対象]
+const allDivElementList = document.querySelectorAll('div');
+const elementArray = [...allDivElementList];
+elementArray.filter((element) => element.classList.contains('on'));
+// 文字列もArrayLikeオブジェクト
+const myString1 = 'Hello, World';
+console.log([...myString1]);
+// => ["H", "e", "l", "l", "o", ",", " ", "W", "o", "r", "l", "d"]
+// Array.fromでも変換可能
+const myString2 = 'Hello, World';
+console.log(Array.from(myString2));
+// => ["H", "e", "l", "l", "o", ",", " ", "W", "o", "r", "l", "d"]
+const newArray = Array.from(myString2, (character) => `${character}!`);
+console.log(newArray);
+// => ["H!", "e!", "l!", "l!", "o!", ",!", " !", "W!", "o!", "r!", "l!", "d!"]
 ```
 
 ```
