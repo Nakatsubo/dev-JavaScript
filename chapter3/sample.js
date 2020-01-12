@@ -179,6 +179,7 @@ console.log(a22.reverse());
 // => [5, 3, 1]
 
 // 配列をソートする
+// sort(callback)
 const a23 = [1, 2, 3, 3, 4, 5];
 a23.sort((a, b) => {
   // 比較関数の結果の戻り値を、1, 0, -1 とする
@@ -200,39 +201,100 @@ console.log(a24.sort());
 // => 1, 10, 5 => 期待通りの結果が得られない
 
 // オブジェクトを含む配列をソートするサンプル
-const userDataList = [
+// const userDataList = [
+//   {id: 2, name: 'nakatsubo'},
+//   {id: 10, name: 'sakita'},
+//   {id: 4, name: 'kouda'},
+//   {id: 29, name: 'yuki'},
+//   {id: 101, name: 'yamazaki'}
+// ]
+// // 並び替え処理
+// function updateList() {
+//   let listHTML = '';
+//   for(const value of userDataList) {
+//     listHTML += `<li>${value.id}：${value.name}</li>`;
+//   };
+//   document.querySelector('.user-list').innerHTML = listHTML;
+// };
+// // 昇順
+// document.querySelector('.ascending').addEventListener('click', () => {
+//   sortByAscending();
+// }, false);
+// function sortByAscending() {
+//   userDataList.sort((a, b) => {
+//     return a.id - b.id;
+//   });
+//   updateList();
+// };
+// // 降順
+// document.querySelector('.descending').addEventListener('click', () => {
+//   sortByDescending();
+// }, false);
+// sortByAscending();
+// function sortByDescending() {
+//   userDataList.sort((a, b) => {
+//     return b.id - a.id;
+//   });
+//   updateList();
+// }
+
+// 文字列の順番で配列をソートする
+// a.localCompare(b)
+const a25 = ['starwberry', 'banana', 'apple'];
+a25.sort((a, b) => a.localeCompare(b));
+console.log(a25);
+// => ["apple", "banana", "starwberry"]
+
+// ある配列を元に別の配列をつくる
+// map(callback)
+const idList = [4, 10, 20];
+const userIdList1 = idList.map((value) => `userid_${value}`);
+console.log(userIdList1);
+// => ["userid_4", "userid_10", "userid_20"]
+const userIdList2 = idList.map((value, index) => `userid_${index + 1}_${value}`);
+console.log(userIdList2);
+// => ["userid_1_4", "userid_2_10", "userid_3_20"]
+
+// オブジェクトの配列から別の配列をつくるサンプル
+const apiResponseData = [
   {id: 2, name: 'nakatsubo'},
   {id: 10, name: 'sakita'},
   {id: 4, name: 'kouda'},
   {id: 29, name: 'yuki'},
   {id: 101, name: 'yamazaki'}
-]
-// 並び替え処理
-function updateList() {
+];
+const apiIdList = apiResponseData.map((value) => value.id);
+console.log(apiIdList);
+// => [2, 10, 4, 29, 101]
+
+// ある配列を元に条件を満たす別の配列をつくる
+// filter(callback)
+const a26 = [1, 2, 3, 4].filter((value) => value >= 3);
+console.log(a26);
+// => [3, 4]
+
+const userDataList = [
+  {id: 2, age: 22},
+  {id: 10, age: 25},
+  {id: 4, age: 38},
+  {id: 29, age: 32},
+  {id: 101, age: 44}
+];
+document.querySelectorAll('.button').forEach((element) => {
+  element.addEventListener('click', (event) => {
+    onClickButton(event);
+  });
+});
+function onClickButton(event) {
+  const button = event.target;
+  const targetAge = button.dataset.age;
+  const filteredList = userDataList.filter((value) => value.age >= targetAge);
+  updateList(filteredList);
+};
+function updateList(filteredList) {
   let listHTML = '';
-  for(const value of userDataList) {
-    listHTML += `<li>${value.id}：${value.name}</li>`;
+  for(const value of filteredList) {
+    listHTML += `<li>${value.id}：${value.age}歳</li>`
   };
   document.querySelector('.user-list').innerHTML = listHTML;
 };
-// 昇順
-document.querySelector('.ascending').addEventListener('click', () => {
-  sortByAscending();
-}, false);
-function sortByAscending() {
-  userDataList.sort((a, b) => {
-    return a.id - b.id;
-  });
-  updateList();
-};
-// 降順
-document.querySelector('.descending').addEventListener('click', () => {
-  sortByDescending();
-}, false);
-sortByAscending();
-function sortByDescending() {
-  userDataList.sort((a, b) => {
-    return b.id - a.id;
-  });
-  updateList();
-}

@@ -1064,6 +1064,123 @@ function sortByDescending() {
 }
 ```
 
+- 比較関数を使って、文字列の順番で配列をソートする
+
+```
+// a.localCompare(b)
+const a25 = ['starwberry', 'banana', 'apple'];
+a25.sort((a, b) => a.localeCompare(b));
+console.log(a25);
+// => ["apple", "banana", "starwberry"]
+```
+
+- ある配列を元に別の配列をつくる
+
+```
+// map(callback)
+const idList = [4, 10, 20];
+const userIdList1 = idList.map((value) => `userid_${value}`);
+console.log(userIdList1);
+// => ["userid_4", "userid_10", "userid_20"]
+const userIdList2 = idList.map((value, index) => `userid_${index + 1}_${value}`);
+console.log(userIdList2);
+// => ["userid_1_4", "userid_2_10", "userid_3_20"]
+```
+
+### オブジェクトの配列から別の配列をつくるサンプル
+
+```
+const apiResponseData = [
+  {id: 2, name: 'nakatsubo'},
+  {id: 10, name: 'sakita'},
+  {id: 4, name: 'kouda'},
+  {id: 29, name: 'yuki'},
+  {id: 101, name: 'yamazaki'}
+];
+const apiIdList = apiResponseData.map((value) => value.id);
+console.log(apiIdList);
+// => [2, 10, 4, 29, 101]
+```
+
+- ある配列を元に条件を満たす別の配列をつくる
+
+```
+// filter(callback)
+const a26 = [1, 2, 3, 4].filter((value) => value >= 3);
+console.log(a26);
+// => [3, 4]
+```
+
+### ある配列を元に条件を満たす別の配列をつくるサンプル
+
+```
+HTML
+<div class="button-wrapper">
+  <button class="button" data-age="20">20歳以上</button>
+  <button class="button" data-age="30">30歳以上</button>
+  <button class="button" data-age="40">40歳以上</button>
+</div>
+<ul class="user-list"></ul>
+
+JavaScript
+const userDataList = [
+  {id: 2, age: 22},
+  {id: 10, age: 25},
+  {id: 4, age: 38},
+  {id: 29, age: 32},
+  {id: 101, age: 44}
+];
+document.querySelectorAll('.button').forEach((element) => {
+  element.addEventListener('click', (event) => {
+    onClickButton(event);
+  });
+});
+function onClickButton(event) {
+  const button = event.target;
+  const targetAge = button.dataset.age;
+  const filteredList = userDataList.filter((value) => value.age >= targetAge);
+  updateList(filteredList);
+};
+function updateList(filteredList) {
+  let listHTML = '';
+  for(const value of filteredList) {
+    listHTML += `<li>${value.id}：${value.age}歳</li>`
+  };
+  document.querySelector('.user-list').innerHTML = listHTML;
+};
+
+
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
 ```
 
 ```
