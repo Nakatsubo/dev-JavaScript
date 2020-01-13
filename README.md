@@ -1452,3 +1452,54 @@ myObject.name = 'banana';
 console.log(Object.isFrozen(myObject));
 // => true
 ```
+
+## Chapter4
+
+### データ型
+
+- プリミティブ型(基本型)<br>
+「データそのもの」のこと。
+- オブジェクト型(複合型)<br>
+「データを参照するデータ」のこと。プリミティブ型以外のすべて。
+
+|プリミティブ型|意味|
+|-----|-----|
+|Boolean型|真偽値|
+|String|文字列|
+|Number|数値|
+|Undefined|値が未定であることを示す|
+|Null|値が存在しないことを示す|
+|Symbol|シンボル|
+
+```
+const num = 100;
+console.log(num);
+
+const str = 'apple';
+console.log(str);
+```
+
+|オブジェクト型|意味|
+|-----|-----|
+|Object|オブジェクト|
+
+```
+// 配列を参照
+const arr = [1, 2, 3];
+console.log(arr);
+
+// オブジェクトを参照
+const obj = {
+  id: 1,
+  name: 'apple'
+}
+console.log(obj);
+
+// ３つのオブジェクトを参照
+const arr = [
+  {id: 1, name: 'apple'},
+  {id: 2, name: 'banana'},
+  {id: 3, name: 'starwberry'}
+];
+console.log(arr);
+```
