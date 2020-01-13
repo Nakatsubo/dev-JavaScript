@@ -1458,9 +1458,11 @@ console.log(Object.isFrozen(myObject));
 ### データ型
 
 - プリミティブ型(基本型)<br>
-「データそのもの」のこと。
+「データそのもの」のこと。<br>
+イミュータブル(immutale, 不変)
 - オブジェクト型(複合型)<br>
-「データを参照するデータ」のこと。プリミティブ型以外のすべて。
+「データを参照するデータ」のこと。プリミティブ型以外のすべて。<br>
+ミュータブル(mutable, 可変)
 
 |プリミティブ型|意味|
 |-----|-----|
@@ -1502,4 +1504,110 @@ const arr = [
   {id: 3, name: 'starwberry'}
 ];
 console.log(arr);
+```
+
+- データ型を調べる
+
+|データ型|typeofの結果|
+|-----|-----|
+|Boolean|boolean|
+|String|string|
+|Number|number|
+|Undefined|Undefined|
+|Null|object|
+|Symbol|symbol|
+|Object|object|
+|関数|function|
+
+```
+// typeof value
+console.log(typeof true);
+// => boolean
+console.log(typeof 'apple');
+// => string
+console.log(typeof 10);
+// => number
+console.log(typeof undefined);
+// => undefined
+console.log(typeof null);
+// => object
+console.log(typeof Symbol());
+// => symbol
+console.log(typeof [1, 2, 3]);
+// => object
+console.log(typeof { id: 1, name: 'apple' });
+// => object
+console.log(
+  typeof function() {
+    console.log('test');
+  }
+);
+// => function
+console.log(typeof class MyClass {});
+// => function
+```
+
+- 値がオブジェクトのインスタンスかどうか調べる
+
+```
+// value instanceof object
+const today = new Date();
+console.log(today instanceof Date);
+console.log(today instanceof Array);
+```
+
+- instanceof を使ったサンプル
+
+```
+function showCurrentDate(argument) {
+  if (argument instanceof Date) {
+    console.log(`現在は${argument.toLocaleDateString()}です`);
+  } else {
+    console.log('不正なデータです');
+  };
+};
+const today = new Date();
+const myArray = [1, 2, 3];
+console.log(showCurrentDate(today));
+console.log(showCurrentDate(myArray));
+// => 現在は2020/1/1です
+// => 不正なデータです
+```
+
+- 値渡しと参照渡し
+あるデータを変数から別の変数に渡すとき、プリミティブ型は「値渡し」、オブジェクト型は「参照渡し」となる。
+
+```
+/ 値渡し
+let a = 100;
+// 変数bへaを値渡し
+let b = a;
+a = 500;
+console.log(b);
+// => 100
+
+// 参照渡し
+let c = [1, 2, 3];
+let d = c;
+c[0] = 100;
+console.log(d);
+// => [100, 2, 3]
+
+// プリミティブ型の値を関数に渡しても、処理結果は変数に影響を与えない
+// function myFunction(x) {
+//   x += 2;
+// };
+let e = 10;
+myFunction(e);
+console.log(e);
+// => 10
+
+// オブジェクト型の値を関数に渡すと、処理結果は変数に影響を与える
+function myFunction(x) {
+  x[0] = 100;
+};
+let f = [1, 2, 3];
+myFunction(f);
+console.log(f);
+// => [100, 2, 3]
 ```
