@@ -145,3 +145,31 @@ console.log('200' - 100);
 // => 100 => 数値型に変換
 console.log(1 == '1');
 // => true
+
+// 値が未定義の場合
+let value;
+console.log(value);
+// => undefined
+const object = {};
+console.log(object.value);
+// => undefined
+function valFunction(value) {
+  console.log(`bの値は${value}`);
+}
+valFunction();
+// => bの値はundefined
+
+// データの値がない場合
+function searchUser(targetId) {
+  const userList = [
+    { id: 1, name: 'apple' },
+    { id: 2, name: 'banana' },
+    { id: 3, name: 'strawberry' }
+  ];
+  const targetUser = userList.find((user) => user.id === targetId);
+  return targetUser.name;
+};
+console.log(searchUser(1));
+// => apple
+console.log(searchUser(4));
+// => Uncaught TypeError: Cannot read property 'name' of undefined
