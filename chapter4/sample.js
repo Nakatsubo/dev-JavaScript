@@ -110,3 +110,38 @@ let f = [1, 2, 3];
 myFunction(f);
 console.log(f);
 // => [100, 2, 3]
+
+// データ型の変換
+const result = 100 + Number('200');
+console.log(result);
+// => 300
+console.log(Boolean(1));
+// => true
+console.log(Boolean(0));
+// => false
+console.log(Boolean('apple'));
+// => true
+console.log(Boolean(''));
+// => false
+console.log(String(1));
+// => "1"
+console.log(String(''));
+// =>
+console.log(Number('1'));
+// => 1
+console.log(Number(''));
+// => 0
+console.log(Number('apple'));
+// => NaN
+console.log(Number(true));
+// => 1
+console.log(Number(false));
+// => 0
+
+// 暗黙の型変換
+console.log(100 + '200');
+// => 100200 => 文字列型に変換
+console.log('200' - 100);
+// => 100 => 数値型に変換
+console.log(1 == '1');
+// => true
