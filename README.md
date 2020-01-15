@@ -1667,3 +1667,20 @@ console.log('200' - 100);
 console.log(1 == '1');
 // => true
 ```
+
+- 値が未定義の場合<br>
+変数に値がない、オブジェクトのプロパティに値がない、引数に値がない、など。
+
+```
+let value;
+console.log(value);
+// => undefined
+const object = {};
+console.log(object.value);
+// => undefined
+function valFunction(value) {
+  console.log(`bの値は${value}`);
+}
+valFunction();
+// => bの値はundefined
+```
