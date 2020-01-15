@@ -1,6 +1,11 @@
 # README
 Let's study & enjoy JavaScript
 
+- <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter1">Chapter1 Basic</a>
+- <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter2">Chapter2 Value...</a>
+- <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter3">Chapter3 Array, Object...</a>
+- <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter4">Chapter4 Data</a>
+
 ## Chapter1
 
 - 配列やオブジェクトの定数は変更できる
@@ -1610,4 +1615,55 @@ let f = [1, 2, 3];
 myFunction(f);
 console.log(f);
 // => [100, 2, 3]
+```
+
+- データ型の変換
+
+|メソッド|振る舞い|戻り値|
+|-----|-----|-----|
+|Boolean(value)|値を真偽値型に変換|真偽値|
+|String(value)|値を文字列型に変換|文字列|
+|Number(value)|値を数値型に変換|数値|
+|parseInt(string)|文字列を数値型(整数)に変換|数値|
+|parseFloat(string)|文字列を数値型(浮動小数点)に変換|数値|
+
+```
+const result = 100 + Number('200');
+console.log(result);
+// => 300
+console.log(Boolean(1));
+// => true
+console.log(Boolean(0));
+// => false
+console.log(Boolean('apple'));
+// => true
+console.log(Boolean(''));
+// => false
+console.log(String(1));
+// => "1"
+console.log(String(''));
+// =>
+console.log(Number('1'));
+// => 1
+console.log(Number(''));
+// => 0
+console.log(Number('apple'));
+// => NaN
+console.log(Number(true));
+// => 1
+console.log(Number(false));
+// => 0
+```
+
+- 暗黙の型変換<br>
+型が自動的に変わること。後に呼び出される型に自動変換される。<br>
+JavaScriptで扱う値には「型」が必ずあり、変数に代入される値の型によってデータ型が変わる(動的型付け)
+
+```
+console.log(100 + '200');
+// => 100200 => 文字列型に変換
+console.log('200' - 100);
+// => 100 => 数値型に変換
+console.log(1 == '1');
+// => true
 ```
