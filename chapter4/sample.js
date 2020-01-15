@@ -59,12 +59,12 @@ console.log(typeof class MyClass {});
 // => function
 
 // 値がオブジェクトのインスタンスかどうか調べる
-// // value instanceof object
-// const today = new Date();
-// console.log(today instanceof Date);
-// console.log(today instanceof Array);
-// // => true
-// // => false
+// value instanceof object
+const today = new Date();
+console.log(today instanceof Date);
+console.log(today instanceof Array);
+// => true
+// => false
 
 // instanceof を使ったサンプル
 function showCurrentDate(argument) {
@@ -173,3 +173,20 @@ console.log(searchUser(1));
 // => apple
 console.log(searchUser(4));
 // => Uncaught TypeError: Cannot read property 'name' of undefined
+
+function searchUser(targetId) {
+  const userList = [
+    { id: 1, name: 'apple' },
+    { id: 2, name: 'banana' },
+    { id: 3, name: 'strawberry' }
+  ];
+  const targetUser = userList.find((user) => user.id === targetId);
+  if (targetUser === undefined) {
+    return null;
+  };
+  return targetUser.name;
+};
+console.log(searchUser(1));
+// => apple
+console.log(searchUser(4));
+// => null
