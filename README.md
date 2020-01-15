@@ -1684,3 +1684,21 @@ function valFunction(value) {
 valFunction();
 // => bの値はundefined
 ```
+
+- データの値がない場合
+
+```
+function searchUser(targetId) {
+  const userList = [
+    { id: 1, name: 'apple' },
+    { id: 2, name: 'banana' },
+    { id: 3, name: 'strawberry' }
+  ];
+  const targetUser = userList.find((user) => user.id === targetId);
+  return targetUser.name;
+};
+console.log(searchUser(1));
+// => apple
+console.log(searchUser(4));
+// => Uncaught TypeError: Cannot read property 'name' of undefined
+```
