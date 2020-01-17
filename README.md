@@ -5,6 +5,8 @@ Let's study & enjoy JavaScript
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter2">Chapter2 Value...</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter3">Chapter3 Array, Object...</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter4">Chapter4 Data</a>
+- <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter5">Chapter4 Date</a>
+
 
 ## Chapter1
 
@@ -1719,4 +1721,12 @@ console.log(searchUser(1));
 // => apple
 console.log(searchUser(4));
 // => null
+```
+
+## Chapter 5
+
+### Date関数
+
+```
+
 ```
