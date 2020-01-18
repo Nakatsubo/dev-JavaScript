@@ -6,6 +6,7 @@ Let's study & enjoy JavaScript
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter3">Chapter3 Array, Object...</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter4">Chapter4 Data</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter5">Chapter5 Date</a>
+- <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter6">Chapter6 Browser</a>
 
 
 ## Chapter1
@@ -2019,4 +2020,51 @@ setInterval(() => {
   elementM.style.transform = `rotate(${degM}deg)`;
   elementS.style.transform = `rotate(${degS}deg)`;
 }, 50);
+```
+
+## Chapter 6
+
+- コンファームを表示
+
+```
+HTML
+<button class="button">表示</button>
+<div class="log"></div>
+
+JavaScript
+// comfirm(); => 真偽値を返す
+const btn = document.querySelector('.button');
+btn.addEventListener('click', (e) => {
+  const isYes = confirm('天気は晴れていますか？');
+  document.querySelector('.log').innerHTML = isYes;
+}, false);
+```
+
+- 文字入力プロンプトを表示
+
+```
+HTML
+<button class="button">表示</button>
+<div class="log"></div>
+
+JavaScript
+// prompt();
+const btn = document.querySelector('.button');
+btn.addEventListener('click', (e) => {
+  const text = prompt('どうですか', 'デフォルトの文言');
+  document.querySelector('.log').innerHTML = text;
+  console.log(text);
+  // => 文字列 or Null
+}, false);
+```
+
+- ウィンドウサイズを調べる
+
+```
+// window.innerWidth
+console.log(window.innerWidth);
+// => windowの横幅
+// window.innerHeight
+console.log(window.innerHeight);
+// => windowの縦幅
 ```
