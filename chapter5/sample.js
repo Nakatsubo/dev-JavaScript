@@ -94,3 +94,45 @@
 // // => 1420038000487
 // document.querySelector('#log').innerHTML = date.toLocaleString();
 // // => 2015/1/1 0:00:00
+
+// // 日付/時刻値を加算/減算
+// const date = new Date('2018/06/01');
+// date.setMonth(date.getMonth() - 1);
+// console.log(date.toLocaleDateString());
+// // => 2018/5/1
+// date.setDate(date.getDate() + 60);
+// console.log(date.toLocaleDateString());
+// // => 2018/6/30
+
+// // 日付/時刻の差分を計算
+// // 差分を計算する場合、ミリ秒の単位で計算する
+// const dateA = new Date('2018/06/01');
+// const dateB = new Date('2018/05/01');
+// const diffMSec = dateA.getTime() - dateB.getTime();
+// console.log(diffMSec);
+// // => 2678400000
+// const diffDate = diffMSec / (24 * 60 * 60 * 1000);
+// console.log(diffDate);
+// // => 31
+// console.log(`${diffDate}日の差があります`);
+// // => 31日の差があります
+// const dateA = new Date('2018/06/01 10:00:00');
+// const dateB = new Date('2018/06/01 07:00:00');
+// const diffMSec = dateA.getTime() - dateB.getTime();
+// console.log(diffMSec);
+// // => 10800000
+// const diffHour = diffMSec / (60 * 60 * 1000);
+// console.log(diffHour);
+// // => 3
+// console.log(`${diffHour}時間の差があります`);
+// // => 3時間の差があります
+// const dateA = new Date('2018/06/01 01:10:00');
+// const dateB = new Date('2018/06/01 00:50:00');
+// const diffMSec = dateA.getTime() - dateB.getTime();
+// console.log(diffMSec);
+// // => 1200000
+// const diffMin = diffMSec / (60 * 1000);
+// console.log(diffMin);
+// // => 20
+// console.log(`${diffMin}分の差があります`);
+// // => 20分の差があります
