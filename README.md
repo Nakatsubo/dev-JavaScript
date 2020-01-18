@@ -5,7 +5,7 @@ Let's study & enjoy JavaScript
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter2">Chapter2 Value...</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter3">Chapter3 Array, Object...</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter4">Chapter4 Data</a>
-- <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter5">Chapter4 Date</a>
+- <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter5">Chapter5 Date</a>
 
 
 ## Chapter1
@@ -1761,7 +1761,7 @@ const label = `${hour}時${minutes}分${seconds}秒`;
 document.querySelector('#log').innerHTML = `現時刻は${label}です`;
 ```
 
-- 時刻を取得するサンプル
+### 時刻を取得するサンプル
 
 ```
 const date = new Date();
@@ -1847,4 +1847,176 @@ console.log(date.setSeconds(0));
 // => 1420038000487
 document.querySelector('#log').innerHTML = date.toLocaleString();
 // => 2015/1/1 0:00:00
+```
+
+- 日付/時刻値を加算/減算
+
+```
+const date = new Date('2018/06/01');
+date.setMonth(date.getMonth() - 1);
+console.log(date.toLocaleDateString());
+// => 2018/5/1
+date.setDate(date.getDate() + 60);
+console.log(date.toLocaleDateString());
+// => 2018/6/30
+```
+
+- 日付/時刻の差分を計算
+
+```
+// 差分を計算する場合、ミリ秒の単位の精度で計算する
+
+const dateA = new Date('2018/06/01');
+const dateB = new Date('2018/05/01');
+const diffMSec = dateA.getTime() - dateB.getTime();
+console.log(diffMSec);
+// => 2678400000
+const diffDate = diffMSec / (24 * 60 * 60 * 1000);
+console.log(diffDate);
+// => 31
+console.log(`${diffDate}日の差があります`);
+// => 31日の差があります
+
+const dateA = new Date('2018/06/01 10:00:00');
+const dateB = new Date('2018/06/01 07:00:00');
+const diffMSec = dateA.getTime() - dateB.getTime();
+console.log(diffMSec);
+// => 10800000
+const diffHour = diffMSec / (60 * 60 * 1000);
+console.log(diffHour);
+// => 3
+console.log(`${diffHour}時間の差があります`);
+// => 3時間の差があります
+
+const dateA = new Date('2018/06/01 01:10:00');
+const dateB = new Date('2018/06/01 00:50:00');
+const diffMSec = dateA.getTime() - dateB.getTime();
+console.log(diffMSec);
+// => 1200000
+const diffMin = diffMSec / (60 * 1000);
+console.log(diffMin);
+// => 20
+console.log(`${diffMin}分の差があります`);
+// => 20分の差があります
+```
+
+### 経過時間を計算するサンプル
+
+```
+// Date.now(); => 現在の時間を基準からミリ秒単位で取得する
+
+const oldTime = Date.now();
+console.log(oldTime);
+// => 1579320758565
+setInterval(() => {
+  const currentTime = Date.now();
+  const diff = currentTime - oldTime;
+  const sec = Math.floor(diff / 1000);
+  document.querySelector('#log').innerHTML = `${sec}秒が経過`;
+}, 1000);
+```
+
+### 制限時間をカウントダウンするサンプル
+
+```
+// setInterval(callback, ミリ秒) => ミリ秒ごとに関数を実行
+const totalTime = 10000;
+const oldTime = Date.now();
+
+const timerId = setInterval(() => {
+  const currentTime = Date.now();
+  const diff = currentTime - oldTime;
+  const remainMSec = totalTime - diff;
+  // 整数に変換
+  const remainSec = Math.ceil(remainMSec / 1000);
+  let label = `残り${remainSec}秒`;
+  if (remainMSec <= 0) {
+    clearInterval(timerId);
+    label = '終了'
+  };
+  document.querySelector('#log').innerHTML = label;
+}, 1000);
+```
+
+### アナログ時計を表示するサンプル
+
+```
+HTML
+<div class="wrapper">
+  <div class="clock">
+    <div class="lineHour"></div>
+    <div class="lineMin"></div>
+    <div class="lineSec"></div>
+  </div>
+</div>
+
+css
+.wrapper {
+  background: #333;
+}
+
+.clock {
+  border-radius: 50%;
+  border: 3px solid #fff;
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.lineHour {
+  width: 10px;
+  height: 150px;
+  background: #fff;
+  position: absolute;
+  top: calc(50% - 150px);
+  left: calc(50% - 5px);
+  /* transform-origin 変形する要素の中心点の位置を指定する */
+  transform-origin: bottom;
+}
+
+.lineMin {
+  width: 4px;
+  height: 200px;
+  background: #fff;
+  position: absolute;
+  top: calc(50% - 200px);
+  left: calc(50% - 2px);
+  /* transform-origin 変形する要素の中心点の位置を指定する */
+  transform-origin: bottom;
+}
+
+.lineSec {
+  width: 2px;
+  height: 200px;
+  background: #ccc;
+  position: absolute;
+  top: calc(50% - 200px);
+  left: calc(50% - 1px);
+  /* transform-origin 変形する要素の中心点の位置を指定する */
+  transform-origin: bottom;
+}
+
+JavaScript
+setInterval(() => {
+  // 時刻を取得
+  const now = new Date();
+  const h = now.getHours(); // => 0~23
+  const m = now.getMinutes(); // => 0~59
+  const s = now.getSeconds(); // => 0~59
+  // 角度を取得
+  const degH = h * (360 / 12) + m * (360 / 12 / 60);
+  const degM = m * (360 / 60);
+  const degS = s * (360 / 60);
+  // console.log(degH);
+  // console.log(degM);
+  // console.log(degS);
+  // スタイルを追加
+  const elementH = document.querySelector('.lineHour');
+  const elementM = document.querySelector('.lineMin');
+  const elementS = document.querySelector('.lineSec');
+  elementH.style.transform = `rotate(${degH}deg)`;
+  elementM.style.transform = `rotate(${degM}deg)`;
+  elementS.style.transform = `rotate(${degS}deg)`;
+}, 50);
 ```
