@@ -1761,7 +1761,7 @@ const label = `${hour}時${minutes}分${seconds}秒`;
 document.querySelector('#log').innerHTML = `現時刻は${label}です`;
 ```
 
-- 時刻を取得するサンプル
+### 時刻を取得するサンプル
 
 ```
 const date = new Date();
@@ -1864,6 +1864,8 @@ console.log(date.toLocaleDateString());
 - 日付/時刻の差分を計算
 
 ```
+// 差分を計算する場合、ミリ秒の単位の精度で計算する
+
 const dateA = new Date('2018/06/01');
 const dateB = new Date('2018/05/01');
 const diffMSec = dateA.getTime() - dateB.getTime();
@@ -1896,4 +1898,42 @@ console.log(diffMin);
 // => 20
 console.log(`${diffMin}分の差があります`);
 // => 20分の差があります
+```
+
+### 経過時間を計算するサンプル
+
+```
+// Date.now(); => 現在の時間を基準からミリ秒単位で取得する
+
+const oldTime = Date.now();
+console.log(oldTime);
+// => 1579320758565
+setInterval(() => {
+  const currentTime = Date.now();
+  const diff = currentTime - oldTime;
+  const sec = Math.floor(diff / 1000);
+  document.querySelector('#log').innerHTML = `${sec}秒が経過`;
+}, 1000);
+```
+
+### 制限時間をカウントダウンするサンプル
+
+```
+// setInterval(callback, ミリ秒) => ミリ秒ごとに関数を実行
+const totalTime = 10000;
+const oldTime = Date.now();
+
+const timerId = setInterval(() => {
+  const currentTime = Date.now();
+  const diff = currentTime - oldTime;
+  const remainMSec = totalTime - diff;
+  // 整数に変換
+  const remainSec = Math.ceil(remainMSec / 1000);
+  let label = `残り${remainSec}秒`;
+  if (remainMSec <= 0) {
+    clearInterval(timerId);
+    label = '終了'
+  };
+  document.querySelector('#log').innerHTML = label;
+}, 1000);
 ```
