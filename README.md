@@ -2087,3 +2087,49 @@ function resizeHandler(e) {
 // => 横幅は1040pxです
 // => 横幅は560pxです
 ```
+
+- デバイスのピクセル比を調べる
+
+```
+// 「高解像度ディスプレイ」 => ピクセル密度が高いディスプレイ(HiDPIディスプレイ)
+// window.devicePixelRatio
+console.log(window.devicePixelRatio);
+// => MacBookProなので、2
+// 1: 通常のディスプレイ, 2: iPhoneやAndroidの多く, 3: ハイスペック端末
+```
+
+### デバイスのピクセル比をcanvas要素に適用したサンプル
+
+```
+HTML
+<div>
+  <canvas id="myCanvas"></canvas>
+</div>
+<div class="log"></div>
+
+JavaScript
+const dpr = window.devicePixelRatio;
+// 論理的な大きさ
+const w = 200;
+const h = 200;
+
+const canvas = document.querySelector('canvas');
+// 実態の大きさを倍にする
+canvas.width = w * dpr;
+canvas.height = h * dpr;
+// 表示サイズ
+canvas.style.width = w + 'px';
+canvas.style.height = h + 'px';
+// getContextメソッドで描画機能を有効にする
+const context = canvas.getContext('2d');
+// スケールを設定
+context.scale(dpr, dpr);
+// 円を描画
+context.fillStyle = 'red';
+context.arc(w / 2, h / 2, 100, 0, 2 * Math.PI);
+context.fill();
+// ログを表示
+document.querySelector('.log').innerHTML = `現在のデバイスピクセル比は${dpr}です`;
+// => <canvas id="myCanvas" width="400" height="400" style="width: 200px; height: 200px;"></canvas>
+// => 現在のデバイスピクセル比は2です
+```
