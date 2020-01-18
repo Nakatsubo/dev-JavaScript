@@ -2068,3 +2068,22 @@ console.log(window.innerWidth);
 console.log(window.innerHeight);
 // => windowの縦幅
 ```
+
+### ウィンドウサイズを調べるサンプル
+
+```
+HTML
+<div class="value-width"></div>
+<div class="value-height"></div>
+
+JavaScript
+window.addEventListener('resize', resizeHandler, false);
+function resizeHandler(e) {
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  document.querySelector('.value-width').innerHTML = `横幅は${w}pxです`;
+  document.querySelector('.value-height').innerHTML = `横幅は${h}pxです`;
+};
+// => 横幅は1040pxです
+// => 横幅は560pxです
+```
