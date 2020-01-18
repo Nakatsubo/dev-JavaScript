@@ -68,4 +68,45 @@
 // // => <canvas id="myCanvas" width="400" height="400" style="width: 200px; height: 200px;"></canvas>
 // // => 現在のデバイスピクセル比は2です
 
+// // タッチできるかどうか判定
+// // window.ontouchstart => タッチ開始のイベント, 関数
+// // navigator.pointerEnabled => ポインターが使えるかどうか, 真偽値
+// // navigator.maxTouchPoints => ポインターの最大数, 数値
+// const isSupported = !!(
+//   'ontouchstart' in window || (navigator.pointerEnabled && navigator.maxTouchPoints > 0)
+// );
+// console.log(isSupported);
+// // => MacBookProなので、false
 
+// // ページを移動する
+// // location.href => a要素以外の手段で移動
+// console.log(location.href);
+// location.href = 'another.html';
+
+// // ページをリロードする
+// // location.reload(true or false)
+// location.reload(true);
+
+// // 履歴前後のページに移動する
+// history.back();
+// history.forward();
+// history.go(1);
+// history.go(-1);
+
+// // アンカーを取得する
+// // location.hash
+// // 取得する
+// const hash = location.hash;
+// console.log(hash);
+// // 書き込む
+// location.hash = 'app';
+
+// // ハッシュ(#)を検知する
+// // hashchange
+// window.addEventListener('hashchange', handleHashChange, false);
+// function handleHashChange() {
+//   const hash = location.hash;
+//   document.querySelector('.log').innerHTML = `現在のアンカーは${hash}です`;
+// };
+// // => 現在のアンカーは#appleです
+// // => ~/sample.html#apple
