@@ -1937,3 +1937,86 @@ const timerId = setInterval(() => {
   document.querySelector('#log').innerHTML = label;
 }, 1000);
 ```
+
+### アナログ時計を表示するサンプル
+
+```
+HTML
+<div class="wrapper">
+  <div class="clock">
+    <div class="lineHour"></div>
+    <div class="lineMin"></div>
+    <div class="lineSec"></div>
+  </div>
+</div>
+
+css
+.wrapper {
+  background: #333;
+}
+
+.clock {
+  border-radius: 50%;
+  border: 3px solid #fff;
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.lineHour {
+  width: 10px;
+  height: 150px;
+  background: #fff;
+  position: absolute;
+  top: calc(50% - 150px);
+  left: calc(50% - 5px);
+  /* transform-origin 変形する要素の中心点の位置を指定する */
+  transform-origin: bottom;
+}
+
+.lineMin {
+  width: 4px;
+  height: 200px;
+  background: #fff;
+  position: absolute;
+  top: calc(50% - 200px);
+  left: calc(50% - 2px);
+  /* transform-origin 変形する要素の中心点の位置を指定する */
+  transform-origin: bottom;
+}
+
+.lineSec {
+  width: 2px;
+  height: 200px;
+  background: #ccc;
+  position: absolute;
+  top: calc(50% - 200px);
+  left: calc(50% - 1px);
+  /* transform-origin 変形する要素の中心点の位置を指定する */
+  transform-origin: bottom;
+}
+
+JavaScript
+setInterval(() => {
+  // 時刻を取得
+  const now = new Date();
+  const h = now.getHours(); // => 0~23
+  const m = now.getMinutes(); // => 0~59
+  const s = now.getSeconds(); // => 0~59
+  // 角度を取得
+  const degH = h * (360 / 12) + m * (360 / 12 / 60);
+  const degM = m * (360 / 60);
+  const degS = s * (360 / 60);
+  // console.log(degH);
+  // console.log(degM);
+  // console.log(degS);
+  // スタイルを追加
+  const elementH = document.querySelector('.lineHour');
+  const elementM = document.querySelector('.lineMin');
+  const elementS = document.querySelector('.lineSec');
+  elementH.style.transform = `rotate(${degH}deg)`;
+  elementM.style.transform = `rotate(${degM}deg)`;
+  elementS.style.transform = `rotate(${degS}deg)`;
+}, 50);
+```
