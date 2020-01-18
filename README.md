@@ -2213,3 +2213,144 @@ function handleHashChange() {
 // => 現在のアンカーは#appleです
 // => ~/sample.html#apple
 ```
+
+- 新しいウィンドウを開く
+
+```
+// window.open(URL)
+const win = window.open('another.html');
+win.focus();
+```
+
+- ウィンドウのスクロール量を調べる
+
+```
+// window.scrollX => 水平方向のスクロール量
+// window.scrollY => 垂直方向のスクロール量
+const x = window.scrollX;
+const y = window.scrollY;
+console.log(x, y);
+// => 0 0
+```
+
+- ウィンドウをスクロールさせる
+
+```
+// scrollTo(X, Y)
+window.scrollTo(0, 1000);
+```
+
+- タイトルを書き換える
+
+```
+// document.title
+// タイトルを取得
+let title = document.title;
+console.log(title);
+// => Sample JavaScript
+// タイトルを書き換え
+document.title = 'Change Title';
+title = document.title;
+console.log(title);
+// => Change Title
+```
+
+### タイトルを書き換えるサンプル
+チャットアプリで未読数をタイトルバーに表示させるとき、など。
+
+```
+HTML
+<button id="btnOrange">オレンジ</button>
+<button id="btnApple">アップル</button>
+
+JavaScript
+document.querySelector('#btnOrange').addEventListener('click', () => {
+  document.title = 'オレンジ';
+}, false);
+// => オレンジ
+document.querySelector('#btnApple').addEventListener('click', () => {
+  document.title = 'アップル';
+}, false);
+// => アップル
+```
+
+- ページにフォーカスがあたっているか調べる
+
+```
+// focus => フォーカスがあたっている
+// blur => フォーカスが外れている
+window.addEventListener('focus', () => {
+  document.querySelector('.log').innerHTML = 'フォーカスがあたっている';
+}, false);
+window.addEventListener('blur', () => {
+  document.querySelector('.log').innerHTML = 'フォーカスがはずれている';
+}, false);
+```
+
+- フルスクリーンにする/解除する
+
+```
+// element.requestFullscreen(); => フルスクリーンにする
+// document.exitFullscreen(); => フルスクリーンを解除する
+
+const btn = document.querySelector('#btn');
+btn.addEventListener('click', (e) => {
+  myRequestFullscreen(document.body);
+}, false);
+function myRequestFullscreen(element) {
+  if (element.Fullscreen) {
+    element.requestFullscreen();
+  } else if(element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();
+    // Safari, Chrome
+  } else if(element.mozRequestFullscreen) {
+    element.mozRequestFullscreen();
+    // Firefox
+  } else if(element.msRequestFullscreen) {
+    element.msRequestFullscreen();
+    // IE 11+
+  };
+};
+
+const btnExit = document.querySelector('#btnExit');
+btnExit.addEventListener('click', (e) => {
+  myCancelFullscreen(document.body);
+}, false);
+function myCancelFullscreen(element) {
+  if (element.exitFullscreen) {
+    element.exitFullscreen();
+  } else if(element.webkitCancelFullscreen) {
+    element.webkitCancelFullscreen();
+    // Safari, Chrome
+  } else if(element.mozCancelFullscreen) {
+    element.mozCancelFullscreen();
+    // Firefox
+  } else if(element.msExitFullscreen) {
+    element.msExitFullscreen();
+    // IE 11+
+  };
+};
+```
+
+- ネットワーク状況を取得する
+
+```
+// navigator.onLine
+const isOnline = navigator.onLine;
+if (isOnline === true) {
+  console.log('オンラインです');
+} else {
+  console.log('オフラインです');
+};
+// => オンラインです
+// => オフラインです
+// developerToolの Network => offline から確認する
+
+// イベントリスナで呼び出す場合
+window.addEventListener('online', () => {
+  console.log('オンラインです');
+}, false);
+window.addEventListener('offline', () => {
+  console.log('オフラインです');
+}, false);
+```
