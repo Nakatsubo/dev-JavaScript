@@ -113,13 +113,49 @@
 //   console.log(event.clientX, event.clientY);
 // });
 
-// マウス操作時の座標を取得したサンプル
-const charactor = document.querySelector('.charactor');
-document.addEventListener('mousedown', () => {
-  document.addEventListener('mousemove', onMouseMove, false);
-  document.removeEventListener('mouseup', onMouseMove, false);
+// // マウス操作時の座標を取得したサンプル
+// const charactor = document.querySelector('.charactor');
+// document.addEventListener('mousedown', () => {
+//   document.addEventListener('mousemove', onMouseMove, false);
+//   document.removeEventListener('mouseup', onMouseMove, false);
+// }, false);
+// function onMouseMove(event) {
+//   charactor.style.top = `${event.clientX}px`;
+//   charactor.style.left = `${event.clientY}px`;
+// };
+
+// // スクロール時に処理を実行
+// // scrollイベント
+// window.addEventListener('scroll', () => {
+//   console.log('スクロール', window.scrollX, window.scrollY);
+// }, false);
+
+// // テキスト選択時に処理を実行
+// // selectstartイベント
+// document.querySelector('.text').addEventListener('selectstart', () => {
+//   console.log('テキストが選択されました');
+// }, false);
+// // => テキストが選択されました
+
+// テキスト選択時に処理を実行するサンプル
+const balloon = document.querySelector('#balloon');
+const paragraph = document.querySelector('.paragraph');
+paragraph.addEventListener('selectstart', () => {
+  paragraph.addEventListener('mouseup', (event) => {
+    // document.getSelection() => 選択された文字列を返す
+    const selectionParagraph = window.getSelection().toString();
+    if (selectionParagraph.length > 0) {
+      balloon.innerHTML = selectionParagraph;
+      // classList.add() => クラスを追加する
+      balloon.classList.add('on');
+      balloon.style.left = `${event.clientX - balloon.clientWidth / 2}px`
+      balloon.style.top = `${event.clientY - balloon.clientWidth}px`
+    } else {
+      removePopup();
+    }
+  }, {once: true});
 }, false);
-function onMouseMove(event) {
-  charactor.style.top = `${event.clientX}px`;
-  charactor.style.left = `${event.clientY}px`;
+balloon.addEventListener('click', removePopup, false);
+function removePopup() {
+  balloon.classList.remove('on');
 };
