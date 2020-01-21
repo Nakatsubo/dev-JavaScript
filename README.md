@@ -7,6 +7,7 @@ Let's study & enjoy JavaScript
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter4">Chapter4 Data</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter5">Chapter5 Date</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter6">Chapter6 Browser</a>
+- <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter7">Chapter7 Event</a>
 
 
 ## Chapter1
@@ -2353,4 +2354,257 @@ window.addEventListener('online', () => {
 window.addEventListener('offline', () => {
   console.log('オフラインです');
 }, false);
+```
+
+## Chapter 7
+
+### addEventLitenner() メソッド
+クリック・タップ・スクロール・画像のロード・JSONの読み込みなどのイベントを制御する。<br>
+イベントターゲットでイベントが発生した時の処理をイベントリスナーという。
+
+```
+HTML
+<button class="button">Click</button>
+
+JavaScript
+// function宣言を使う場合
+// イベントターゲット
+const button = document.querySelector('.button');
+// イベント
+button.addEventListener('click', onClickbutton, false);
+// イベントリスナー
+function onClickbutton() {
+  console.log('クリックされました');
+};
+// => クリックされました
+
+// アロー関数を使う場合
+const button = document.querySelector('.button');
+button.addEventListener('click', () => {
+  console.log('クリックされました');
+}, false);
+// => クリックされました
+```
+
+- イベントの情報を取得する
+
+```
+const button = document.querySelector('.button');
+button.addEventListener('click', (event) => {
+  console.log(event);
+}, false);
+// => MouseEvent {isTrusted: true, screenX: 45, screenY: 153, clientX: 23, clientY: 19, …}
+```
+
+- イベントが発生した要素を参照する
+
+```
+const button = document.querySelector('.button');
+button.addEventListener('click', (event) => {
+  console.log(event.target);
+}, false);
+
+// => <button class="button">Click</button>
+```
+
+- オプションを指定
+
+```
+const option = {
+  // イベントを一度だけ呼び出す
+  once: true
+  // イベントをキャプチャーフェーズで呼び出す
+  capture: true
+  // イベントがパッシブかどうか
+  passive: true
+};
+
+document.querySelector('.button')
+        .addEventListener('click', onClickButton, option);
+function onClickButton() {
+  alert('ボタンが押されました');
+};
+```
+
+- イベントリスナーを削除する
+
+-- アロー関数は使えない点に注意する
+-- addEventListenner() と同じ引数、オプションを指定する
+
+```
+const button = document.querySelector('.button');
+button.addEventListener('click', onClickButton);
+setTimeout(() => {
+  button.removeEventListener('click', onClickButton);
+}, 3000);
+function onClickButton() {
+  alert('ボタンが押されました');
+};
+```
+
+- ページが表示されたら処理を実行
+
+```
+HTML
+<script src="sample.js"></script>
+
+<main class="main">
+  <div class="box">ボックス</div>
+  <div class="box">ボックス</div>
+  <div class="box">ボックス</div>
+</main>
+
+JavaScript
+window.addEventListener('DOMContentLoaded', () => {
+  const boxNum = document.querySelectorAll('.box').length;
+  console.log(`.boxの要素の数は${boxNum}です`);
+});
+// => .boxの要素の数は3です
+
+const boxNum = document.querySelectorAll('.box').length;
+console.log(`.boxの要素の数は${boxNum}です`);
+// => .boxの要素の数は0です
+```
+
+-  scriptタグに defar属性を埋め込むと、スクリプトはDOMの解析後に実行
+
+```
+HTML
+<script src="sample.js" defar></script>
+
+<main class="main">
+  <div class="box">ボックス</div>
+  <div class="box">ボックス</div>
+  <div class="box">ボックス</div>
+</main>
+
+JavaScript
+const boxNum = document.querySelectorAll('.box').length;
+console.log(`.boxの要素の数は${boxNum}です`);
+// => .boxの要素の数は3です
+```
+
+- クリック時に処理を実行
+
+```
+const button = document.querySelector('.button');
+button.addEventListener('click', () => {
+  alert('ボタンが押されました');
+}, false);
+```
+
+- マウスの動作時に処理を実行
+
+|イベント|タイミング|
+|-----|-----|
+|mousedown|マウスのボタンを押した時|
+|mouseup|マウスのボタンを離した時|
+|mousemove|マウスを動かした時|
+
+```
+const logArea = document.querySelector('.log');
+logArea.addEventListener('mousedown', () => {
+  logArea.innerHTML = 'ボタンが押されました';
+});
+logArea.addEventListener('mouseup', () => {
+  logArea.innerHTML = 'ボタンが離しました';
+});
+logArea.addEventListener('mousedown', () => {
+  logArea.innerHTML = 'マウスを移動しました';
+});
+```
+
+- マウスオーバー時に処理を実行
+
+|イベント|タイミング|
+|-----|-----|
+|mouseenter|ポインティングデバイスが要素の上に乗った時|
+|mouseleave|ポインティングデバイスが要素の上から離れた時|
+|mouseover|ポインティングデバイスが要素の上に乗った時(バブリング)|
+|mouseout|ポインティングデバイスが要素の上から離れた時(バブリング)|
+
+### バブリング
+ある要素で発生したイベントが、親要素や先祖要素に伝わること。
+
+```
+// マウスオーバー時に処理を実行
+document.querySelector('.box').addEventListener('mouseenter', () => {
+  log('ポインティングデバイスが要素の上に乗った');
+});
+// => ポインティングデバイスが要素の上に乗った
+
+document.querySelector('.box').addEventListener('mouseleave', () => {
+  log('ポインティングデバイスが要素の上から離れた');
+});
+// => ポインティングデバイスが要素の上から離れた
+function log(message) {
+  console.log(message);
+};
+
+// マウスオーバー時に処理を実行(バブリング)
+HTML
+<div class="box">
+  Box
+  <div class="inner">Inner</div>
+</div>
+
+JavaScript
+document.querySelector('.box').addEventListener('mouseover', () => {
+  log('ポインティングデバイスが要素の上に乗った');
+});
+document.querySelector('.inner').addEventListener('mouseover', () => {
+  log('ポインティングデバイスが要素の上に乗った');
+});
+// => ポインティングデバイスが要素の上に乗った(バブリング)
+function log(message) {
+  console.log(message);
+};
+```
+
+- マウス操作時の座標を取得
+
+|プロパティ|座標|
+|-----|-----|
+|event.clientX|ブラウザ左上が基準|
+|event.clientY|ブラウザ左上が基準|
+|event.offsetX|要素左上が基準|
+|event.offsetY|要素左上が基準|
+|event.pageX|ページ左上が基準|
+|event.pageY|ページ左上が基準|
+|event.screenX|デバイス左上が基準|
+|event.screenY|デバイス左上が基準|
+
+```
+const targetBox = document.querySelector('.box');
+targetBox.addEventListener('mousemove', (event) => {
+  console.log(event.clientX, event.clientY);
+});
+```
+
+- マウス操作時の座標を取得したサンプル
+
+```
+HTML
+<div class="charactor"></div>
+
+CSS
+.charactor {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.charactor::after {
+  content: '★';
+}
+
+JavaScript
+const charactor = document.querySelector('.charactor');
+document.addEventListener('mousedown', () => {
+  document.addEventListener('mousemove', onMouseMove, false);
+  document.removeEventListener('mouseup', onMouseMove, false);
+}, false);
+function onMouseMove(event) {
+  charactor.style.top = `${event.clientX}px`;
+  charactor.style.left = `${event.clientY}px`;
+};
 ```
