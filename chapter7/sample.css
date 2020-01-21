@@ -1,0 +1,9 @@
+.charactor {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.charactor::after {
+  content: '★';
+}
