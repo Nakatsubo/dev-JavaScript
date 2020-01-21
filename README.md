@@ -2608,3 +2608,11 @@ function onMouseMove(event) {
   charactor.style.left = `${event.clientY}px`;
 };
 ```
+
+- スクロール時に処理を実行
+
+```
+window.addEventListener('scroll', () => {
+  console.log('スクロール', window.scrollX, window.scrollY);
+}, false);
+```

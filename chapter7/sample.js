@@ -113,13 +113,19 @@
 //   console.log(event.clientX, event.clientY);
 // });
 
-// マウス操作時の座標を取得したサンプル
-const charactor = document.querySelector('.charactor');
-document.addEventListener('mousedown', () => {
-  document.addEventListener('mousemove', onMouseMove, false);
-  document.removeEventListener('mouseup', onMouseMove, false);
+// // マウス操作時の座標を取得したサンプル
+// const charactor = document.querySelector('.charactor');
+// document.addEventListener('mousedown', () => {
+//   document.addEventListener('mousemove', onMouseMove, false);
+//   document.removeEventListener('mouseup', onMouseMove, false);
+// }, false);
+// function onMouseMove(event) {
+//   charactor.style.top = `${event.clientX}px`;
+//   charactor.style.left = `${event.clientY}px`;
+// };
+
+// スクロール時に処理を実行
+// scrollイベント
+window.addEventListener('scroll', () => {
+  console.log('スクロール', window.scrollX, window.scrollY);
 }, false);
-function onMouseMove(event) {
-  charactor.style.top = `${event.clientX}px`;
-  charactor.style.left = `${event.clientY}px`;
-};
