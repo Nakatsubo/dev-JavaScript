@@ -2852,3 +2852,9 @@ function handleKeydown(event) {
   };
 };
 ```
+
+- ブラウザのタブを切り替え処理する
+
+```
+
+```
