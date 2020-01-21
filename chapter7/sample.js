@@ -180,3 +180,28 @@
 //   const touch = event.changedTouches;
 //   log.innerHTML = `${touch[0].pageX.toFixed(2)}<br>${touch[0].pageY.toFixed(2)}`;
 // });
+
+// // キーボード入力時に処理を実行する
+// // keydown
+// document.querySelector('.textarea').addEventListener('keydown', () => {
+//   console.log('キーが押された');
+// }, false);
+// // => キーが押された
+// // keyup
+// document.querySelector('.textarea').addEventListener('keyup', () => {
+//   console.log('キーが離された');
+// }, false);
+// // => キーが離された
+// // keypress
+// document.querySelector('.textarea').addEventListener('keypress', () => {
+//   console.log('文字が入力された');
+// }, false);
+// // => 文字が入力された
+
+const textarea = document.querySelector('.textarea');
+const string_num = document.querySelector('.string_num');
+textarea.addEventListener('keyup', onKeyUp, false);
+function onKeyUp() {
+  const input = textarea.value;
+  string_num.innerHTML = input.length;
+};

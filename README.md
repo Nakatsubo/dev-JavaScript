@@ -2356,7 +2356,7 @@ window.addEventListener('offline', () => {
 }, false);
 ```
 
-## Chapter 7
+## Chapter7
 
 ### addEventLitenner() メソッド
 クリック・タップ・スクロール・画像のロード・JSONの読み込みなどのイベントを制御する。<br>
@@ -2721,9 +2721,9 @@ function removePopup() {
 
 |イベント|タイミング|
 |-----|-----|
-|touchstart|タッチを開始したとき|
-|touchmove|タッチポイントを動かしたとき|
-|touchend|タッチを終了したとき|
+|touchstart|タッチを開始した時|
+|touchmove|タッチポイントを動かした時|
+|touchend|タッチを終了した時|
 
 ```
 HTML
@@ -2755,4 +2755,47 @@ box.addEventListener('touchstart', (event) => {
   const touch = event.changedTouches;
   log.innerHTML = `${touch[0].pageX.toFixed(2)}<br>${touch[0].pageY.toFixed(2)}`;
 });
+```
+
+- キーボード入力時に処理を実行する
+
+|イベント|タイミング|
+|-----|-----|
+|keydown|キーを押した時|
+|keyup|キーを離した時|
+|keypress|文字を生成するキーを押した時|
+
+```
+// keydown
+document.querySelector('.textarea').addEventListener('keydown', () => {
+  console.log('キーが押された');
+}, false);
+// => キーが押された
+// keyup
+document.querySelector('.textarea').addEventListener('keyup', () => {
+  console.log('キーが離された');
+}, false);
+// => キーが離された
+// keypress
+document.querySelector('.textarea').addEventListener('keypress', () => {
+  console.log('文字が入力された');
+}, false);
+// => 文字が入力された
+```
+
+### キーボード入力時に処理を実行するサンプル
+
+```
+HTML
+<textarea class="textarea"></textarea>
+<p>現在 <span class="string_num">0</span>文字入力中です。</p>
+
+JavaScript
+const textarea = document.querySelector('.textarea');
+const string_num = document.querySelector('.string_num');
+textarea.addEventListener('keyup', onKeyUp, false);
+function onKeyUp() {
+  const input = textarea.value;
+  string_num.innerHTML = input.length;
+};
 ```
