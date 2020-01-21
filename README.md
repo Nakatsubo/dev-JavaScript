@@ -2616,3 +2616,103 @@ window.addEventListener('scroll', () => {
   console.log('スクロール', window.scrollX, window.scrollY);
 }, false);
 ```
+
+- テキスト選択時に処理を実行
+
+```
+// selectstartイベント
+document.querySelector('.text').addEventListener('selectstart', () => {
+  console.log('テキストが選択されました');
+}, false);
+// => テキストが選択されました
+```
+
+### テキスト選択時に処理を実行するサンプル
+
+```
+HTML
+<main>
+  <p class="paragraph">Hello, this is a technical book of JavaScript.</p>
+  <div id="balloon"></div>
+</main>
+
+CSS
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #171717;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  position: static;
+}
+
+.paragraph {
+  font-size: 2rem;
+  font-weight: bold;
+  -webkit-text-stroke: 1px white;
+  text-stroke: 1px white;
+}
+
+#balloon {
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  padding: 5px;
+  min-width: 60px;
+  color: #171717;
+  font-size: 12px;
+  background: white;
+  border-radius: 5px;
+  display: none;
+  opacity: 0;
+}
+
+#balloon::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -10px;
+  border: 10px solid transparent;
+  border-top: 10px solid white;
+}
+
+#balloon.on {
+  opacity: 1;
+  display: block;
+  transition: 300ms all;
+}
+
+JavaScript
+const balloon = document.querySelector('#balloon');
+const paragraph = document.querySelector('.paragraph');
+
+paragraph.addEventListener('selectstart', () => {
+  paragraph.addEventListener('mouseup', (event) => {
+    // document.getSelection() => 選択された文字列を返す
+    const selectionParagraph = window.getSelection().toString();
+    if (selectionParagraph.length > 0) {
+      balloon.innerHTML = selectionParagraph;
+      // classList.add() => クラスを追加する
+      balloon.classList.add('on');
+      balloon.style.left = `${event.clientX - balloon.clientWidth / 2}px`
+      balloon.style.top = `${event.clientY - balloon.clientWidth}px`
+    } else {
+      removePopup();
+    }
+  }, {once: true});
+}, false);
+
+balloon.addEventListener('click', removePopup, false);
+function removePopup() {
+  balloon.classList.remove('on');
+};
+```
