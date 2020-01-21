@@ -254,24 +254,35 @@
 //   };
 // });
 
-// 初期化
-if (document.visibilityState === 'visible') {
-  playSound();
-};
-// イベント
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible') {
-    playSound();
-    return;
-  };
-  if (document.visibilityState === 'hidden') {
-    stopSound();
-    return;
-  };
-});
-function playSound() {
-  // 実行したい処理
-};
-function stopSound() {
-  // 実行したい処理
-};
+// // 初期化
+// if (document.visibilityState === 'visible') {
+//   playSound();
+// };
+// // イベント
+// document.addEventListener('visibilitychange', () => {
+//   if (document.visibilityState === 'visible') {
+//     playSound();
+//     return;
+//   };
+//   if (document.visibilityState === 'hidden') {
+//     stopSound();
+//     return;
+//   };
+// });
+// function playSound() {
+//   // 実行したい処理
+// };
+// function stopSound() {
+//   // 実行したい処理
+// };
+
+// window.addEventListener('resize', () => {
+//   console.log('ブラウザがリサイズされました')
+// }, false);
+
+// const widthLog = document.querySelector('#widthLog');
+// const heightLog = document.querySelector('#heightLog');
+// window.addEventListener('resize', () => {
+//   widthLog.innerHTML = `${window.innerWidth}px`;
+//   HeightLog.innerHTML = `${window.innerHeight}px`;
+// });

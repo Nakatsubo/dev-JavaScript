@@ -2895,3 +2895,11 @@ function stopSound() {
   // 実行したい処理
 };
 ```
+
+- 画面サイズが変更されたら処理を実行
+
+```
+window.addEventListener('resize', () => {
+  console.log('ブラウザがリサイズされました')
+}, false);
+```
