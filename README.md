@@ -2903,3 +2903,18 @@ window.addEventListener('resize', () => {
   console.log('ブラウザがリサイズされました')
 }, false);
 ```
+
+### 画面サイズが変更されたら処理を実行するサンプル
+
+```
+let resizeTimer;
+window.addEventListener('resize', () => {
+  if (resizeTimer !== null) {
+    clearTimeout(resizeTimer);
+  };
+  resizeTimer = setTimeout(() => {
+    onResize();
+  }, 1000);
+});
+function onResize() {};
+```
