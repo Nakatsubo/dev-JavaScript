@@ -1725,7 +1725,7 @@ console.log(searchUser(4));
 // => null
 ```
 
-## Chapter 5
+## Chapter5
 
 ### Date関数
 
@@ -2023,7 +2023,7 @@ setInterval(() => {
 }, 50);
 ```
 
-## Chapter 6
+## Chapter6
 
 - コンファームを表示
 
@@ -2356,7 +2356,7 @@ window.addEventListener('offline', () => {
 }, false);
 ```
 
-## Chapter 7
+## Chapter7
 
 ### addEventLitenner() メソッド
 クリック・タップ・スクロール・画像のロード・JSONの読み込みなどのイベントを制御する。<br>
