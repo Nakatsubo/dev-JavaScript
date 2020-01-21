@@ -241,15 +241,37 @@
 //   };
 // };
 
-// visibilitychange
-// visibilityState => visible/hidden
+// // visibilitychange
+// // visibilityState => visible/hidden
+// document.addEventListener('visibilitychange', () => {
+//   if (document.visibilityState === 'visible') {
+//     console.log('コンテンツが表示されました');
+//     return;
+//   };
+//   if (document.visibilityState === 'hidden') {
+//     console.log('コンテンツがバックグラウンドになりました');
+//     return;
+//   };
+// });
+
+// 初期化
+if (document.visibilityState === 'visible') {
+  playSound();
+};
+// イベント
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'visible') {
-    console.log('コンテンツが表示されました');
+    playSound();
     return;
   };
   if (document.visibilityState === 'hidden') {
-    console.log('コンテンツがバックグラウンドになりました');
+    stopSound();
     return;
   };
 });
+function playSound() {
+  // 実行したい処理
+};
+function stopSound() {
+  // 実行したい処理
+};
