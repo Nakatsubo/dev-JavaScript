@@ -2781,6 +2781,8 @@ document.querySelector('.textarea').addEventListener('keypress', () => {
   console.log('文字が入力された');
 }, false);
 // => 文字が入力された
+
+// => keypress イベントは、alt, shift, command, Enter で発火しない。
 ```
 
 ### キーボード入力時に処理を実行するサンプル
@@ -2797,5 +2799,56 @@ textarea.addEventListener('keyup', onKeyUp, false);
 function onKeyUp() {
   const input = textarea.value;
   string_num.innerHTML = input.length;
+};
+```
+
+- 入力されたキーの値を調べる
+
+|プロパティ|意味|データ型|
+|-----|-----|-----|
+|event.key|ボタンの値|文字列|
+|event.code|ボタンのコード|文字列|
+|event.altKey|altキーが押されたかどうか|真偽値|
+|event.ctrlKey|ctrlキーが押されたかどうか|真偽値|
+|event.shiftKey|shiftキーが押されたかどうか|真偽値|
+|event.metaKey|commandキーが押されたかどうか|真偽値|
+|event.repeat|キーを長押ししているかどうか|真偽値|
+|event.isComposing|入力が未確定かどうか|真偽値|
+
+```
+const textarea = document.querySelector('.textarea');
+textarea.addEventListener('keyup', (event) => {
+  console.log(event.key);
+  // => a
+  console.log(event.code);
+  // => KeyA
+  console.log(event.altKey);
+  console.log(event.ctrlKey);
+  console.log(event.shiftKey);
+  console.log(event.metaKey);
+  console.log(event.repeat);
+  console.log(event.isComposing);
+}, false);
+```
+
+### 入力されたキーの値を調べる
+
+```
+window.addEventListener('keydown', handleKeydown, false);
+function handleKeydown(event) {
+  const keyCode = event.keyCode;
+  // console.log(keyCode);
+  if (keyCode === 39) {
+    console.log('右キーが押されました');
+  };
+  if (keyCode === 37) {
+    console.log('左キーが押されました');
+  };
+  if (keyCode === 38) {
+    console.log('上キーが押されました');
+  };
+  if (keyCode === 40) {
+    console.log('下キーが押されました');
+  };
 };
 ```
