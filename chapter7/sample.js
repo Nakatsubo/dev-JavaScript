@@ -160,14 +160,23 @@
 //   balloon.classList.remove('on');
 // };
 
-const targetBox = document.querySelector('.box');
-const logArea = document.querySelector('.log');
-targetBox.addEventListener('touchstart', () => {
-  logArea.innerHTML = 'タッチ開始';
-});
-targetBox.addEventListener('touchmove', () => {
-  logArea.innerHTML = 'タッチ位置移動';
-});
-targetBox.addEventListener('touchend', () => {
-  logArea.innerHTML = 'タッチ終了';
-});
+// const targetBox = document.querySelector('.box');
+// const logArea = document.querySelector('.log');
+// targetBox.addEventListener('touchstart', () => {
+//   logArea.innerHTML = 'タッチ開始';
+// });
+// targetBox.addEventListener('touchmove', () => {
+//   logArea.innerHTML = 'タッチ位置移動';
+// });
+// targetBox.addEventListener('touchend', () => {
+//   logArea.innerHTML = 'タッチ終了';
+// });
+
+// // タッチ操作時のイベントの情報を取得する
+// // event.changedTouches
+// const box = document.querySelector('.box');
+// const log = document.querySelector('.log')
+// box.addEventListener('touchstart', (event) => {
+//   const touch = event.changedTouches;
+//   log.innerHTML = `${touch[0].pageX.toFixed(2)}<br>${touch[0].pageY.toFixed(2)}`;
+// });

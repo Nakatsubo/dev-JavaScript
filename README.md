@@ -2744,3 +2744,15 @@ targetBox.addEventListener('touchend', () => {
   logArea.innerHTML = 'タッチ終了';
 });
 ```
+
+- タッチ操作時のイベントの情報を取得する
+
+```
+// event.changedTouches
+const box = document.querySelector('.box');
+const log = document.querySelector('.log')
+box.addEventListener('touchstart', (event) => {
+  const touch = event.changedTouches;
+  log.innerHTML = `${touch[0].pageX.toFixed(2)}<br>${touch[0].pageY.toFixed(2)}`;
+});
+```
