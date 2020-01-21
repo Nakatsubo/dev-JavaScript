@@ -2852,3 +2852,54 @@ function handleKeydown(event) {
   };
 };
 ```
+
+- ブラウザのタブを切り替え処理する
+
+```
+// visibilitychange
+// visibilityState => visible/hidden
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    console.log('コンテンツが表示されました');
+    return;
+  };
+  if (document.visibilityState === 'hidden') {
+    console.log('コンテンツがバックグラウンドになりました');
+    return;
+  };
+});
+```
+
+### ブラウザのタブを切り替え処理するサンプル
+
+```
+// 初期化
+if (document.visibilityState === 'visible') {
+  playSound();
+};
+// イベント
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    playSound();
+    return;
+  };
+  if (document.visibilityState === 'hidden') {
+    stopSound();
+    return;
+  };
+});
+function playSound() {
+  // 実行したい処理
+};
+function stopSound() {
+  // 実行したい処理
+};
+```
+
+- 画面サイズが変更されたら処理を実行
+
+```
+window.addEventListener('resize', () => {
+  console.log('ブラウザがリサイズされました')
+}, false);
+```

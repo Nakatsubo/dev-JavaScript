@@ -222,21 +222,67 @@
 //   console.log(event.isComposing);
 // }, false);
 
-// 入力されたキーの値を調べる
-window.addEventListener('keydown', handleKeydown, false);
-function handleKeydown(event) {
-  const keyCode = event.keyCode;
-  // console.log(keyCode);
-  if (keyCode === 39) {
-    console.log('右キーが押されました');
-  };
-  if (keyCode === 37) {
-    console.log('左キーが押されました');
-  };
-  if (keyCode === 38) {
-    console.log('上キーが押されました');
-  };
-  if (keyCode === 40) {
-    console.log('下キーが押されました');
-  };
-};
+// // 入力されたキーの値を調べる
+// window.addEventListener('keydown', handleKeydown, false);
+// function handleKeydown(event) {
+//   const keyCode = event.keyCode;
+//   // console.log(keyCode);
+//   if (keyCode === 39) {
+//     console.log('右キーが押されました');
+//   };
+//   if (keyCode === 37) {
+//     console.log('左キーが押されました');
+//   };
+//   if (keyCode === 38) {
+//     console.log('上キーが押されました');
+//   };
+//   if (keyCode === 40) {
+//     console.log('下キーが押されました');
+//   };
+// };
+
+// // visibilitychange
+// // visibilityState => visible/hidden
+// document.addEventListener('visibilitychange', () => {
+//   if (document.visibilityState === 'visible') {
+//     console.log('コンテンツが表示されました');
+//     return;
+//   };
+//   if (document.visibilityState === 'hidden') {
+//     console.log('コンテンツがバックグラウンドになりました');
+//     return;
+//   };
+// });
+
+// // 初期化
+// if (document.visibilityState === 'visible') {
+//   playSound();
+// };
+// // イベント
+// document.addEventListener('visibilitychange', () => {
+//   if (document.visibilityState === 'visible') {
+//     playSound();
+//     return;
+//   };
+//   if (document.visibilityState === 'hidden') {
+//     stopSound();
+//     return;
+//   };
+// });
+// function playSound() {
+//   // 実行したい処理
+// };
+// function stopSound() {
+//   // 実行したい処理
+// };
+
+// window.addEventListener('resize', () => {
+//   console.log('ブラウザがリサイズされました')
+// }, false);
+
+// const widthLog = document.querySelector('#widthLog');
+// const heightLog = document.querySelector('#heightLog');
+// window.addEventListener('resize', () => {
+//   widthLog.innerHTML = `${window.innerWidth}px`;
+//   HeightLog.innerHTML = `${window.innerHeight}px`;
+// });
