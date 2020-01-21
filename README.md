@@ -2716,3 +2716,31 @@ function removePopup() {
   balloon.classList.remove('on');
 };
 ```
+
+- タッチ操作時に処理を実行する
+
+|イベント|タイミング|
+|-----|-----|
+|touchstart|タッチを開始したとき|
+|touchmove|タッチポイントを動かしたとき|
+|touchend|タッチを終了したとき|
+
+```
+HTML
+<div class="box">
+  <p class="log"></p>
+</div>
+
+JavaScript
+const targetBox = document.querySelector('.box');
+const logArea = document.querySelector('.log');
+targetBox.addEventListener('touchstart', () => {
+  logArea.innerHTML = 'タッチ開始';
+});
+targetBox.addEventListener('touchmove', () => {
+  logArea.innerHTML = 'タッチ位置移動';
+});
+targetBox.addEventListener('touchend', () => {
+  logArea.innerHTML = 'タッチ終了';
+});
+```
