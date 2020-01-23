@@ -2943,6 +2943,10 @@ mediaQueryList.addEventListener(() => {
 ### メディアクエリを設定するサンプル
 
 ```
+HTML
+<div class="rectangle"></div>
+
+JavaScript
 const rectAngle = document.querySelector('.rectangle');
 const mediaQueryList = matchMedia('(min-width: 600px)');
 mediaQueryList.addListener(onMediaQueryChange);
@@ -2959,4 +2963,19 @@ function onMediaQueryChange(mediaQueryList) {
 };
 // ページ表示時に実行
 onMediaQueryChange(mediaQueryList);
+```
+
+- イベントを発生させる
+
+```
+// dispatchEvent()
+const boxElement = document.querySelector('#myBox');
+boxElement.addEventListener('click', () => {
+  boxElement.innerHTML = 'クリックされました';
+});
+// new Event('evnet.name', [{detail: value}]) => イベントを生成する
+// 1秒後にクリックイベントが発生する
+setTimeout(() => {
+  boxElement.dispatchEvent(new Event('click'));
+}, 1000);
 ```

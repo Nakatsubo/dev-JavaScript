@@ -317,19 +317,31 @@
 //   console.log('デバイスの向きが変更された');
 // });
 
-const rectAngle = document.querySelector('.rectangle');
-const mediaQueryList = matchMedia('(min-width: 600px)');
-mediaQueryList.addListener(onMediaQueryChange);
-// console.log(mediaQueryList);
-// MediaQueryList {media: "(min-width: 600px)", matches: true, onchange: null}
-function onMediaQueryChange(mediaQueryList) {
-  if (mediaQueryList.matches === true) {
-    rectAngle.classList.add('big-size');
-    console.log('ウィンドウサイズが600pxを超えました');
-  } else {
-    rectAngle.classList.remove('big-size');
-    console.log('ウィンドウサイズが600pxを下回りました');
-  };
-};
-// ページ表示時に実行
-onMediaQueryChange(mediaQueryList);
+// const rectAngle = document.querySelector('.rectangle');
+// const mediaQueryList = matchMedia('(min-width: 600px)');
+// mediaQueryList.addListener(onMediaQueryChange);
+// // console.log(mediaQueryList);
+// // MediaQueryList {media: "(min-width: 600px)", matches: true, onchange: null}
+// function onMediaQueryChange(mediaQueryList) {
+//   if (mediaQueryList.matches === true) {
+//     rectAngle.classList.add('big-size');
+//     console.log('ウィンドウサイズが600pxを超えました');
+//   } else {
+//     rectAngle.classList.remove('big-size');
+//     console.log('ウィンドウサイズが600pxを下回りました');
+//   };
+// };
+// // ページ表示時に実行
+// onMediaQueryChange(mediaQueryList);
+
+// イベントを発生させる
+// dispatchEvent()
+const boxElement = document.querySelector('#myBox');
+boxElement.addEventListener('click', () => {
+  boxElement.innerHTML = 'クリックされました';
+});
+// new Event('evnet.name', [{detail: value}]) => イベントを生成する
+// 1秒後にクリックイベントが発生する
+setTimeout(() => {
+  boxElement.dispatchEvent(new Event('click'));
+}, 1000);
