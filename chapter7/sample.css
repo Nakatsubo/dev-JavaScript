@@ -1,4 +1,4 @@
-/* .charactor {
+.charactor {
   position: absolute;
   top: 0;
   left: 0;
@@ -6,9 +6,9 @@
 
 .charactor::after {
   content: '★';
-} */
+}
 
-/* body {
+body {
   width: 100vw;
   height: 100vh;
   background: #171717;
@@ -60,16 +60,16 @@ main {
   opacity: 1;
   display: block;
   transition: 300ms all;
-} */
+}
 
-/* .rectangle {
+.rectangle {
   width: 100vw;
   min-height: 100vh;
   background-image: linear-gradient(-135deg, #00aaff, #5500ff);
 }
 .rectangle.big-size {
   background-image: linear-gradient(-135deg, #ff0000, #ff00a2);
-} */
+}
 
 .scrollable-element {
   overflow-y: scroll;
