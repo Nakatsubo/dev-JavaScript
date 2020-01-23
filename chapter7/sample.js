@@ -334,14 +334,42 @@
 // // ページ表示時に実行
 // onMediaQueryChange(mediaQueryList);
 
-// イベントを発生させる
-// dispatchEvent()
-const boxElement = document.querySelector('#myBox');
-boxElement.addEventListener('click', () => {
-  boxElement.innerHTML = 'クリックされました';
+// // イベントを発生させる
+// // dispatchEvent()
+// const boxElement = document.querySelector('#myBox');
+// boxElement.addEventListener('click', () => {
+//   boxElement.innerHTML = 'クリックされました';
+// });
+// // new Event('evnet.name', [{detail: value}]) => イベントを生成する
+// // 1秒後にクリックイベントが発生する
+// setTimeout(() => {
+//   boxElement.dispatchEvent(new Event('click'));
+// }, 1000);
+
+// // イベントのデフォルトの挙動をキャンセルする
+// // preventDefault()
+// // マウスホイールを無効化
+// document.querySelector('.foo').addEventListener('wheel', (event) => {
+//   event.preventDefault();
+// });
+// // タッチ開始処理を無効化
+// document.documentElement.addEventListener('touchstart', (event) => {
+//   event.preventDefault();
+// });
+
+let enableMouseWheel = true;
+// チェックボックスをクリックした時の処理
+document.querySelector('#mouseWheelToggle').addEventListener('click', (event) => {
+  // チェックボックスに値が入っていたら、マウスホイールを無効化
+  if (event.target.checked === true) {
+    enableMouseWheel = false;
+  }
 });
-// new Event('evnet.name', [{detail: value}]) => イベントを生成する
-// 1秒後にクリックイベントが発生する
-setTimeout(() => {
-  boxElement.dispatchEvent(new Event('click'));
-}, 1000);
+document.querySelector('.scrollable-element').addEventListener('wheel', (event) => {
+  // マウスホイールが有効な場合は処理を抜ける
+  if (enableMouseWheel === true) {
+    return;
+  };
+  // マウスホイールが無効な場合はイベントをキャンセル
+  event.preventDefault();
+});
