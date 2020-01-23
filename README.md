@@ -2979,3 +2979,56 @@ setTimeout(() => {
   boxElement.dispatchEvent(new Event('click'));
 }, 1000);
 ```
+
+- イベントのデフォルトの挙動をキャンセルする
+
+```
+// preventDefault()
+// マウスホイールを無効化
+document.querySelector('.foo').addEventListener('wheel', (event) => {
+  event.preventDefault();
+});
+// タッチ開始処理を無効化
+document.documentElement.addEventListener('touchstart', (event) => {
+  event.preventDefault();
+});
+```
+
+### イベントのデフォルトの挙動をキャンセルするサンプル
+
+```
+HTML
+<p><input id="mouseWheelToggle" type="checkbox">マウスホイールを無効化</p>
+<ul class="scrollable-element">
+  <li>りんご</li>
+  <li>みかん</li>
+  <li>バナナ</li>
+  <li>いちご</li>
+  <li>パイナップル</li>
+  <li>キウイ</li>
+  <li>ぶどう</li>
+  <li>スイカ</li>
+</ul>
+
+CSS
+.scrollable-element {
+  overflow-y: scroll;
+}
+
+JavaScript
+let enableMouseWheel = true;
+// チェックボックスをクリックした時の処理
+document.querySelector('#mouseWheelToggle').addEventListener('click', (event) => {
+  // チェックボックスに値が入っていたら、マウスホイールを無効化
+  if ()
+  enableMouseWheel = event.target.checked === false;
+});
+document.querySelector('.scrollable-element').addEventListener('wheel', (event) => {
+  // マウスホイールが有効な場合は処理を抜ける
+  if (enableMouseWheel === true) {
+    return;
+  };
+  // マウスホイールが無効な場合はイベントをキャンセル
+  event.preventDefault();
+});
+```
