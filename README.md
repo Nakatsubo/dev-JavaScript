@@ -2918,3 +2918,45 @@ window.addEventListener('resize', () => {
 });
 function onResize() {};
 ```
+
+- メディアクエリを設定する
+
+```
+// matchMedia()
+console.log(matchMedia('(min-width: 500px)'));
+// => MediaQueryList {media: "(min-width: 500px)", matches: true, onchange: null}
+// matchMedia().matches
+console.log(matchMedia('(min-width: 500px)').matches);
+// => true or false
+console.log(matchMedia('(min-width: 100px) and (max-width: 700px)').matches);
+// => true or false
+
+// orientation: portrait => 横持ち
+const mediaQueryList = matchMedia('(orientation: portrait)');
+console.log(mediaQueryList);
+// => MediaQueryList {media: "(orientation: portrait)", matches: false, onchange: null}
+mediaQueryList.addEventListener(() => {
+  console.log('デバイスの向きが変更された');
+});
+```
+
+### メディアクエリを設定するサンプル
+
+```
+const rectAngle = document.querySelector('.rectangle');
+const mediaQueryList = matchMedia('(min-width: 600px)');
+mediaQueryList.addListener(onMediaQueryChange);
+// console.log(mediaQueryList);
+// MediaQueryList {media: "(min-width: 600px)", matches: true, onchange: null}
+function onMediaQueryChange(mediaQueryList) {
+  if (mediaQueryList.matches === true) {
+    rectAngle.classList.add('big-size');
+    console.log('ウィンドウサイズが600pxを超えました');
+  } else {
+    rectAngle.classList.remove('big-size');
+    console.log('ウィンドウサイズが600pxを下回りました');
+  };
+};
+// ページ表示時に実行
+onMediaQueryChange(mediaQueryList);
+```
