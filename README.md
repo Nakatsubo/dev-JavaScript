@@ -2951,7 +2951,7 @@ const rectAngle = document.querySelector('.rectangle');
 const mediaQueryList = matchMedia('(min-width: 600px)');
 mediaQueryList.addListener(onMediaQueryChange);
 // console.log(mediaQueryList);
-// MediaQueryList {media: "(min-width: 600px)", matches: true, onchange: null}
+// => MediaQueryList {media: "(min-width: 600px)", matches: true, onchange: null}
 function onMediaQueryChange(mediaQueryList) {
   if (mediaQueryList.matches === true) {
     rectAngle.classList.add('big-size');
@@ -3030,5 +3030,57 @@ document.querySelector('.scrollable-element').addEventListener('wheel', (event) 
   };
   // マウスホイールが無効な場合はイベントをキャンセル
   event.preventDefault();
+});
+```
+
+- ドラッグ&ドロップを処理する
+
+#### ドラッグしている要素
+
+|イベント|タイミング|
+|-----|-----|
+|dragstart|要素のドラッグを開始した時|
+|drag|要素をドラッグしている時|
+|dragend|要素のドラッグが終了した時|
+
+#### ドラッグを受け入れる要素
+
+|イベント|タイミング|
+|-----|-----|
+|dragenter|ドラッグ中にマウスポインターが要素上に乗った時|
+|dragover|ドラッグ中に申すポインターが要素に存在する時|
+|dragleave|ドラッグ中にマウスポインターが要素上から離れた時|
+|drop|要素をドロップした時|
+
+#### Drag and Drop API
+event.dataTransfer.files でドロップされたファイル情報を取得する。
+
+```
+const charactor = document.querySelector('.character');
+// dragstart
+charactor.addEventListener('dragstart', () => {
+  console.log('dragstartイベント');
+});
+// drag
+charactor.addEventListener('drag', () => {
+  console.log('dragイベント');
+});
+// dragend
+charactor.addEventListener('dragend', () => {
+  console.log('dragendイベント');
+});
+
+const box = document.querySelector('.box');
+// dragenter
+box.addEventListener('dragenter', () => {
+  console.log('dragenter');
+});
+// dragover
+box.addEventListener('dragover', () => {
+  console.log('dragoverイベント');
+});
+// dragleave
+box.addEventListener('dragleave', () => {
+  console.log('dragleaveイベント');
 });
 ```
