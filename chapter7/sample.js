@@ -357,19 +357,48 @@
 //   event.preventDefault();
 // });
 
-let enableMouseWheel = true;
-// チェックボックスをクリックした時の処理
-document.querySelector('#mouseWheelToggle').addEventListener('click', (event) => {
-  // チェックボックスに値が入っていたら、マウスホイールを無効化
-  if (event.target.checked === true) {
-    enableMouseWheel = false;
-  }
+// let enableMouseWheel = true;
+// // チェックボックスをクリックした時の処理
+// document.querySelector('#mouseWheelToggle').addEventListener('click', (event) => {
+//   // チェックボックスに値が入っていたら、マウスホイールを無効化
+//   if (event.target.checked === true) {
+//     enableMouseWheel = false;
+//   }
+// });
+// document.querySelector('.scrollable-element').addEventListener('wheel', (event) => {
+//   // マウスホイールが有効な場合は処理を抜ける
+//   if (enableMouseWheel === true) {
+//     return;
+//   };
+//   // マウスホイールが無効な場合はイベントをキャンセル
+//   event.preventDefault();
+// });
+
+// ドラッグ&ドロップを処理する
+const charactor = document.querySelector('.character');
+// dragstart
+charactor.addEventListener('dragstart', () => {
+  console.log('dragstartイベント');
 });
-document.querySelector('.scrollable-element').addEventListener('wheel', (event) => {
-  // マウスホイールが有効な場合は処理を抜ける
-  if (enableMouseWheel === true) {
-    return;
-  };
-  // マウスホイールが無効な場合はイベントをキャンセル
-  event.preventDefault();
+// drag
+charactor.addEventListener('drag', () => {
+  console.log('dragイベント');
+});
+// dragend
+charactor.addEventListener('dragend', () => {
+  console.log('dragendイベント');
+});
+
+const box = document.querySelector('.box');
+// dragenter
+box.addEventListener('dragenter', () => {
+  console.log('dragenter');
+});
+// dragover
+box.addEventListener('dragover', () => {
+  console.log('dragoverイベント');
+});
+// dragleave
+box.addEventListener('dragleave', () => {
+  console.log('dragleaveイベント');
 });
