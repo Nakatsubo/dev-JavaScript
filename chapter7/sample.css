@@ -1,4 +1,4 @@
-/* .charactor {
+.charactor {
   position: absolute;
   top: 0;
   left: 0;
@@ -73,7 +73,7 @@ main {
 
 .scrollable-element {
   overflow-y: scroll;
-} */
+}
 
 body {
   display: block;
