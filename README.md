@@ -2581,7 +2581,7 @@ targetBox.addEventListener('mousemove', (event) => {
 });
 ```
 
-- マウス操作時の座標を取得したサンプル
+### マウス操作時の座標を取得したサンプル
 
 ```
 HTML
@@ -3083,4 +3083,72 @@ box.addEventListener('dragover', () => {
 box.addEventListener('dragleave', () => {
   console.log('dragleaveイベント');
 });
+```
+
+#### Drag and Drop API サンプル
+
+```
+// ファイルをアップロードするエリア
+const fileZone = document.querySelector('.file-zone');
+// ファイルをアップロードするエリアに追加/削除するクラス
+const className = 'on';
+
+// ドラッグした時の処理
+// ドラッグした要素が重なったときの処理
+fileZone.addEventListener('dragover', () => {
+  event.preventDefault();
+  fileZone.classList.add(classname);
+});
+// ドラッグした要素が離れたときの処理
+fileZone.addEventListener('dragleave', () => {
+  event.preventDefault();
+  fileZone.classList.remove(className);
+});
+
+// ドロップした時の処理
+fileZone.addEventListener('drop', (event) => {
+  event.preventDefault();
+  fileZone.classList.remove(className);
+
+  // event.dataTransfer.files ドロップされたファイル情報を取得
+  const transferdFiles = event.dataTransfer.files;
+
+  // 画像を表示する
+  displayImages(transferdFiles);
+});
+
+// 画像を表示する関数
+function displayImages(transferdFiles) {
+  // 画像ファイルの格納する配列
+  const imageFileList = [];
+
+  // ファイル数
+  const fileNum = transferdFiles.length;
+
+  // ファイルタイプが画像のみを配列に格納
+  for (let i = 0; i < fileNum; i++) {
+    if (transferdFiles[i].type.match('image.*') === false) {
+      return;
+    };
+    imageFileList.push(transferdFiles[i]);
+  };
+
+  // 画像表示エリアを参照
+  const imagePreviewArea = document.querySelector('.image-list');
+
+  // 各画像ファイルについて処理
+  for (const imageFile of imageFileList) {
+    // 画像ファイルの読み込み処理
+    // FileReaderオブジェクトを生成
+    const fileReader = new FileReader();
+    // ArrayBufferオブジェクトを取得
+    fileReader.readAsDataURL(imageFile);
+    fileReader.addEventListener('load', (event) => {
+      const image = new Image();
+      image.src = event.target.result;
+      // 表示エリアの先頭に画像ファイルを表示
+      imagePreviewArea.insertBefore(image, imagePreviewArea.firstChild);
+    });
+  };
+}
 ```
