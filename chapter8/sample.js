@@ -141,4 +141,36 @@
 //   childElement.remove();
 // }, 3000);
 
+// // HTML要素を生成
+// // document.createElement('タグ', オプション);
+// const divElement = document.createElement('div');
+// console.log(divElement);
+// // => <div></div>
+// const anchorElement = document.createElement('a');
+// console.log(anchorElement);
+// // => <a></a>
 
+// // モーダルを生成するサンプル
+// document.querySelector('#create-modal-button').addEventListener('click', displayModalWindow, false);
+// function displayModalWindow() {
+//   // モーダルウィンドウを生成
+//   const modalElement = document.createElement('div');
+//   modalElement.classList.add('modal');
+//   // モーダルウィンドウの中身を生成
+//   const innerElement = document.createElement('div');
+//   innerElement.classList.add('inner');
+//   innerElement.innerHTML = `
+//   <p>モーダルウィンドウの中身です</p>
+//   <div class="character"></div>
+//   `;
+//   // DOMに要素を追加
+//   modalElement.appendChild(innerElement);
+//   document.body.appendChild(modalElement);
+//   // 閉じるイベントを生成
+//   innerElement.addEventListener('click', () => {
+//     closeModalWindow(modalElement);
+//   });
+// };
+// function closeModalWindow(modalElement) {
+//   document.body.removeChild(modalElement);
+// };

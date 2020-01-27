@@ -3485,3 +3485,95 @@ setTimeout(() => {
   childElement.remove();
 }, 3000);
 ```
+
+- HTML要素を生成
+
+```
+// document.createElement('タグ', オプション);
+const divElement = document.createElement('div');
+console.log(divElement);
+// => <div></div>
+const anchorElement = document.createElement('a');
+console.log(anchorElement);
+// => <a></a>
+```
+
+### モーダルを生成するサンプル
+
+```
+HTML
+<button id="create-modal-button">モーダルウィンドウを作成</button>
+
+CSS
+ .modal {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal .inner {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 10px;
+  display: block;
+  width: 960px;
+  height: 540px;
+  border-radius: 5px;
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  padding: 20px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  max-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #333;
+  font-size: 1.5rem;
+  animation: fadeInAnimation 200ms ease-out;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+JavaScript
+document.querySelector('#create-modal-button').addEventListener('click', displayModalWindow, false);
+function displayModalWindow() {
+  // モーダルウィンドウを生成
+  const modalElement = document.createElement('div');
+  modalElement.classList.add('modal');
+  // モーダルウィンドウの中身を生成
+  const innerElement = document.createElement('div');
+  innerElement.classList.add('inner');
+  innerElement.innerHTML = `
+  <p>モーダルウィンドウの中身です</p>
+  <div class="character"></div>
+  `;
+  // DOMに要素を追加
+  modalElement.appendChild(innerElement);
+  document.body.appendChild(modalElement);
+  // 閉じるイベントを生成
+  innerElement.addEventListener('click', () => {
+    closeModalWindow(modalElement);
+  });
+};
+function closeModalWindow(modalElement) {
+  document.body.removeChild(modalElement);
+};
+```
