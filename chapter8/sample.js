@@ -48,3 +48,50 @@
 // themeChangeButton.addEventListener('click', () => {
 //   document.body.classList.toggle('theme-dark');
 // });
+
+// const parentElement = document.querySelector('#parent');
+
+// // 親ノード.children => 子ノード
+// console.log(parentElement.children);
+// // => HTMLCollection(3) [div#child1, div#child2, div#child3, child1: div#child1, child2: div#child2, child3: div#child3]
+
+// // 親ノード.firstElementChild => 最初の子ノード
+// console.log(parentElement.firstElementChild);
+// // => <div id="child1">子要素1</div>
+
+// // 親ノード.lastElementChild => 最後の子ノード
+// console.log(parentElement.lastElementChild);
+// // => <div id="child3">子要素3</div>
+
+// const firstElementChild = parentElement.firstElementChild;
+// // 兄弟ノード.nextElementSibling => 次(弟)のノード
+// console.log(firstElementChild.nextElementSibling);
+
+// // 兄弟ノード.previousElementSibling => 前(兄)のノード
+// console.log(firstElementChild.previousElementSibling);
+// // => null
+
+// // 兄弟ノード.
+// console.log(firstElementChild.parentElement);
+// // => <div id="parent"></div>
+
+// // 親要素の末尾に要素を追加
+// // 親ノード.appendChild(子ノード)
+// const myBox = document.querySelector('#myBox');
+// const container = document.querySelector('.container');
+// setTimeout(() => {
+//   container.appendChild(myBox);
+// }, 3000);
+
+// 指定した位置に要素を追加
+// 親ノード.insertBefore(子ノード, 指定した位置)
+const container = document.querySelector('.container');
+const myBox1 = document.querySelector('#mybox1');
+const myBox2 = document.querySelector('#mybox2');
+const box2 = document.querySelector('#box2');
+setTimeout(() => {
+  container.insertBefore(mybox1, container.firstElementChild);
+}, 3000);
+setTimeout(() => {
+  container.insertBefore(myBox2, box2);
+}, 4000);
