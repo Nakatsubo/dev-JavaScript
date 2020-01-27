@@ -111,18 +111,34 @@
 //   targetBox.after(myBox2);
 // }, 4000);
 
-// HTML要素を追加
-// 親要素.insertAdjiacentHTML(挿入位置, 文字列)
-const container = document.querySelector('.container');
-const newBox = `<div class="new-box box">.new-box要素</div>`;
-setTimeout(() => {
-  // 親要素の直前
-  container.insertAdjacentHTML('beforebegin', newBox);
-  // 親要素内の先頭
-  container.insertAdjacentHTML('afterbegin', newBox);
-  // 親要素内の末尾
-  container.insertAdjacentHTML('beforeend', newBox);
-  // 親要素の直後
-  container.insertAdjacentHTML('afterend', newBox);
-}, 3000);
+// // HTML要素を追加
+// // 親要素.insertAdjiacentHTML(挿入位置, 文字列)
+// const container = document.querySelector('.container');
+// const newBox = `<div class="new-box box">.new-box要素</div>`;
+// setTimeout(() => {
+//   // 親要素の直前
+//   container.insertAdjacentHTML('beforebegin', newBox);
+//   // 親要素内の先頭
+//   container.insertAdjacentHTML('afterbegin', newBox);
+//   // 親要素内の末尾
+//   container.insertAdjacentHTML('beforeend', newBox);
+//   // 親要素の直後
+//   container.insertAdjacentHTML('afterend', newBox);
+// }, 3000);
+
+// // 子のHTML要素を削除
+// // ノード.removeChild(子ノード)
+// setTimeout(() => {
+//   const parentElement = document.querySelector('#parent');
+//   const childElement = document.querySelector('#child');
+//   parentElement.removeChild(childElement);
+// }, 3000);
+
+// // HTML要素を削除
+// // ノード.remove();
+// setTimeout(() => {
+//   const  childElement = document.querySelector('#child');
+//   childElement.remove();
+// }, 3000);
+
 

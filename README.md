@@ -3460,3 +3460,28 @@ setTimeout(() => {
   container.insertAdjacentHTML('afterend', newBox);
 }, 3000);
 ```
+
+- 子のHTML要素を削除
+
+```
+// 親ノード.removeChild(子ノード)
+<div id="parent">
+  <div id="child">取り除く要素</div>
+</div>
+
+setTimeout(() => {
+  const parentElement = document.querySelector('#parent');
+  const childElement = document.querySelector('#child');
+  parentElement.removeChild(childElement);
+}, 3000);
+```
+
+- HTML要素を削除
+
+```
+// ノード.remove();
+setTimeout(() => {
+  const  childElement = document.querySelector('#child');
+  childElement.remove();
+}, 3000);
+```
