@@ -3607,3 +3607,22 @@ setTimeout(() => {
   container.replaceChild(newBox, oldBox);
 }, 3000);
 ```
+
+- 要素を入れ替える
+
+```
+<div class="container">
+  <div class="old-box box">旧ボックス</div>
+</div>
+
+// 旧ノード.replaceWith(新ノード)
+setTimeout(() => {
+  const oldBox = document.querySelector('.old-box');
+  const newBox = document.createElement('div');
+  // 新しい要素を生成
+  newBox.textContent = '新ボックス';
+  newBox.classList.add('new-box', 'box');
+  // 要素を置き換える
+  oldBox.replaceWith(newBox);
+}, 3000);
+```

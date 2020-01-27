@@ -182,15 +182,27 @@
 //   document.querySelector('.container').appendChild(clonedBox);
 // }, 3000);
 
-// 要素を他の要素に置き換える
-// 親ノード.replaceChild(新ノード, 旧ノード)
+// // 要素を他の要素に置き換える
+// // 親ノード.replaceChild(新ノード, 旧ノード)
+// setTimeout(() => {
+//   const container = document.querySelector('.container');
+//   const oldBox = document.querySelector('.old-box');
+//   const newBox = document.createElement('div');
+//   // 新しい要素を生成
+//   newBox.textContent = '新ボックス';
+//   newBox.classList.add('new-box', 'box');
+//   // 要素を置き換える
+//   container.replaceChild(newBox, oldBox);
+// }, 3000);
+
+// 要素を入れ替える
+// 旧ノード.replaceWith(新ノード)
 setTimeout(() => {
-  const container = document.querySelector('.container');
   const oldBox = document.querySelector('.old-box');
   const newBox = document.createElement('div');
   // 新しい要素を生成
   newBox.textContent = '新ボックス';
   newBox.classList.add('new-box', 'box');
   // 要素を置き換える
-  container.replaceChild(newBox, oldBox);
+  oldBox.replaceWith(newBox);
 }, 3000);
