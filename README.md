@@ -3430,3 +3430,33 @@ setTimeout(() => {
   targetBox.after(myBox2);
 }, 4000);
 ```
+
+- HTML要素を追加
+
+```
+HTML
+<!-- beforebegin -->
+<div class="container">
+  <!-- afterbegin -->
+  <div class="box">子要素1</div>
+  <div class="box">子要素2</div>
+  <!-- beforeend -->
+</div>
+<!-- afterend -->
+
+JavaScript
+// HTML要素を追加
+// 親要素.insertAdjiacentHTML(挿入位置, 文字列)
+const container = document.querySelector('.container');
+const newBox = `<div class="new-box box">.new-box要素</div>`;
+setTimeout(() => {
+  // 親要素の直前
+  container.insertAdjacentHTML('beforebegin', newBox);
+  // 親要素内の先頭
+  container.insertAdjacentHTML('afterbegin', newBox);
+  // 親要素内の末尾
+  container.insertAdjacentHTML('beforeend', newBox);
+  // 親要素の直後
+  container.insertAdjacentHTML('afterend', newBox);
+}, 3000);
+```

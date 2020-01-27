@@ -96,17 +96,33 @@
 //   container.insertBefore(myBox2, box2);
 // }, 4000);
 
-// 指定した位置の前後に要素を追加
-const myBox1 = document.querySelector('#mybox1');
-const myBox2 = document.querySelector('#mybox2');
-const targetBox = document.querySelector('#targetBox');
+// // 指定した位置の前後に要素を追加
+// const myBox1 = document.querySelector('#mybox1');
+// const myBox2 = document.querySelector('#mybox2');
+// const targetBox = document.querySelector('#targetBox');
 
-// ノード1.before(ノード2) => ノード1の前にノード2を追加
+// // ノード1.before(ノード2) => ノード1の前にノード2を追加
+// setTimeout(() => {
+//   targetBox.before(myBox1);
+// }, 3000);
+
+// // ノード1.after(ノード2) => ノード1の後にノード2を追加
+// setTimeout(() => {
+//   targetBox.after(myBox2);
+// }, 4000);
+
+// HTML要素を追加
+// 親要素.insertAdjiacentHTML(挿入位置, 文字列)
+const container = document.querySelector('.container');
+const newBox = `<div class="new-box box">.new-box要素</div>`;
 setTimeout(() => {
-  targetBox.before(myBox1);
+  // 親要素の直前
+  container.insertAdjacentHTML('beforebegin', newBox);
+  // 親要素内の先頭
+  container.insertAdjacentHTML('afterbegin', newBox);
+  // 親要素内の末尾
+  container.insertAdjacentHTML('beforeend', newBox);
+  // 親要素の直後
+  container.insertAdjacentHTML('afterend', newBox);
 }, 3000);
 
-// ノード1.after(ノード2) => ノード1の後にノード2を追加
-setTimeout(() => {
-  targetBox.after(myBox2);
-}, 4000);
