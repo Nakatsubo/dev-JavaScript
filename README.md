@@ -3635,4 +3635,29 @@ const weather = document.querySelector('#weather');
 setTimeout(() => {
   weather.textContent = '気温は24℃の予想です。';
 }, 3000);
+
+// => textContentメソッドは、全てを文字列として返す
+```
+
+- 要素内のHTML要素を書き換える
+
+```
+HTML
+<p id="weather">明日は晴れるでしょう</p>
+
+CSS
+#weather strong {
+  color: #d03939;
+}
+
+JavaScript
+const weather = document.querySelector('#weather');
+setTimeout(() => {
+  weather. innerHTML = '気温は<strong>24℃</strong>の予想です。';
+}, 3000);
+
+// => 出力結果
+<p id="weather">
+  気温は<strong>24℃</strong>の予想です。
+</p>
 ```
