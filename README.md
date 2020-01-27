@@ -3256,3 +3256,92 @@ document.querySelectorAll('.box').forEach((targetbox) => {
   }, false);
 });
 ```
+
+- ルート要素を取得
+
+```
+// console.dir() => オブジェクトのプロパティを階層構造で取得する
+// document.documentElement ルート要素を取得
+console.dir(document.documentElement);
+// => html...
+// document.head
+console.dir(document.head);
+// => head...
+console.dir(document.body);
+// => body...
+
+// head内にscriptタグを動的に挿入
+const scriptElement = document.createElement('script');
+scriptElement.src = 'js/sample-script.js';
+document.head.appendChild(scriptElement);
+// => <script src="js/sample-script.js"></script>
+```
+
+### ウィンドウをダークモードにするサンプル
+
+```
+HTML
+<button class="theme-change-button">配色を変更</button>
+<h1>At the moment of my dream</h1>
+
+CSS
+body {
+  font-size: 20px;
+  color: #2f3b4c;
+  background-color: #f9f9f9;
+  transition: 300ms all ease-out;
+}
+
+body.theme-dark {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+body:before {
+  background-image: none;
+}
+
+.theme-change-button {
+  font-size: 12px;
+  width: auto;
+  color: initial;
+  background-color: white;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+body.theme-dark .theme-change-button {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+h1 {
+  font-size: 26px;
+  line-height: 1.5;
+  border-bottom: 1px solid #2f3b4c;
+  text-align: left;
+  transition: 300ms border-bottom-color ease-out;
+}
+
+body.theme-dark h1 {
+  border-bottom-color: white;
+}
+
+main {
+  height: auto;
+  background-color: transparent;
+  border-radius: 0;
+  max-width: 900px;
+}
+
+JavaScript
+// ウィンドウをダークモードにするサンプル
+const themeChangeButton = document.querySelector('.theme-change-button');
+themeChangeButton.addEventListener('click', () => {
+  document.body.classList.toggle('theme-dark');
+});
+```
