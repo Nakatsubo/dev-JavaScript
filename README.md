@@ -3626,3 +3626,13 @@ setTimeout(() => {
   oldBox.replaceWith(newBox);
 }, 3000);
 ```
+
+- 要素内のテキストを書き換える
+
+```
+// ノード.textContent
+const weather = document.querySelector('#weather');
+setTimeout(() => {
+  weather.textContent = '気温は24℃の予想です。';
+}, 3000);
+```

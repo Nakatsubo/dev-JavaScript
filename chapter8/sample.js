@@ -195,14 +195,23 @@
 //   container.replaceChild(newBox, oldBox);
 // }, 3000);
 
-// 要素を入れ替える
-// 旧ノード.replaceWith(新ノード)
+// // 要素を入れ替える
+// // 旧ノード.replaceWith(新ノード)
+// setTimeout(() => {
+//   const oldBox = document.querySelector('.old-box');
+//   const newBox = document.createElement('div');
+//   // 新しい要素を生成
+//   newBox.textContent = '新ボックス';
+//   newBox.classList.add('new-box', 'box');
+//   // 要素を置き換える
+//   oldBox.replaceWith(newBox);
+// }, 3000);
+
+// 要素内のテキストを書き換える
+// ノード.textContent
+// const weatherInformation = document.querySelector('#weather-information');
+// console.log(weatherInformation.textContent);
+const weather = document.querySelector('#weather');
 setTimeout(() => {
-  const oldBox = document.querySelector('.old-box');
-  const newBox = document.createElement('div');
-  // 新しい要素を生成
-  newBox.textContent = '新ボックス';
-  newBox.classList.add('new-box', 'box');
-  // 要素を置き換える
-  oldBox.replaceWith(newBox);
+  weather.textContent = '気温は24℃の予想です。';
 }, 3000);
