@@ -175,9 +175,22 @@
 //   document.body.removeChild(modalElement);
 // };
 
-// 要素を複製
-// ノード.cloneNode(真偽値)
+// // 要素を複製
+// // ノード.cloneNode(真偽値)
+// setTimeout(() => {
+//   const clonedBox = document.querySelector('#myBox').cloneNode(true);
+//   document.querySelector('.container').appendChild(clonedBox);
+// }, 3000);
+
+// 要素を他の要素に置き換える
+// 親ノード.replaceChild(新ノード, 旧ノード)
 setTimeout(() => {
-  const clonedBox = document.querySelector('#myBox').cloneNode(true);
-  document.querySelector('.container').appendChild(clonedBox);
+  const container = document.querySelector('.container');
+  const oldBox = document.querySelector('.old-box');
+  const newBox = document.createElement('div');
+  // 新しい要素を生成
+  newBox.textContent = '新ボックス';
+  newBox.classList.add('new-box', 'box');
+  // 要素を置き換える
+  container.replaceChild(newBox, oldBox);
 }, 3000);
