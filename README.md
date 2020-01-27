@@ -3577,3 +3577,13 @@ function closeModalWindow(modalElement) {
   document.body.removeChild(modalElement);
 };
 ```
+
+- 要素を複製
+
+```
+// ノード.cloneNode(真偽値)
+setTimeout(() => {
+  const clonedBox = document.querySelector('#myBox').cloneNode(true);
+  document.querySelector('.container').appendChild(clonedBox);
+}, 3000);
+```
