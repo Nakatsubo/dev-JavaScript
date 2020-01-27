@@ -8,6 +8,7 @@ Let's study & enjoy JavaScript
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter5">Chapter5 Date</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter6">Chapter6 Browser</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter7">Chapter7 Event</a>
+- <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter8">Chapter8 Element</a>
 
 
 ## Chapter1
@@ -3088,6 +3089,59 @@ box.addEventListener('dragleave', () => {
 #### Drag and Drop API サンプル
 
 ```
+HTML
+<div class="file-zone">
+  画像ファイルを<br>ドロップしてください
+</div>
+
+<div class="file-preview-area">
+  <h1>アップロードした画像ファイル</h1>
+  <div class="image-list"></div>
+</div>
+
+CSS
+body {
+  display: block;
+  overflow: scroll;
+}
+
+.file-zone {
+  background-color: rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100% - 200px);
+  transition: 100ms all ease-out;
+}
+
+.file-zone.on {
+  background-color: rgba(97, 131, 209, 0.9);
+}
+
+.file-preview-area {
+  width: 100%;
+  min-height: 200px;
+  background-color: rgba(0, 0, 0, 0.58);
+}
+
+.file-preview-area .image-list {
+  display: grid;
+  overflow: scroll;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 200px;
+}
+
+.file-preview-area .image-list > img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+JavaScript
 // ファイルをアップロードするエリア
 const fileZone = document.querySelector('.file-zone');
 // ファイルをアップロードするエリアに追加/削除するクラス
@@ -3125,7 +3179,7 @@ function displayImages(transferdFiles) {
   // ファイル数
   const fileNum = transferdFiles.length;
 
-  // ファイルタイプが画像のみを配列に格納
+  // ファイルタイプが画像のみ配列に格納
   for (let i = 0; i < fileNum; i++) {
     if (transferdFiles[i].type.match('image.*') === false) {
       return;
@@ -3151,4 +3205,375 @@ function displayImages(transferdFiles) {
     });
   };
 }
+```
+
+## Chapter8
+
+- querySelector() はセレクタ名に合致する要素が複数ある場合、最初の要素を返す。
+
+```
+HTML
+<div class="box">1つ目のボックス</div>
+<div class="box">2つ目のボックス</div>
+<div class="box">3つ目のボックス</div>
+
+JavaScript
+const box = document.querySelector('.box');
+console.log(box);
+// => <div class="box">1つ目のボックス</div>
+```
+
+- querySelectorAll() で取得した要素にまとめて処理をする場合、forEach()メソッドかfor文を使う
+
+```
+HTML
+<div class="box">1つ目のボックス</div>
+<div class="box">2つ目のボックス</div>
+<div class="box">3つ目のボックス</div>
+
+JavaScript
+// forEach()
+const eachList = document.querySelectorAll('.box');
+eachList.forEach((targetbox) => {
+  console.log(targetbox);
+});
+// => <div class="box">1つ目のボックス</div>
+// => <div class="box">2つ目のボックス</div>
+// => <div class="box">3つ目のボックス</div>
+
+// for
+const forList = document.querySelectorAll('.box');
+for(let i = 0; i < forList.length; i++) {
+  console.log(forList[i]);
+};
+// => <div class="box">1つ目のボックス</div>
+// => <div class="box">2つ目のボックス</div>
+// => <div class="box">3つ目のボックス</div>
+
+document.querySelectorAll('.box').forEach((targetbox) => {
+  targetbox.addEventListener('click', () => {
+    alert(`${targetbox.textContent}がクリックされました`);
+  }, false);
+});
+```
+
+- ルート要素を取得
+
+```
+// console.dir() => オブジェクトのプロパティを階層構造で取得する
+// document.documentElement ルート要素を取得
+console.dir(document.documentElement);
+// => html...
+// document.head
+console.dir(document.head);
+// => head...
+console.dir(document.body);
+// => body...
+
+// head内にscriptタグを動的に挿入
+const scriptElement = document.createElement('script');
+scriptElement.src = 'js/sample-script.js';
+document.head.appendChild(scriptElement);
+// => <script src="js/sample-script.js"></script>
+```
+
+### ウィンドウをダークモードにするサンプル
+
+```
+HTML
+<button class="theme-change-button">配色を変更</button>
+<h1>At the moment of my dream</h1>
+
+CSS
+body {
+  font-size: 20px;
+  color: #2f3b4c;
+  background-color: #f9f9f9;
+  transition: 300ms all ease-out;
+}
+
+body.theme-dark {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+body:before {
+  background-image: none;
+}
+
+.theme-change-button {
+  font-size: 12px;
+  width: auto;
+  color: initial;
+  background-color: white;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+body.theme-dark .theme-change-button {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+h1 {
+  font-size: 26px;
+  line-height: 1.5;
+  border-bottom: 1px solid #2f3b4c;
+  text-align: left;
+  transition: 300ms border-bottom-color ease-out;
+}
+
+body.theme-dark h1 {
+  border-bottom-color: white;
+}
+
+main {
+  height: auto;
+  background-color: transparent;
+  border-radius: 0;
+  max-width: 900px;
+}
+
+JavaScript
+// ウィンドウをダークモードにするサンプル
+const themeChangeButton = document.querySelector('.theme-change-button');
+themeChangeButton.addEventListener('click', () => {
+  document.body.classList.toggle('theme-dark');
+});
+```
+
+- 子要素、前後要素、親要素
+
+```
+HTML
+<div id="parent">
+  <div id="child1">子要素1</div>
+  <div id="child2">子要素2</div>
+  <div id="child3">子要素3</div>
+</div>
+
+JavaScript
+const parentElement = document.querySelector('#parent');
+
+// 親ノード.children => 子ノード
+console.log(parentElement.children);
+// => HTMLCollection(3) [div#child1, div#child2, div#child3, child1: div#child1, child2: div#child2, child3: div#child3]
+
+// 親ノード.firstElementChild => 最初の子ノード
+console.log(parentElement.firstElementChild);
+// => <div id="child1">子要素1</div>
+
+// 親ノード.lastElementChild => 最後の子ノード
+console.log(parentElement.lastElementChild);
+// => <div id="child3">子要素3</div>
+
+const firstElementChild = parentElement.firstElementChild;
+// 兄弟ノード.nextElementSibling => 次(弟)のノード
+console.log(firstElementChild.nextElementSibling);
+
+// 兄弟ノード.previousElementSibling => 前(兄)のノード
+console.log(firstElementChild.previousElementSibling);
+// => null
+
+// 兄弟ノード.
+console.log(firstElementChild.parentElement);
+// => <div id="parent"></div>
+```
+
+- 親要素の末尾に要素を追加
+
+```
+// 親要素.appendChild(子ノード)
+const myBox = document.querySelector('#myBox');
+const container = document.querySelector('.container');
+setTimeout(() => {
+  // 3秒後に子ノードを追加
+  container.appendChild(myBox);
+}, 3000);
+```
+
+- 指定した位置の直前に要素を追加
+
+```
+// 親ノード.insertBefore(子ノード, 指定した位置)
+const container = document.querySelector('.container');
+const myBox1 = document.querySelector('#mybox1');
+const myBox2 = document.querySelector('#mybox2');
+const box2 = document.querySelector('#box2');
+setTimeout(() => {
+  container.insertBefore(mybox1, container.firstElementChild);
+}, 3000);
+setTimeout(() => {
+  container.insertBefore(myBox2, box2);
+}, 4000);
+```
+
+- 指定した位置の前後に要素を追加
+
+```
+// 指定した位置の前後に要素を追加
+const myBox1 = document.querySelector('#mybox1');
+const myBox2 = document.querySelector('#mybox2');
+const targetBox = document.querySelector('#targetBox');
+
+// ノード1.before(ノード2) => ノード1の前にノード2を追加
+setTimeout(() => {
+  targetBox.before(myBox1);
+}, 3000);
+
+// ノード1.after(ノード2) => ノード1の後にノード2を追加
+setTimeout(() => {
+  targetBox.after(myBox2);
+}, 4000);
+```
+
+- HTML要素を追加
+
+```
+HTML
+<!-- beforebegin -->
+<div class="container">
+  <!-- afterbegin -->
+  <div class="box">子要素1</div>
+  <div class="box">子要素2</div>
+  <!-- beforeend -->
+</div>
+<!-- afterend -->
+
+JavaScript
+// HTML要素を追加
+// 親要素.insertAdjiacentHTML(挿入位置, 文字列)
+const container = document.querySelector('.container');
+const newBox = `<div class="new-box box">.new-box要素</div>`;
+setTimeout(() => {
+  // 親要素の直前
+  container.insertAdjacentHTML('beforebegin', newBox);
+  // 親要素内の先頭
+  container.insertAdjacentHTML('afterbegin', newBox);
+  // 親要素内の末尾
+  container.insertAdjacentHTML('beforeend', newBox);
+  // 親要素の直後
+  container.insertAdjacentHTML('afterend', newBox);
+}, 3000);
+```
+
+- 子のHTML要素を削除
+
+```
+// 親ノード.removeChild(子ノード)
+<div id="parent">
+  <div id="child">取り除く要素</div>
+</div>
+
+setTimeout(() => {
+  const parentElement = document.querySelector('#parent');
+  const childElement = document.querySelector('#child');
+  parentElement.removeChild(childElement);
+}, 3000);
+```
+
+- HTML要素を削除
+
+```
+// ノード.remove();
+setTimeout(() => {
+  const  childElement = document.querySelector('#child');
+  childElement.remove();
+}, 3000);
+```
+
+- HTML要素を生成
+
+```
+// document.createElement('タグ', オプション);
+const divElement = document.createElement('div');
+console.log(divElement);
+// => <div></div>
+const anchorElement = document.createElement('a');
+console.log(anchorElement);
+// => <a></a>
+```
+
+### モーダルを生成するサンプル
+
+```
+HTML
+<button id="create-modal-button">モーダルウィンドウを作成</button>
+
+CSS
+ .modal {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal .inner {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 10px;
+  display: block;
+  width: 960px;
+  height: 540px;
+  border-radius: 5px;
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  padding: 20px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  max-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #333;
+  font-size: 1.5rem;
+  animation: fadeInAnimation 200ms ease-out;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+JavaScript
+document.querySelector('#create-modal-button').addEventListener('click', displayModalWindow, false);
+function displayModalWindow() {
+  // モーダルウィンドウを生成
+  const modalElement = document.createElement('div');
+  modalElement.classList.add('modal');
+  // モーダルウィンドウの中身を生成
+  const innerElement = document.createElement('div');
+  innerElement.classList.add('inner');
+  innerElement.innerHTML = `
+  <p>モーダルウィンドウの中身です</p>
+  <div class="character"></div>
+  `;
+  // DOMに要素を追加
+  modalElement.appendChild(innerElement);
+  document.body.appendChild(modalElement);
+  // 閉じるイベントを生成
+  innerElement.addEventListener('click', () => {
+    closeModalWindow(modalElement);
+  });
+};
+function closeModalWindow(modalElement) {
+  document.body.removeChild(modalElement);
+};
 ```
