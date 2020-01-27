@@ -3661,3 +3661,15 @@ setTimeout(() => {
   気温は<strong>24℃</strong>の予想です。
 </p>
 ```
+
+- 要素そのものや属性を書き換える
+
+```
+// ノード.outerHTML
+const weather = document.querySelector('#weather');
+console.log(weather);
+// => <p id="weather">明日は晴れるでしょう</p>
+weather.outerHTML = '<img src="sample.jpg" alt="サンプル">';
+console.log(weather);
+// => <img src="sample.jpg" alt="サンプル">
+```
