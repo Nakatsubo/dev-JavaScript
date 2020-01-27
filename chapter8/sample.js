@@ -207,11 +207,18 @@
 //   oldBox.replaceWith(newBox);
 // }, 3000);
 
-// 要素内のテキストを書き換える
-// ノード.textContent
-// const weatherInformation = document.querySelector('#weather-information');
-// console.log(weatherInformation.textContent);
-const weather = document.querySelector('#weather');
-setTimeout(() => {
-  weather.textContent = '気温は24℃の予想です。';
-}, 3000);
+// // 要素内のテキストを書き換える
+// // ノード.textContent
+// // const weatherInformation = document.querySelector('#weather-information');
+// // console.log(weatherInformation.textContent);
+// const weather = document.querySelector('#weather');
+// setTimeout(() => {
+//   weather.textContent = '気温は24℃の予想です。';
+// }, 3000);
+
+// // 要素内のHTML要素を書き換える
+// // ノード.innerHTML
+// const weather = document.querySelector('#weather');
+// setTimeout(() => {
+//   weather. innerHTML = '気温は<strong>24℃</strong>の予想です。';
+// }, 3000);
