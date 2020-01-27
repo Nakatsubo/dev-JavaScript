@@ -8,6 +8,7 @@ Let's study & enjoy JavaScript
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter5">Chapter5 Date</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter6">Chapter6 Browser</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter7">Chapter7 Event</a>
+- <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter8">Chapter8 Element</a>
 
 
 ## Chapter1
@@ -3088,6 +3089,59 @@ box.addEventListener('dragleave', () => {
 #### Drag and Drop API サンプル
 
 ```
+HTML
+<div class="file-zone">
+  画像ファイルを<br>ドロップしてください
+</div>
+
+<div class="file-preview-area">
+  <h1>アップロードした画像ファイル</h1>
+  <div class="image-list"></div>
+</div>
+
+CSS
+body {
+  display: block;
+  overflow: scroll;
+}
+
+.file-zone {
+  background-color: rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100% - 200px);
+  transition: 100ms all ease-out;
+}
+
+.file-zone.on {
+  background-color: rgba(97, 131, 209, 0.9);
+}
+
+.file-preview-area {
+  width: 100%;
+  min-height: 200px;
+  background-color: rgba(0, 0, 0, 0.58);
+}
+
+.file-preview-area .image-list {
+  display: grid;
+  overflow: scroll;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 200px;
+}
+
+.file-preview-area .image-list > img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+JavaScript
 // ファイルをアップロードするエリア
 const fileZone = document.querySelector('.file-zone');
 // ファイルをアップロードするエリアに追加/削除するクラス
@@ -3125,7 +3179,7 @@ function displayImages(transferdFiles) {
   // ファイル数
   const fileNum = transferdFiles.length;
 
-  // ファイルタイプが画像のみを配列に格納
+  // ファイルタイプが画像のみ配列に格納
   for (let i = 0; i < fileNum; i++) {
     if (transferdFiles[i].type.match('image.*') === false) {
       return;
@@ -3151,4 +3205,54 @@ function displayImages(transferdFiles) {
     });
   };
 }
+```
+
+## Chapter8
+
+- querySelector() はセレクタ名に合致する要素が複数ある場合、最初の要素を返す。
+
+```
+HTML
+<div class="box">1つ目のボックス</div>
+<div class="box">2つ目のボックス</div>
+<div class="box">3つ目のボックス</div>
+
+JavaScript
+const box = document.querySelector('.box');
+console.log(box);
+// => <div class="box">1つ目のボックス</div>
+```
+
+- querySelectorAll() で取得した要素にまとめて処理をする場合、forEach()メソッドかfor文を使う
+
+```
+HTML
+<div class="box">1つ目のボックス</div>
+<div class="box">2つ目のボックス</div>
+<div class="box">3つ目のボックス</div>
+
+JavaScript
+// forEach()
+const eachList = document.querySelectorAll('.box');
+eachList.forEach((targetbox) => {
+  console.log(targetbox);
+});
+// => <div class="box">1つ目のボックス</div>
+// => <div class="box">2つ目のボックス</div>
+// => <div class="box">3つ目のボックス</div>
+
+// for
+const forList = document.querySelectorAll('.box');
+for(let i = 0; i < forList.length; i++) {
+  console.log(forList[i]);
+};
+// => <div class="box">1つ目のボックス</div>
+// => <div class="box">2つ目のボックス</div>
+// => <div class="box">3つ目のボックス</div>
+
+document.querySelectorAll('.box').forEach((targetbox) => {
+  targetbox.addEventListener('click', () => {
+    alert(`${targetbox.textContent}がクリックされました`);
+  }, false);
+});
 ```
