@@ -232,16 +232,29 @@
 // console.log(weather);
 // // => <img src="sample.jpg" alt="サンプル">
 
-// 要素の属性を取得、書き換える
-// ノード.setAttriute(属性名, 値) => 要素の属性を設定
-const imageElement = document.querySelector('#image');
-imageElement.setAttribute('src', 'sample.png');
-console.log(imageElement);
-// => <img src="sample.png" id="image">
+// // 要素の属性を取得、書き換える
+// // ノード.setAttriute(属性名, 値) => 要素の属性を設定
+// const imageElement = document.querySelector('#image');
+// imageElement.setAttribute('src', 'sample.png');
+// console.log(imageElement);
+// // => <img src="sample.png" id="image">
 
-// ノード.getAttribute(属性名) => 要素の属性を取得
-const anchorElement = document.querySelector('#anchor');
-console.log(anchorElement.getAttribute('href'));
-// => https://example.com
+// // ノード.getAttribute(属性名) => 要素の属性を取得
+// const anchorElement = document.querySelector('#anchor');
+// console.log(anchorElement.getAttribute('href'));
+// // => https://example.com
 
-// ノード.hasAttribute(属性名) => 要素の属性があるかどうか
+// // ノード.hasAttribute(属性名) => 要素の属性があるかどうか
+
+// rel="noopener" を付与する
+const aElementList = document.querySelectorAll('a');
+aElementList.forEach((element) => {
+  if(element.hasAttribute('target') === false) {
+    return;
+  };
+  if(element.getAttribute('target') !== '_blank') {
+    return;
+  };
+  element.setAttribute('rel', 'noopener');
+});
+
