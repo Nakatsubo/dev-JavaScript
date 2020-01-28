@@ -3692,4 +3692,72 @@ const imageElement = document.querySelector('#image');
 imageElement.setAttribute('src', 'sample.png');
 console.log(imageElement);
 // => <img src="sample.png" id="image">
+
+// ノード.hasAttribute(属性名) => 要素の属性があるかどうか
+```
+
+- rel="noopener" を付与する<br>
+参考リンク 
+<a href="https://developers.google.com/web/tools/lighthouse/audits/noopener?hl=ja" target="_blank" rel="noopener">https://developers.google.com/web/tools/lighthouse/audits/noopener?hl=ja</a>
+
+```
+HTML
+<ul>
+  <li><a href="dummypage1.html" target="_blank">リンク1</a></li>
+  <li><a href="dummypage2.html">リンク2</a></li>
+  <li><a href="dummypage3.html" target="_self">リンク3</a></li>
+  <li><a href="dummypage4.html" target="_blank">リンク4</a></li>
+</ul>
+<p><a href="dummypage5.html" target="_blank">リンク5</a></p>
+
+JavaScript
+// rel="noopener" を付与する
+const aElementList = document.querySelectorAll('a');
+aElementList.forEach((element) => {
+  if(element.hasAttribute('target') === false) {
+    return;
+  };
+  if(element.getAttribute('target') !== '_blank') {
+    return;
+  };
+  element.setAttribute('rel', 'noopener');
+});
+
+// => 出力結果
+<ul>
+  <li><a href="dummypage1.html" target="_blank" rel="noopener">リンク1</a></li>
+  <li><a href="dummypage2.html">リンク2</a></li>
+  <li><a href="dummypage3.html" target="_self">リンク3</a></li>
+  <li><a href="dummypage4.html" target="_blank" rel="noopener">リンク4</a></li>
+</ul>
+<p>
+  <a href="dummypage5.html" target="_blank" rel="noopener">リンク5</a>
+</p>
+```
+
+- 要素のクラスを追加、削除
+
+```
+<div id="box" class="red"></div>
+
+// 要素のクラスを追加、削除、確認
+const box = document.querySelector('#box');
+// 要素のクラスを削除
+// ノード.classList.add('クラス'...)
+box.classList.add('blue');
+console.log(box);
+// => <div id="box" class="red blue"></div>
+
+// 要素のクラスを削除
+// ノード.classList.remove('クラス'...)
+box.classList.remove('red');
+console.log(box);
+// => <div id="box" class="blue"></div>
+
+// 要素のクラスを確認
+// ノード.classList.contains('クラス')
+console.log(box.classList.contains('red'));
+// => false
+console.log(box.classList.contains('blue'));
+// => true
 ```
