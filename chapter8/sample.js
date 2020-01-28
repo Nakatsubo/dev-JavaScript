@@ -246,15 +246,35 @@
 
 // // ノード.hasAttribute(属性名) => 要素の属性があるかどうか
 
-// rel="noopener" を付与する
-const aElementList = document.querySelectorAll('a');
-aElementList.forEach((element) => {
-  if(element.hasAttribute('target') === false) {
-    return;
-  };
-  if(element.getAttribute('target') !== '_blank') {
-    return;
-  };
-  element.setAttribute('rel', 'noopener');
-});
+// // rel="noopener" を付与する
+// const aElementList = document.querySelectorAll('a');
+// aElementList.forEach((element) => {
+//   if(element.hasAttribute('target') === false) {
+//     return;
+//   };
+//   if(element.getAttribute('target') !== '_blank') {
+//     return;
+//   };
+//   element.setAttribute('rel', 'noopener');
+// });
 
+// 要素のクラスを追加、削除、確認
+const box = document.querySelector('#box');
+// 要素のクラスを削除
+// ノード.classList.add('クラス'...)
+box.classList.add('blue');
+console.log(box);
+// => <div id="box" class="red blue"></div>
+
+// 要素のクラスを削除
+// ノード.classList.remove('クラス'...)
+box.classList.remove('red');
+console.log(box);
+// => <div id="box" class="blue"></div>
+
+// 要素のクラスを確認
+// ノード.classList.contains('クラス')
+console.log(box.classList.contains('red'));
+// => false
+console.log(box.classList.contains('blue'));
+// => true

@@ -3734,3 +3734,30 @@ aElementList.forEach((element) => {
   <a href="dummypage5.html" target="_blank" rel="noopener">リンク5</a>
 </p>
 ```
+
+- 要素のクラスを追加、削除
+
+```
+<div id="box" class="red"></div>
+
+// 要素のクラスを追加、削除、確認
+const box = document.querySelector('#box');
+// 要素のクラスを削除
+// ノード.classList.add('クラス'...)
+box.classList.add('blue');
+console.log(box);
+// => <div id="box" class="red blue"></div>
+
+// 要素のクラスを削除
+// ノード.classList.remove('クラス'...)
+box.classList.remove('red');
+console.log(box);
+// => <div id="box" class="blue"></div>
+
+// 要素のクラスを確認
+// ノード.classList.contains('クラス')
+console.log(box.classList.contains('red'));
+// => false
+console.log(box.classList.contains('blue'));
+// => true
+```
