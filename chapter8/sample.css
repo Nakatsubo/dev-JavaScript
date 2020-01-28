@@ -103,7 +103,7 @@ main {
   color: #d03939;
 } */
 
-h1 {
+/* h1 {
   -webkit-text-stroke: 1px white;
   text-stroke: 1px white;
   font-weight: bold;
@@ -170,4 +170,13 @@ section {
 .button + .content dt,
 .button + .content dd {
   margin: 0;
+} */
+
+#box {
+  width: 100px;
+  height: 100px;
+}
+
+.red {
+  background: #ff2bc2;
 }
