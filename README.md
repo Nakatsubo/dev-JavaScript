@@ -3761,3 +3761,140 @@ console.log(box.classList.contains('red'));
 console.log(box.classList.contains('blue'));
 // => true
 ```
+
+### toggle 要素のクラスの有無を切り替えるサンプル
+
+```
+HTML
+<main class="main large">
+  <h1>ウェブページで使う技術</h1>
+  <div class="section-wrapper">
+    <section>
+      <button class="button">HTML</button>
+      <div class="content">
+        <p>HyperText Markup Languageの略称。ウェブページで使うマークアップ言語。</p>
+        <dl class="">
+          <dt>コード例</dt>
+          <dd>
+            <code class="block">
+              <pre>&lt;h1&gt;文章&lt;/h1&gt;
+    &lt;p&gt;タイトル&lt;/p&gt;</pre>
+            </code>
+          </dd>
+        </dl>
+      </div>
+    </section>
+    <section>
+      <button class="button">CSS</button>
+      <div class="content">
+        <p>Cascading Style Sheetsの略称。HTMLやXMLの文書の体裁を設定するための文書。</p>
+        <dl>
+          <dt>コード例</dt>
+          <dd>
+            <code class="block">
+              <pre>h1 {
+                  font-color: red;
+                  margin-bottom: 10px;
+              }</pre>
+            </code>
+          </dd>
+        </dl>
+      </div>
+    </section>
+    <section>
+      <button class="button">JavaScript</button>
+      <div class="content">
+        <p>ウェブブラウザ・サーバーサイドで動作するプログラミング言語。</p>
+        <dl>
+          <dt>コード例</dt>
+          <dd>
+            <code class="block">
+              <pre>alert("Hello world");</pre>
+            </code>
+          </dd>
+        </dl>
+      </div>
+    </section>
+  </div>
+</main>
+
+CSS
+h1 {
+  -webkit-text-stroke: 1px white;
+  text-stroke: 1px white;
+  font-weight: bold;
+}
+
+main {
+  padding: 10px;
+}
+
+.section-wrapper {
+  display: flex;
+}
+
+section {
+  width: calc(100% / 3);
+  padding-left: 5px;
+  padding-right: 5px;
+  box-sizing: border-box;
+}
+
+.button {
+  width: 100%;
+  text-transform: none;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  background-color: #2673a6;
+}
+
+.button:hover {
+  background-color: #2688bc;
+}
+
+.button:active {
+  background-color: #265c8f;
+}
+
+.button + .content {
+  display: none;
+  font-size: 20px;
+  margin-top: 10px;
+  border: 1px solid white;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 2px;
+  padding: 10px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3) inset;
+  text-align: left;
+  color: white;
+}
+
+.button + .content.show {
+  display: block;
+}
+
+.button + .content h2 {
+  font-size: 22px;
+}
+
+.button + .content dt {
+  margin-bottom: 10px;
+}
+
+.button + .content dl,
+.button + .content dt,
+.button + .content dd {
+  margin: 0;
+}
+
+JavaScript
+// ノード.classList.toggle(クラス)
+document.querySelectorAll('.button').forEach((element) => {
+  // .buttonがクリックされた時の処理
+  element.addEventListener('click', () => {
+    // 次の要素(ここではcontent)のクラスを切り替える
+    element.nextElementSibling.classList.toggle('show');
+  }, false);
+});
+```
