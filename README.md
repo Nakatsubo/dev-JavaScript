@@ -3898,3 +3898,18 @@ document.querySelectorAll('.button').forEach((element) => {
   }, false);
 });
 ```
+
+- スタイルを変更
+
+```
+// ノード.style.プロパティ
+const information = document.querySelector('#information');
+information.style.color = 'white';
+information.style.fontSize = '80px';
+information.style.fontWeight = '600';
+const strokeColor = '#c52b84';
+// information.style.webkitTextStroke = `2px ${strokeColor}`;
+// textStroke => テキストの角の太さを指定(非推奨)
+information.style.textStroke = `2px ${strokeColor}`;
+information.style.textShadow = `7px 7px 0 #bf3384`;
+```
