@@ -258,23 +258,33 @@
 //   element.setAttribute('rel', 'noopener');
 // });
 
-// 要素のクラスを追加、削除、確認
-const box = document.querySelector('#box');
-// 要素のクラスを削除
-// ノード.classList.add('クラス'...)
-box.classList.add('blue');
-console.log(box);
-// => <div id="box" class="red blue"></div>
+// // 要素のクラスを追加、削除、確認
+// const box = document.querySelector('#box');
+// // 要素のクラスを削除
+// // ノード.classList.add('クラス'...)
+// box.classList.add('blue');
+// console.log(box);
+// // => <div id="box" class="red blue"></div>
 
-// 要素のクラスを削除
-// ノード.classList.remove('クラス'...)
-box.classList.remove('red');
-console.log(box);
-// => <div id="box" class="blue"></div>
+// // 要素のクラスを削除
+// // ノード.classList.remove('クラス'...)
+// box.classList.remove('red');
+// console.log(box);
+// // => <div id="box" class="blue"></div>
 
-// 要素のクラスを確認
-// ノード.classList.contains('クラス')
-console.log(box.classList.contains('red'));
-// => false
-console.log(box.classList.contains('blue'));
-// => true
+// // 要素のクラスを確認
+// // ノード.classList.contains('クラス')
+// console.log(box.classList.contains('red'));
+// // => false
+// console.log(box.classList.contains('blue'));
+// // => true
+
+// 要素のクラスの有無を切り替える
+// ノード.classList.toggle(クラス)
+document.querySelectorAll('.button').forEach((element) => {
+  // .buttonがクリックされた時の処理
+  element.addEventListener('click', () => {
+    // 次の要素(ここではcontent)のクラスを切り替える
+    element.nextElementSibling.classList.toggle('show');
+  }, false);
+});
