@@ -3913,3 +3913,27 @@ const strokeColor = '#c52b84';
 information.style.textStroke = `2px ${strokeColor}`;
 information.style.textShadow = `7px 7px 0 #bf3384`;
 ```
+
+- スタイルを取得
+
+```
+HTML
+<div id="box" class="red"></div>
+
+CSS
+#box {
+  width: 100px;
+  height: 100px;
+}
+.red {
+  background: #ff2bc2;
+}
+
+JavaScript
+// getComputedStyle(ノード).プロパティ
+const box = document.querySelector('#box');
+console.log(getComputedStyle(box).width);
+// => 100px
+console.log(getComputedStyle(box).background);
+// => rgb(255, 43, 194) none repeat scroll 0% 0% / auto padding-box border-box
+```
