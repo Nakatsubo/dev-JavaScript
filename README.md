@@ -4004,5 +4004,19 @@ function handler(event) {
   const log = document.querySelector('.log');
   log.innerHTML = `チェックボックスは ${event.target.checked} になりました`;
 };
-// => 
+// => チェックボックスは true になりました
+```
+
+- ローカルファイルの情報を取得
+
+```
+<input type="file" id="myFile" accept=".txt">
+
+const element = document.querySelector('#myFile');
+element.addEventListener('change', (event) => {
+  const files = event.target.files;
+  // 配列となっているので、インデックス0番のファイルを参照
+  const file = files[0];
+  alert(`${file.name}が選択されました`);
+});
 ```

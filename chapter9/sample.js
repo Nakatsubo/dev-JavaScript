@@ -25,11 +25,20 @@
 // console.log(checkBoxA.checked);
 // // => true
 
-// チェックボックスの変更を検知
-const checkBoxA = document.querySelector('#checkBoxA');
-checkBoxA.addEventListener('change', handler, false);
-function handler(event) {
-  const log = document.querySelector('.log');
-  log.innerHTML = `チェックボックスは ${event.target.checked} になりました`;
-};
-// => チェックボックスは true になりました
+// // チェックボックスの変更を検知
+// const checkBoxA = document.querySelector('#checkBoxA');
+// checkBoxA.addEventListener('change', handler, false);
+// function handler(event) {
+//   const log = document.querySelector('.log');
+//   log.innerHTML = `チェックボックスは ${event.target.checked} になりました`;
+// };
+// // => チェックボックスは true になりました
+
+// ローカルファイルの情報を取得
+const element = document.querySelector('#myFile');
+element.addEventListener('change', (event) => {
+  const files = event.target.files;
+  // 配列となっているので、インデックス0番のファイルを参照
+  const file = files[0];
+  alert(`${file.name}が選択されました`);
+});
