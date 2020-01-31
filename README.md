@@ -4030,7 +4030,7 @@ FileReaderオブジェクトの、readAsText()メソッドを使う。
 
 const element = document.querySelector('#myFile');
 const pEl = document.querySelector('.log');
-element.addEventListener('change', (event) => {
+element.addEventListener('input', (event) => {
   const files = event.target.files;
   const file = files[0];
 
@@ -4044,5 +4044,32 @@ element.addEventListener('change', (event) => {
 
   // テキストファイルを読み込む
   reader.readAsText(file);
+});
+```
+
+- ローカルファイルをDataURLとして取得
+FileReaderオブジェクトの、readAsDataURL()メソッドを使う。
+
+```
+<input type="file" id="myFile" accept=".png, .jpg">
+<p class="log"><img></p>
+
+// readAsDataURL()メソッド
+const element = document.querySelector('#myFile');
+const imgEl = document.querySelector('.log img');
+element.addEventListener('input', (event) => {
+  const files = event.target.files;
+  const file = files[0];
+
+  // FileReaderのインスタンスを作成
+  const reader = new FileReader();
+  // loadイベントを監視
+  reader.addEventListener('load', () => {
+    // loadイベント完了後に、resultプロパティでデータへアクセス
+    imgEl.src = reader.result;
+  });
+
+  // テキストファイルを読み込む
+  reader.readAsDataURL(file);
 });
 ```
