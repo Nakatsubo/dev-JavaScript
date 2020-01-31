@@ -3941,7 +3941,7 @@ console.log(getComputedStyle(box).background);
 
 ## Chapter9
 
-- テキストボックス(input, textarea)の変更を検知
+- テキストボックス(input, textarea)の変更を検知<br>
 inputイベントはキー入力と同時にイベントが発生、changeイベントはenterを押した時やフォーカスが外れた時に発生。
 
 ```
@@ -3987,4 +3987,22 @@ console.log(checkBoxB.checked);
 checkBoxA.checked = true;
 console.log(checkBoxA.checked);
 // => true
+```
+
+- チェックボックスの変更を検知
+
+```
+<label>
+  <input type="checkbox" value="A" id="checkBoxA"> 
+  チェックボックスA
+</label>
+<p class="log"></p>
+
+const checkBoxA = document.querySelector('#checkBoxA');
+checkBoxA.addEventListener('change', handler, false);
+function handler(event) {
+  const log = document.querySelector('.log');
+  log.innerHTML = `チェックボックスは ${event.target.checked} になりました`;
+};
+// => 
 ```
