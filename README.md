@@ -4020,3 +4020,29 @@ element.addEventListener('change', (event) => {
   alert(`${file.name}が選択されました`);
 });
 ```
+
+- ローカルファイルをテキスト情報として取得<br>
+FileReaderオブジェクトの、readAsText()メソッドを使う。
+
+```
+<input type="file" id="myFile" accept=".txt">
+<p class="log"></p>
+
+const element = document.querySelector('#myFile');
+const pEl = document.querySelector('.log');
+element.addEventListener('change', (event) => {
+  const files = event.target.files;
+  const file = files[0];
+
+  // FileReaderのインスタンスを作成
+  const reader = new FileReader();
+  // loadイベントを監視
+  reader.addEventListener('load', () => {
+    // loadイベント完了後に、resultプロパティでデータへアクセス
+    pEl.innerHTML = reader.result;
+  });
+
+  // テキストファイルを読み込む
+  reader.readAsText(file);
+});
+```
