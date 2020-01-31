@@ -34,11 +34,31 @@
 // };
 // // => チェックボックスは true になりました
 
-// ローカルファイルの情報を取得
+// // ローカルファイルの情報を取得
+// const element = document.querySelector('#myFile');
+// element.addEventListener('change', (event) => {
+//   const files = event.target.files;
+//   // 配列となっているので、インデックス0番のファイルを参照
+//   const file = files[0];
+//   alert(`${file.name}が選択されました`);
+// });
+
+// ローカルファイルをテキスト情報として取得
+// readAsText()メソッド
 const element = document.querySelector('#myFile');
+const pEl = document.querySelector('.log');
 element.addEventListener('change', (event) => {
   const files = event.target.files;
-  // 配列となっているので、インデックス0番のファイルを参照
   const file = files[0];
-  alert(`${file.name}が選択されました`);
+
+  // FileReaderのインスタンスを作成
+  const reader = new FileReader();
+  // loadイベントを監視
+  reader.addEventListener('load', () => {
+    // loadイベント完了後に、resultプロパティでデータへアクセス
+    pEl.innerHTML = reader.result;
+  });
+
+  // テキストファイルを読み込む
+  reader.readAsText(file);
 });
