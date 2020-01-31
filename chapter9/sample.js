@@ -43,11 +43,31 @@
 //   alert(`${file.name}が選択されました`);
 // });
 
-// ローカルファイルをテキスト情報として取得
-// readAsText()メソッド
+// // ローカルファイルをテキスト情報として取得
+// // readAsText()メソッド
+// const element = document.querySelector('#myFile');
+// const pEl = document.querySelector('.log');
+// element.addEventListener('input', (event) => {
+//   const files = event.target.files;
+//   const file = files[0];
+
+//   // FileReaderのインスタンスを作成
+//   const reader = new FileReader();
+//   // loadイベントを監視
+//   reader.addEventListener('load', () => {
+//     // loadイベント完了後に、resultプロパティでデータへアクセス
+//     pEl.innerHTML = reader.result;
+//   });
+
+//   // テキストファイルを読み込む
+//   reader.readAsText(file);
+// });
+
+// ローカルファイルをDataURLとして取得
+// readAsDataURL()メソッド
 const element = document.querySelector('#myFile');
-const pEl = document.querySelector('.log');
-element.addEventListener('change', (event) => {
+const imgEl = document.querySelector('.log img');
+element.addEventListener('input', (event) => {
   const files = event.target.files;
   const file = files[0];
 
@@ -56,9 +76,9 @@ element.addEventListener('change', (event) => {
   // loadイベントを監視
   reader.addEventListener('load', () => {
     // loadイベント完了後に、resultプロパティでデータへアクセス
-    pEl.innerHTML = reader.result;
+    imgEl.src = reader.result;
   });
 
   // テキストファイルを読み込む
-  reader.readAsText(file);
+  reader.readAsDataURL(file);
 });
