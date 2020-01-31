@@ -9,6 +9,7 @@ Let's study & enjoy JavaScript
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter6">Chapter6 Browser</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter7">Chapter7 Event</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter8">Chapter8 Element</a>
+- <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter9">Chapter9 Form</a>
 
 
 ## Chapter1
@@ -3936,4 +3937,27 @@ console.log(getComputedStyle(box).width);
 // => 100px
 console.log(getComputedStyle(box).background);
 // => rgb(255, 43, 194) none repeat scroll 0% 0% / auto padding-box border-box
+```
+
+## Chapter9
+
+- テキストボックスの変更を検知
+inputイベントはキー入力と同時にイベントが発生、changeイベントはenterを押した時やフォーカスが外れた時に発生。
+
+```
+const element = document.querySelector('#myText');
+
+// => input
+element.addEventListener('input', handleChange, false);
+function handleChange(event) {
+  const log = document.querySelector('.log');
+  log.innerHTML = event.target.value;
+};
+
+// => change
+element.addEventListener('change', handleChange, false);
+function handleChange(event) {
+  const log = document.querySelector('.log');
+  log.innerHTML = event.target.value;
+};
 ```
