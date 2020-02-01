@@ -4074,7 +4074,7 @@ element.addEventListener('input', (event) => {
 });
 ```
 
-- ラジオボタンの値を取得
+- ラジオボタンの情報を取得
 
 ```
 HTML
@@ -4125,4 +4125,24 @@ function handleChange() {
   console.log(`fruitの値は ${fruitValue} です`);
   // => fruitの値は apple です
 };
+```
+
+- ドロップダウンメニューの情報を取得
+
+```
+<select id="mySelect">
+  <option value="apple" selected>apple</option>
+  <option value="banana">banana</option>
+  <option value="strawberry">strawberry</option>
+</select>
+<p class="log"></p>
+
+const element = document.querySelector('#mySelect');
+element.addEventListener('change', handleChange, false);
+function handleChange() {
+  const value = element.value;
+  const log = `選択されているのは ${value} です`;
+  document.querySelector('.log').innerHTML = log;
+};
+// => 選択されているのは apple です
 ```
