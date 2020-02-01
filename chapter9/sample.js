@@ -112,12 +112,17 @@
 // document.querySelector('.log').innerHTML = log;
 // // => 選択されているのは apple です
 
-// ドロップダウンメニューの変更を検知
-const element = document.querySelector('#mySelect');
-element.addEventListener('change', handleChange, false);
-function handleChange() {
-  const value = element.value;
-  const log = `選択されているのは ${value} です`;
-  document.querySelector('.log').innerHTML = log;
-};
-// => 選択されているのは apple です
+// // ドロップダウンメニューの変更を検知
+// const element = document.querySelector('#mySelect');
+// element.addEventListener('change', handleChange, false);
+// function handleChange() {
+//   const value = element.value;
+//   const log = `選択されているのは ${value} です`;
+//   document.querySelector('.log').innerHTML = log;
+// };
+// // => 選択されているのは apple です
+
+// スライダーの情報を取得
+const element = document.querySelector('#myRange');
+const value = element.value;
+document.querySelector('.log').innerHTML = `現在の値は ${value} です`;
