@@ -92,15 +92,25 @@
 // console.log(`fruitの値は ${fruitValue} です`);
 // // => fruitの値は apple です
 
-// ラジオボタンの変更を検知
-const element = document.querySelector('form#radioGroup');
+// // ラジオボタンの変更を検知
+// const element = document.querySelector('form#radioGroup');
+// element.addEventListener('change', handleChange, false);
+// function handleChange() {
+//   // event.targetはname属性で指定
+//   const drinkValue = element.drink.value;
+//   const fruitValue = element.fruit.value;
+//   console.log(`drinkの値は ${drinkValue} です`);
+//   // => drinkの値は coke です
+//   console.log(`fruitの値は ${fruitValue} です`);
+//   // => fruitの値は apple です
+// };
+
+// ドロップダウンメニューの情報を取得
+const element = document.querySelector('#mySelect');
 element.addEventListener('change', handleChange, false);
 function handleChange() {
-  // event.targetはname属性で指定
-  const drinkValue = element.drink.value;
-  const fruitValue = element.fruit.value;
-  console.log(`drinkの値は ${drinkValue} です`);
-  // => drinkの値は coke です
-  console.log(`fruitの値は ${fruitValue} です`);
-  // => fruitの値は apple です
+  const value = element.value;
+  const log = `選択されているのは ${value} です`;
+  document.querySelector('.log').innerHTML = log;
 };
+// => 選択されているのは apple です
