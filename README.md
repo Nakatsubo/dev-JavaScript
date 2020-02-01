@@ -4195,3 +4195,19 @@ let value = element.value;
 console.log(value);
 // => #ff0000
 ```
+
+- カラーピッカーの変更を検知
+
+```
+<input type="color" id="myColor" value="#ff0000">
+<p class="log"></p>
+
+const element = document.querySelector('#myColor');
+element.addEventListener('change', (event) => {
+  const value = event.target.value;
+  const log = `選択された色が ${value} になりました`;
+  const logEl = document.querySelector('.log');
+  logEl.innerHTML = log;
+  logEl.style.backgroundColor = value;
+});
+```
