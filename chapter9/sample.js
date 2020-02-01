@@ -127,15 +127,31 @@
 // const value = element.value;
 // document.querySelector('.log').innerHTML = `現在の値は ${value} です`;
 
-// スライダーの変更を検知
-const element = document.querySelector('#myRange');
-// input だとスライダーを動かす度に取得
-// element.addEventListener('input', handleChange, false);
+// // スライダーの変更を検知
+// const element = document.querySelector('#myRange');
+// // input だとスライダーを動かす度に取得
+// // element.addEventListener('input', handleChange, false);
 
-// change だとスライダーを動かした後に取得
-element.addEventListener('change', handleChange, false);
+// // change だとスライダーを動かした後に取得
+// element.addEventListener('change', handleChange, false);
 
-function handleChange() {
-  const value = element.value;
-  document.querySelector('.log').innerHTML = `現在の値は ${value} です`;
-};
+// function handleChange() {
+//   const value = element.value;
+//   document.querySelector('.log').innerHTML = `現在の値は ${value} です`;
+// };
+
+// // カラーピッカーの情報を取得
+// const element = document.querySelector('#myColor');
+// let value = element.value;
+// console.log(value);
+// // => #ff0000
+
+// カラーピッカーの変更を検知
+const element = document.querySelector('#myColor');
+element.addEventListener('change', (event) => {
+  const value = event.target.value;
+  const log = `選択された色が ${value} になりました`;
+  const logEl = document.querySelector('.log');
+  logEl.innerHTML = log;
+  logEl.style.backgroundColor = value;
+});
