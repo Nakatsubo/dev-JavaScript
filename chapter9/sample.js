@@ -83,11 +83,24 @@
 //   reader.readAsDataURL(file);
 // });
 
+// const element = document.querySelector('form#radioGroup');
+// // name属性で指定した値を取得
+// const drinkValue = element.drink.value;
+// const fruitValue = element.fruit.value;
+// console.log(`drinkの値は ${drinkValue} です`);
+// // => drinkの値は coke です
+// console.log(`fruitの値は ${fruitValue} です`);
+// // => fruitの値は apple です
+
+// ラジオボタンの変更を検知
 const element = document.querySelector('form#radioGroup');
-// name属性で指定した値を取得
-const drinkValue = element.drink.value;
-const fruitValue = element.fruit.value;
-console.log(`drinkの値は ${drinkValue} です`);
-// => drinkの値は coke です
-console.log(`fruitの値は ${fruitValue} です`);
-// => fruitの値は apple です
+element.addEventListener('change', handleChange, false);
+function handleChange() {
+  // event.targetはname属性で指定
+  const drinkValue = element.drink.value;
+  const fruitValue = element.fruit.value;
+  console.log(`drinkの値は ${drinkValue} です`);
+  // => drinkの値は coke です
+  console.log(`fruitの値は ${fruitValue} です`);
+  // => fruitの値は apple です
+};
