@@ -4167,3 +4167,19 @@ const element = document.querySelector('#myRange');
 const value = element.value;
 document.querySelector('.log').innerHTML = `現在の値は ${value} です`;
 ```
+
+- スライダーの変更を検知
+
+```
+const element = document.querySelector('#myRange');
+// input だとスライダーを動かす度に取得
+// element.addEventListener('input', handleChange, false);
+
+// change だとスライダーを動かした後に取得
+element.addEventListener('change', handleChange, false);
+
+function handleChange() {
+  const value = element.value;
+  document.querySelector('.log').innerHTML = `現在の値は ${value} です`;
+};
+```
