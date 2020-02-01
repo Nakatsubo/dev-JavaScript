@@ -4156,3 +4156,14 @@ function handleChange() {
 };
 // => 選択されているのは apple です
 ```
+
+- スライダーの情報を取得
+
+```
+<input type="range" id="myRange" min="0" max="100" value="50">
+<p class="log"></p>
+
+const element = document.querySelector('#myRange');
+const value = element.value;
+document.querySelector('.log').innerHTML = `現在の値は ${value} です`;
+```
