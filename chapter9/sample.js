@@ -63,22 +63,31 @@
 //   reader.readAsText(file);
 // });
 
-// ローカルファイルをDataURLとして取得
-// readAsDataURL()メソッド
-const element = document.querySelector('#myFile');
-const imgEl = document.querySelector('.log img');
-element.addEventListener('input', (event) => {
-  const files = event.target.files;
-  const file = files[0];
+// // ローカルファイルをDataURLとして取得
+// // readAsDataURL()メソッド
+// const element = document.querySelector('#myFile');
+// const imgEl = document.querySelector('.log img');
+// element.addEventListener('input', (event) => {
+//   const files = event.target.files;
+//   const file = files[0];
 
-  // FileReaderのインスタンスを作成
-  const reader = new FileReader();
-  // loadイベントを監視
-  reader.addEventListener('load', () => {
-    // loadイベント完了後に、resultプロパティでデータへアクセス
-    imgEl.src = reader.result;
-  });
+//   // FileReaderのインスタンスを作成
+//   const reader = new FileReader();
+//   // loadイベントを監視
+//   reader.addEventListener('load', () => {
+//     // loadイベント完了後に、resultプロパティでデータへアクセス
+//     imgEl.src = reader.result;
+//   });
 
-  // テキストファイルを読み込む
-  reader.readAsDataURL(file);
-});
+//   // テキストファイルを読み込む
+//   reader.readAsDataURL(file);
+// });
+
+const element = document.querySelector('form#radioGroup');
+// name属性で指定した値を取得
+const drinkValue = element.drink.value;
+const fruitValue = element.fruit.value;
+console.log(`drinkの値は ${drinkValue} です`);
+// => drinkの値は coke です
+console.log(`fruitの値は ${fruitValue} です`);
+// => fruitの値は apple です

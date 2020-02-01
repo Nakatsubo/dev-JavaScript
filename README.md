@@ -4073,3 +4073,40 @@ element.addEventListener('input', (event) => {
   reader.readAsDataURL(file);
 });
 ```
+
+- ラジオボタンの値を取得
+
+```
+HTML
+<form id="radioGroup">
+  <label>
+    <input type="radio" name="fruit" value="apple" checked> Apple
+  </label>
+  <label>
+    <input type="radio" name="fruit" value="banana"> Banana
+  </label>
+  <label>
+    <input type="radio" name="fruit" value="strawberry"> Strawberry
+  </label>
+
+  <label>
+    <input type="radio" name="drink" value="coke" checked> Coke
+  </label>
+  <label>
+    <input type="radio" name="drink" value="redbull"> Redbull
+  </label>
+  <label>
+    <input type="radio" name="drink" value="water"> Water
+  </label>
+</form>
+
+JavaScript
+const element = document.querySelector('form#radioGroup');
+// name属性で指定した値を取得
+const drinkValue = element.drink.value;
+const fruitValue = element.fruit.value;
+console.log(`drinkの値は ${drinkValue} です`);
+// => drinkの値は coke です
+console.log(`fruitの値は ${fruitValue} です`);
+// => fruitの値は apple です
+```
