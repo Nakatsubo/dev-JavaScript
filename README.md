@@ -4293,3 +4293,28 @@ selectElement.addEventListener('change', (e) => {
 }, false);
 // => 選択されているのは1です
 ```
+
+- フォーム送信時の処理
+
+```
+<form>
+  <label for="myText">テキストを入力してください。</label>
+  <input type="text" name="myText" id="myText">
+  <button>送信する</button>
+</form>
+
+// フォーム送信時の処理
+const formElement = document.querySelector('form');
+
+// 送信イベントを監視
+formElement.addEventListener('submit', handleSubmit);
+function handleSubmit(e) {
+  // comfirm でユーザーに確認
+  const isYes = confirm('この内容で送信していいですか？');
+
+  // いいえを選択した場合
+  if (isYes === false) {
+    e.preventDefault();
+  };
+};
+```
