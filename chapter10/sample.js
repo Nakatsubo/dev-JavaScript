@@ -92,6 +92,36 @@
 //   };
 // });
 
+// // Web Animation API で実現するサンプル
+// const checkBox = document.querySelector('#checkbox');
+// checkBox.addEventListener('change', () => {
+//   const rect = document.querySelector('.rect');
+//   rect.animate(
+//     {
+//       transform: [
+//         'scale(1)',
+//         'scale(5)'
+//       ]
+//     },
+//     {
+//       duration: 5000,
+//       fill: 'forwards', // 終了時にプロパティを保つ
+//       easing: 'ease'
+//     }
+//   );
+// }, false);
+
+// // CSS Transition で実現するサンプル
+// const checkBox = document.querySelector('#checkbox');
+// checkBox.addEventListener('change', () => {
+//   const rect = document.querySelector('.rect');
+//   if (rect.classList.contains('state-show') === true) {
+//     rect.classList.remove('state-show');
+//   } else {
+//     rect.classList.add('state-show');
+//   };
+// });
+
 // Web Animation API で実現するサンプル
 const checkBox = document.querySelector('#checkbox');
 checkBox.addEventListener('change', () => {
@@ -99,14 +129,14 @@ checkBox.addEventListener('change', () => {
   rect.animate(
     {
       transform: [
-        'scale(1)',
-        'scale(5)'
+        'translateX(0px)',
+        'translateX(300px)'
       ]
     },
     {
-      duration: 5000,
-      fill: 'forwards', // 終了時にプロパティを保つ
+      duration: 3000,
+      fill: 'forwards',
       easing: 'ease'
     }
   );
-}, false);
+});
