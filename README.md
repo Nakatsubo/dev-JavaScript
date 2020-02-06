@@ -10,6 +10,7 @@ Let's study & enjoy JavaScript
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter7">Chapter7 Event</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter8">Chapter8 Element</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter9">Chapter9 Form</a>
+- <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter10">Chapter10 Animation</a>
 
 
 ## Chapter1
@@ -4317,4 +4318,38 @@ function handleSubmit(e) {
     e.preventDefault();
   };
 };
+```
+
+## Chapter10
+
+- <strong>CSS Transitions・CSS Animations</strong><br>
+CSS Transitions・CSS Animationsは、セレクターの状態に応じて発生する。<br>
+JavaScriptで使うには、要素のクラス指定を切り替えるのがよい。
+
+```
+<main class="centering">
+  <div class="target"></div>
+  <div class="ui">
+    <button>トランジションを確認する</button>
+    <div class="log">ログ表示エリア</div>
+  </div>
+</main>
+
+// CSS Transitions・CSS Animations
+const button = document.querySelector('button');
+button.addEventListener('click', handleClick, false);
+function handleClick() {
+  const element = document.querySelector('.target');
+  if (element.classList.contains('state-show') === false) {
+    element.classList.add('state-show');
+  } else {
+    element.classList.remove('state-show');
+  };
+};
+
+const target = document.querySelector('.target');
+target.addEventListener('transitionend', (e) => {
+  const log = document.querySelector('.log');
+  log.innerHTML = 'transitionend 発生 : ' + new Date().toLocaleTimeString();
+});
 ```
