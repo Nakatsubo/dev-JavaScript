@@ -4433,3 +4433,63 @@ rect.addEventListener('animationiteration', () => {
 //   log.innerHTML = 'animationend 発生 : ' + new Date().toLocaleString();
 // }, false);
 ```
+
+### Web Animation API
+JavaScriptでアニメーションを使うための手段のひとつ。<br>
+Link:
+<a href="https://developer.mozilla.org/ja/docs/Web/API/Web_Animations_API" target="_blank" rel="noopener">MDN web docs</a>
+
+```
+要素.animation(開始値と終了値を含むオブジェクト, アニメーションの属性を含むオブジェクト)
+```
+
+```
+HTML
+<div class="container">
+  <div class="rect"></div>
+</div>
+
+CSS
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  width: 940px;
+  height: 520px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.rect {
+  width: 100px;
+  height: 100px;
+  display: block;
+  position: absolute;
+  background: white;
+  top: 200px;
+}
+
+JavaScript
+const element = document.querySelector('.rect');
+element.animate(
+  // 第一引数 => 開始値と終了値を含むオブジェクト
+  {
+    transform: [
+      'translateX(0px) rotate(0deg)', // 開始値
+      'translateX(800px) rotate(360deg)' // 終了値
+    ]
+  },
+  // 第二引数 => アニメーションの属性を含むオブジェクト
+  {
+    duration: 3000, // デュレーション
+    iterations: Infinity, // 繰り返し回数
+    direction: 'normal', // 繰り返し挙動
+    easing: 'ease' // 加減速速度
+  }
+);
+```

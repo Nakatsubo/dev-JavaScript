@@ -32,31 +32,50 @@
 //   log.innerHTML = 'transitionend 発生 : ' + new Date().toLocaleString();
 // });
 
-const input = document.querySelector('input');
-input.addEventListener('click', () => {
-  const rect = document.querySelector('.rect');
-  if (rect.classList.contains('state-show') === false) {
-    rect.classList.add('state-show');
-  } else {
-    rect.classList.remove('state-show');
-  }
-}, false);
-
-const rect = document.querySelector('.rect');
-const log = document.querySelector('.log');
-
-// animationstart
-rect.addEventListener('animationstart', () => {
-  log.innerHTML = 'animationstart 発生 : ' + new Date().toLocaleString();
-}, false);
-
-// animationiteration
-rect.addEventListener('animationiteration', () => {
-  log.innerHTML = 'animationiteration 発生 : ' + new Date().toLocaleString();
-}, false);
-
-// animationend
-// 繰り返しを指定した時、animationendは発生しない
-// rect.addEventListener('animationend', () => {
-//   log.innerHTML = 'animationend 発生 : ' + new Date().toLocaleString();
+// const input = document.querySelector('input');
+// input.addEventListener('click', () => {
+//   const rect = document.querySelector('.rect');
+//   if (rect.classList.contains('state-show') === false) {
+//     rect.classList.add('state-show');
+//   } else {
+//     rect.classList.remove('state-show');
+//   }
 // }, false);
+
+// const rect = document.querySelector('.rect');
+// const log = document.querySelector('.log');
+
+// // animationstart
+// rect.addEventListener('animationstart', () => {
+//   log.innerHTML = 'animationstart 発生 : ' + new Date().toLocaleString();
+// }, false);
+
+// // animationiteration
+// rect.addEventListener('animationiteration', () => {
+//   log.innerHTML = 'animationiteration 発生 : ' + new Date().toLocaleString();
+// }, false);
+
+// // animationend
+// // 繰り返しを指定した時、animationendは発生しない
+// // rect.addEventListener('animationend', () => {
+// //   log.innerHTML = 'animationend 発生 : ' + new Date().toLocaleString();
+// // }, false);
+
+// Web Animation API
+const element = document.querySelector('.rect');
+element.animate(
+  // 第一引数 => 開始値と終了値を含むオブジェクト
+  {
+    transform: [
+      'translateX(0px) rotate(0deg)', // 開始値
+      'translateX(800px) rotate(360deg)' // 終了値
+    ]
+  },
+  // 第二引数 => アニメーションの属性を含むオブジェクト
+  {
+    duration: 3000, // デュレーション
+    iterations: Infinity, // 繰り返し回数
+    direction: 'normal', // 繰り返し挙動
+    easing: 'ease' // 加減速速度
+  }
+);
