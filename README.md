@@ -4443,6 +4443,13 @@ Link:
 要素.animation(開始値と終了値を含むオブジェクト, アニメーションの属性を含むオブジェクト)
 ```
 
+#### CDN
+CSS未対応のブラウザのため追記する。
+
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js" defer></script>
+```
+
 ```
 HTML
 <div class="container">
@@ -4492,4 +4499,84 @@ element.animate(
     easing: 'ease' // 加減速速度
   }
 );
+```
+
+- 要素の大きさを変える
+
+```
+// 共通の指定
+<main class="centering">
+  <div class="rect"></div>
+  <label class="ui">
+    <input type="checkbox" id="checkbox"/>
+    アニメーションを確認する
+  </label>
+</main>
+
+.rect {
+  width: 50px;
+  height: 50px;
+  display: block;
+  position: absolute;
+  background: white;
+  top: 150px;
+  transition: all 0.5s;
+}
+
+.centering {
+  position: relative;
+}
+
+.ui {
+  position: absolute;
+  bottom: 100px;
+}
+```
+
+#### CSS Transition で実現するサンプル
+
+```
+CSS
+.rect {
+  transition: all 0.5s;
+}
+.rect.state-show {
+  transform: scale(4);
+}
+
+JavaScript
+const checkBox = document.querySelector('#checkbox');
+checkBox.addEventListener('change', () => {
+  const rect = document.querySelector('.rect');
+  // 条件式をtrueにしないと動かない
+  if (rect.classList.contains('state-show') === true) {
+    rect.classList.remove('state-show');
+  } else {
+    rect.classList.add('state-show');
+  };
+});
+```
+
+#### Web Animation API で実現するサンプル
+
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js" defer></script>
+
+const checkBox = document.querySelector('#checkbox');
+checkBox.addEventListener('change', () => {
+  const rect = document.querySelector('.rect');
+  rect.animate(
+    {
+      transform: [
+        'scale(1)',
+        'scale(5)'
+      ]
+    },
+    {
+      duration: 5000,
+      fill: 'forwards', // 終了時にプロパティを保つ
+      easing: 'ease'
+    }
+  );
+}, false);
 ```
