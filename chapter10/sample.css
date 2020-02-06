@@ -1,0 +1,114 @@
+/* button {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.target, .rect {
+  width: 100px;
+  height: 100px;
+  display: block;
+  position: absolute;
+  background: white;
+  top: 150px;
+  transition: all 2s;
+}
+
+.target.state-show, .rect.state-show {
+  width: 400px;
+}
+
+.centering {
+  position: relative;
+}
+
+.ui {
+  position: absolute;
+  bottom: 100px;
+}
+
+.log {
+  border: 1px solid white;
+  padding: 0 0.5em;
+} */
+
+/* .rect {
+  width: 100px;
+  height: 100px;
+  display: block;
+  background-size: contain;
+  background: url('./loading.svg');
+  position: absolute;
+  top: 150px;
+}
+
+.rect.state-show {
+  animation: infinite 1s rotate linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.centering {
+  position: relative;
+}
+
+.ui {
+  position: absolute;
+  bottom: 100px;
+} */
+
+/* body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  width: 940px;
+  height: 520px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.rect {
+  width: 100px;
+  height: 100px;
+  display: block;
+  position: absolute;
+  background: white;
+  top: 200px;
+} */
+
+.rect {
+  width: 50px;
+  height: 50px;
+  display: block;
+  position: absolute;
+  background: white;
+  top: 150px;
+
+  /* transition: all 0.5s; */
+}
+
+/* .rect.state-show {
+  transform: scale(4);
+} */
+
+.centering {
+  position: relative;
+}
+
+.ui {
+  position: absolute;
+  bottom: 100px;
+}

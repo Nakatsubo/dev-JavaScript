@@ -10,6 +10,7 @@ Let's study & enjoy JavaScript
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter7">Chapter7 Event</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter8">Chapter8 Element</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter9">Chapter9 Form</a>
+- <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter10">Chapter10 Animation</a>
 
 
 ## Chapter1
@@ -4317,4 +4318,265 @@ function handleSubmit(e) {
     e.preventDefault();
   };
 };
+```
+
+## Chapter10
+
+- <strong>CSS Transitions・CSS Animations</strong><br>
+CSS Transitions・CSS Animationsは、セレクターの状態に応じて発生する。<br>
+JavaScriptで使うには、要素のクラス指定を切り替えるのがよい。
+
+- <strong>transitionend</strong> トランジションが完了した時のイベント
+
+```
+// button要素の場合
+<main class="centering">
+  <div class="target"></div>
+  <div class="ui">
+    <button>トランジションを確認する</button>
+    <div class="log">ログ表示エリア</div>
+  </div>
+</main>
+
+const button = document.querySelector('button');
+button.addEventListener('click', handleClick, false);
+function handleClick() {
+  const element = document.querySelector('.target');
+  if (element.classList.contains('state-show') === false) {
+    element.classList.add('state-show');
+  } else {
+    element.classList.remove('state-show');
+  };
+};
+
+const target = document.querySelector('.target');
+target.addEventListener('transitionend', (e) => {
+  const log = document.querySelector('.log');
+  log.innerHTML = 'transitionend 発生 : ' + new Date().toLocaleTimeString();
+}, false);
+```
+
+```
+<main class="centering">
+  <div class="rect"></div>
+  <div class="ui">
+    <label>
+      <input type="checkbox" id="checkbox"/>
+      トランジションを確認する
+    </label>
+    <div class="log">ログ表示エリア</div>
+  </div>
+</main>
+
+// input要素の場合
+const input = document.querySelector('input');
+input.addEventListener('click', () => {
+  const rect = document.querySelector('.rect');
+  if (rect.classList.contains('state-show') === false) {
+    rect.classList.add('state-show');
+  } else {
+    rect.classList.remove('state-show');
+  }
+}, false);
+
+const rect = document.querySelector('.rect');
+rect.addEventListener('transitionend', () => {
+  const log = document.querySelector('.log');
+  log.innerHTML = 'transitionend 発生 : ' + new Date().toLocaleString();
+}, false);
+```
+
+- CSS Animationsを監視
+
+|イベント|振る舞い|
+|-----|-----|
+|animationstart|アニメーション開始時のイベント|
+|animationiteration|アニメーションで繰り返しが発生した時のイベント|
+|animationend|アニメーション完了時のイベント|
+
+```
+<main class="centering">
+  <div class="rect"></div>
+  <div class="ui">
+    <label>
+      <input type="checkbox" id="checkbox"/>アニメーションを確認する</label>
+    <div class="log">ログ表示エリア</div>
+  </div>
+</main>
+
+const input = document.querySelector('input');
+input.addEventListener('click', () => {
+  const rect = document.querySelector('.rect');
+  if (rect.classList.contains('state-show') === false) {
+    rect.classList.add('state-show');
+  } else {
+    rect.classList.remove('state-show');
+  }
+}, false);
+
+const rect = document.querySelector('.rect');
+const log = document.querySelector('.log');
+
+// animationstart
+rect.addEventListener('animationstart', () => {
+  log.innerHTML = 'animationstart 発生 : ' + new Date().toLocaleString();
+}, false);
+
+// animationiteration
+rect.addEventListener('animationiteration', () => {
+  log.innerHTML = 'animationiteration 発生 : ' + new Date().toLocaleString();
+}, false);
+
+// animationend
+// 繰り返しを指定した時、animationendは発生しない
+// rect.addEventListener('animationend', () => {
+//   log.innerHTML = 'animationend 発生 : ' + new Date().toLocaleString();
+// }, false);
+```
+
+### Web Animation API
+JavaScriptでアニメーションを使うための手段のひとつ。<br>
+Link:
+<a href="https://developer.mozilla.org/ja/docs/Web/API/Web_Animations_API" target="_blank" rel="noopener">MDN web docs</a>
+
+```
+要素.animation(開始値と終了値を含むオブジェクト, アニメーションの属性を含むオブジェクト)
+```
+
+#### CDN
+CSS未対応のブラウザのため追記する。
+
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js" defer></script>
+```
+
+```
+HTML
+<div class="container">
+  <div class="rect"></div>
+</div>
+
+CSS
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  width: 940px;
+  height: 520px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.rect {
+  width: 100px;
+  height: 100px;
+  display: block;
+  position: absolute;
+  background: white;
+  top: 200px;
+}
+
+JavaScript
+const element = document.querySelector('.rect');
+element.animate(
+  // 第一引数 => 開始値と終了値を含むオブジェクト
+  {
+    transform: [
+      'translateX(0px) rotate(0deg)', // 開始値
+      'translateX(800px) rotate(360deg)' // 終了値
+    ]
+  },
+  // 第二引数 => アニメーションの属性を含むオブジェクト
+  {
+    duration: 3000, // デュレーション
+    iterations: Infinity, // 繰り返し回数
+    direction: 'normal', // 繰り返し挙動
+    easing: 'ease' // 加減速速度
+  }
+);
+```
+
+- 要素の大きさを変える
+
+```
+// 共通の指定
+<main class="centering">
+  <div class="rect"></div>
+  <label class="ui">
+    <input type="checkbox" id="checkbox"/>
+    アニメーションを確認する
+  </label>
+</main>
+
+.rect {
+  width: 50px;
+  height: 50px;
+  display: block;
+  position: absolute;
+  background: white;
+  top: 150px;
+  transition: all 0.5s;
+}
+
+.centering {
+  position: relative;
+}
+
+.ui {
+  position: absolute;
+  bottom: 100px;
+}
+```
+
+#### CSS Transition で実現するサンプル
+
+```
+CSS
+.rect {
+  transition: all 0.5s;
+}
+.rect.state-show {
+  transform: scale(4);
+}
+
+JavaScript
+const checkBox = document.querySelector('#checkbox');
+checkBox.addEventListener('change', () => {
+  const rect = document.querySelector('.rect');
+  // 条件式をtrueにしないと動かない
+  if (rect.classList.contains('state-show') === true) {
+    rect.classList.remove('state-show');
+  } else {
+    rect.classList.add('state-show');
+  };
+});
+```
+
+#### Web Animation API で実現するサンプル
+
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js" defer></script>
+
+const checkBox = document.querySelector('#checkbox');
+checkBox.addEventListener('change', () => {
+  const rect = document.querySelector('.rect');
+  rect.animate(
+    {
+      transform: [
+        'scale(1)',
+        'scale(5)'
+      ]
+    },
+    {
+      duration: 5000,
+      fill: 'forwards', // 終了時にプロパティを保つ
+      easing: 'ease'
+    }
+  );
+}, false);
 ```
