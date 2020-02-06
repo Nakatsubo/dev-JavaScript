@@ -1,4 +1,4 @@
-button {
+/* button {
   background-color: rgba(0, 0, 0, 0.1);
   padding: 10px;
   color: #fff;
@@ -31,4 +31,37 @@ button {
 .log {
   border: 1px solid white;
   padding: 0 0.5em;
+} */
+
+.rect {
+  width: 100px;
+  height: 100px;
+  display: block;
+  background-size: contain;
+  background: url('./loading.svg');
+  position: absolute;
+  top: 150px;
 }
+
+.rect.state-show {
+  animation: infinite 1s rotate linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.centering {
+  position: relative;
+}
+
+.ui {
+  position: absolute;
+  bottom: 100px;
+}
+
