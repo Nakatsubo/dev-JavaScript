@@ -4720,3 +4720,60 @@ checkBox.addEventListener('change', () => {
   );
 });
 ```
+
+### requestAnimationFrame() メソッド
+時間経過で呼び出したい関数を登録する。<br>
+一般的なディスプレイは1秒間に60回描画するが、このメソッドを使うと最も滑らかに見せられる。<br>
+一度しか呼び出すことができないので、関数の中で自身の関数を呼び出すよう、予約する。
+
+#### requestAnimationFrame() メソッドのサンプル
+
+```
+HTML
+<div class="stoker">
+  👻
+</div>
+
+CSS
+.stoker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  font-size: 5rem;
+}
+/* will-change */
+/* https://developer.mozilla.org/ja/docs/Web/CSS/will-change */
+
+JavaScript
+const stoker = document.querySelector('.stoker');
+
+// マウスの座標
+let mouseX = 0;
+let mouseY = 0;
+
+// ストーカーの座標
+let currentX = 0;
+let currentY = 0;
+
+document.body.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  // console.log(mouseX);
+  // console.log(mouseY);
+});
+
+tick();
+function tick() {
+  // アニメーションフレームを指定
+  requestAnimationFrame(tick);
+
+ // マウス座標を遅延してストーカー座標へ反映
+  currentX += (mouseX - currentX) * 0.1;
+  currentY += (mouseY - currentY) * 0.1;
+  // console.log(currentX);
+  // console.log(currentY);
+
+  stoker.style.transform = `translate(${currentX}px, ${currentY}px)`;
+};
+```
