@@ -4326,7 +4326,10 @@ function handleSubmit(e) {
 CSS Transitions・CSS Animationsは、セレクターの状態に応じて発生する。<br>
 JavaScriptで使うには、要素のクラス指定を切り替えるのがよい。
 
+- <strong>transitionend</strong> トランジションが完了した時のイベント
+
 ```
+// button要素の場合
 <main class="centering">
   <div class="target"></div>
   <div class="ui">
@@ -4335,7 +4338,6 @@ JavaScriptで使うには、要素のクラス指定を切り替えるのがよ�
   </div>
 </main>
 
-// CSS Transitions・CSS Animations
 const button = document.querySelector('button');
 button.addEventListener('click', handleClick, false);
 function handleClick() {
@@ -4353,3 +4355,34 @@ target.addEventListener('transitionend', (e) => {
   log.innerHTML = 'transitionend 発生 : ' + new Date().toLocaleTimeString();
 });
 ```
+
+```
+<main class="centering">
+  <div class="rect"></div>
+  <div class="ui">
+    <label>
+      <input type="checkbox" id="checkbox"/>
+      トランジションを確認する
+    </label>
+    <div class="log">ログ表示エリア</div>
+  </div>
+</main>
+
+// input要素の場合
+const input = document.querySelector('input');
+input.addEventListener('click', () => {
+  const rect = document.querySelector('.rect');
+  if (rect.classList.contains('state-show') === false) {
+    rect.classList.add('state-show');
+  } else {
+    rect.classList.remove('state-show');
+  }
+}, false);
+
+const rect = document.querySelector('.rect');
+rect.addEventListener('transitionend', () => {
+  const log = document.querySelector('.log');
+  log.innerHTML = 'transitionend 発生 : ' + new Date().toLocaleString();
+});
+```
+
