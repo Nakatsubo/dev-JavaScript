@@ -113,19 +113,21 @@
   bottom: 100px;
 } */
 
-.rect {
+/* .rect {
   width: 100px;
   height: 100px;
   background: white;
   display: block;
   position: absolute;
   top: 150px;
-  /* transition: all 3s; */
+  transition: all 3s;
+  opacity: 1.0;
 }
 
-/* .rect.state-show {
+.rect.state-show {
   transform: translate(300px, 0px);
-} */
+  opacity: 0.5;
+}
 
 .centering {
   position: relative;
@@ -134,4 +136,27 @@
 .ui {
   position: absolute;
   bottom: 100px;
+} */
+
+.rect {
+  display: block;
+  position: absolute;
+  top: 50px;
+  /* filter: brightness(100%); */
+  filter: grayscale(0%);
+  transition: all 3s;
+}
+
+.rect.state-show {
+  /* filter: brightness(300%); */
+  filter: grayscale(100%);
+}
+
+.centering {
+  position: relative;
+}
+
+.ui {
+  position: absolute;
+  bottom: 50px;
 }

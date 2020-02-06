@@ -122,15 +122,54 @@
 //   };
 // });
 
+// // Web Animation API で実現するサンプル
+// const checkBox = document.querySelector('#checkbox');
+// checkBox.addEventListener('change', () => {
+//   const rect = document.querySelector('.rect');
+//   rect.animate(
+//     {
+//       transform: [
+//         'translateX(0px)',
+//         'translateX(300px)'
+//       ],
+//       opacity:[
+//         1.0, // 開始値
+//         0.5 // 終了値
+//       ]
+//     },
+//     {
+//       duration: 3000,
+//       fill: 'forwards',
+//       easing: 'ease'
+//     }
+//   );
+// });
+
+// // 要素の明度、彩度を変える(brightness(), grayscale())
+// // CSS Transition で実現するサンプル
+// const checkBox = document.querySelector('#checkbox');
+// checkBox.addEventListener('change', () => {
+//   const rect = document.querySelector('.rect');
+//   if (rect.classList.contains('state-show') === true) {
+//     rect.classList.remove('state-show');
+//   } else {
+//     rect.classList.add('state-show');
+//   };
+// });
+
 // Web Animation API で実現するサンプル
 const checkBox = document.querySelector('#checkbox');
 checkBox.addEventListener('change', () => {
   const rect = document.querySelector('.rect');
   rect.animate(
     {
-      transform: [
-        'translateX(0px)',
-        'translateX(300px)'
+      // filter: [
+      //   'brightness(100%)',
+      //   'brightness(300%)'
+      // ],
+      filter:[
+        'grayscale(0%)',
+        'grayscale(100%)'
       ]
     },
     {
