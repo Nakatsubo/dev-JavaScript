@@ -1,4 +1,4 @@
-/* button {
+button {
   background-color: rgba(0, 0, 0, 0.1);
   padding: 10px;
   color: #fff;
@@ -31,9 +31,9 @@
 .log {
   border: 1px solid white;
   padding: 0 0.5em;
-} */
+}
 
-/* .rect {
+.rect {
   width: 100px;
   height: 100px;
   display: block;
@@ -63,9 +63,9 @@
 .ui {
   position: absolute;
   bottom: 100px;
-} */
+}
 
-/* body {
+body {
   margin: 0;
   padding: 0;
   display: flex;
@@ -87,9 +87,9 @@
   position: absolute;
   background: white;
   top: 200px;
-} */
+}
 
-/* .rect {
+.rect {
   width: 50px;
   height: 50px;
   display: block;
@@ -111,9 +111,9 @@
 .ui {
   position: absolute;
   bottom: 100px;
-} */
+}
 
-/* .rect {
+.rect {
   width: 100px;
   height: 100px;
   background: white;
@@ -136,19 +136,19 @@
 .ui {
   position: absolute;
   bottom: 100px;
-} */
+}
 
 .rect {
   display: block;
   position: absolute;
   top: 50px;
-  /* filter: brightness(100%); */
+  filter: brightness(100%);
   filter: grayscale(0%);
   transition: all 3s;
 }
 
 .rect.state-show {
-  /* filter: brightness(300%); */
+  filter: brightness(300%);
   filter: grayscale(100%);
 }
 
@@ -160,3 +160,13 @@
   position: absolute;
   bottom: 50px;
 }
+
+.stoker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  font-size: 5rem;
+}
+/* will-change */
+/* https://developer.mozilla.org/ja/docs/Web/CSS/will-change */
