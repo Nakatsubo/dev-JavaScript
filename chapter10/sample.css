@@ -89,7 +89,7 @@
   top: 200px;
 } */
 
-.rect {
+/* .rect {
   width: 50px;
   height: 50px;
   display: block;
@@ -97,12 +97,12 @@
   background: white;
   top: 150px;
 
-  /* transition: all 0.5s; */
+  transition: all 0.5s;
 }
 
-/* .rect.state-show {
+.rect.state-show {
   transform: scale(4);
-} */
+}
 
 .centering {
   position: relative;
@@ -111,4 +111,52 @@
 .ui {
   position: absolute;
   bottom: 100px;
+} */
+
+/* .rect {
+  width: 100px;
+  height: 100px;
+  background: white;
+  display: block;
+  position: absolute;
+  top: 150px;
+  transition: all 3s;
+  opacity: 1.0;
+}
+
+.rect.state-show {
+  transform: translate(300px, 0px);
+  opacity: 0.5;
+}
+
+.centering {
+  position: relative;
+}
+
+.ui {
+  position: absolute;
+  bottom: 100px;
+} */
+
+.rect {
+  display: block;
+  position: absolute;
+  top: 50px;
+  /* filter: brightness(100%); */
+  filter: grayscale(0%);
+  transition: all 3s;
+}
+
+.rect.state-show {
+  /* filter: brightness(300%); */
+  filter: grayscale(100%);
+}
+
+.centering {
+  position: relative;
+}
+
+.ui {
+  position: absolute;
+  bottom: 50px;
 }

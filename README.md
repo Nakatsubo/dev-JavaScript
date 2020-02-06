@@ -4464,14 +4464,12 @@ body {
   justify-content: center;
   overflow: hidden;
 }
-
 .container {
   position: relative;
   width: 940px;
   height: 520px;
   background: rgba(0, 0, 0, 0.5);
 }
-
 .rect {
   width: 100px;
   height: 100px;
@@ -4522,11 +4520,9 @@ element.animate(
   top: 150px;
   transition: all 0.5s;
 }
-
 .centering {
   position: relative;
 }
-
 .ui {
   position: absolute;
   bottom: 100px;
@@ -4579,4 +4575,148 @@ checkBox.addEventListener('change', () => {
     }
   );
 }, false);
+```
+
+- 要素を変化させる(traslate, opacity...)
+
+```
+// 共通の指定
+
+
+.rect {
+  width: 100px;
+  height: 100px;
+  background: white;
+  display: block;
+  position: absolute;
+  top: 150px;
+}
+.centering {
+  position: relative;
+}
+.ui {
+  position: absolute;
+  bottom: 100px;
+}
+```
+
+#### CSS Transition で実現するサンプル
+
+```
+.rect {
+  transition: all 3s;
+  opacity: 1.0;
+}
+.rect.state-show {
+  transform: translate(300px, 0px);
+  opacity: 0.5;
+}
+
+const checkBox = document.querySelector('#checkbox');
+checkBox.addEventListener('change', () => {
+  const rect = document.querySelector('.rect');
+  if (rect.classList.contains('state-show') === true) {
+    rect.classList.remove('state-show');
+  } else {
+    rect.classList.add('state-show');
+  };
+});
+```
+
+#### Web Animation API で実現するサンプル
+
+```
+const checkBox = document.querySelector('#checkbox');
+checkBox.addEventListener('change', () => {
+  const rect = document.querySelector('.rect');
+  rect.animate(
+    {
+      transform: [
+        'translateX(0px)',
+        'translateX(300px)'
+      ],
+      opacity:[
+        1.0, // 開始値
+        0.5 // 終了値
+      ]
+    },
+    {
+      duration: 3000,
+      fill: 'forwards',
+      easing: 'ease'
+    }
+  );
+});
+```
+
+- 要素の明度、彩度を変える(brightness(), grayscale())
+
+```
+// 共通の指定
+.rect {
+  display: block;
+  position: absolute;
+  top: 50px;
+}
+.centering {
+  position: relative;
+}
+.ui {
+  position: absolute;
+  bottom: 50px;
+}
+```
+
+#### CSS Transition で実現するサンプル
+
+```
+.rect {
+  display: block;
+  position: absolute;
+  top: 50px;
+  /* filter: brightness(100%); */
+  filter: grayscale(0%);
+  transition: all 3s;
+}
+
+.rect.state-show {
+  /* filter: brightness(300%); */
+  filter: grayscale(100%);
+}
+
+const checkBox = document.querySelector('#checkbox');
+checkBox.addEventListener('change', () => {
+  const rect = document.querySelector('.rect');
+  if (rect.classList.contains('state-show') === true) {
+    rect.classList.remove('state-show');
+  } else {
+    rect.classList.add('state-show');
+  };
+});
+```
+
+#### Web Animation API で実現するサンプル
+
+```
+const checkBox = document.querySelector('#checkbox');
+checkBox.addEventListener('change', () => {
+  const rect = document.querySelector('.rect');
+  rect.animate(
+    {
+      // filter: [
+      //   'brightness(100%)',
+      //   'brightness(300%)'
+      // ],
+      filter:[
+        'grayscale(0%)',
+        'grayscale(100%)'
+      ]
+    },
+    {
+      duration: 3000,
+      fill: 'forwards',
+      easing: 'ease'
+    }
+  );
+});
 ```
