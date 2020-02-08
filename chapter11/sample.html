@@ -34,7 +34,23 @@
       </p>
     </main> -->
 
-    <div class="container"></div>
+    <!-- <div class="container"></div> -->
+
+    <main class="centering">
+      <div>
+        <h2>プロパティなし</h2>
+        <audio src="./music.mp3"></audio>
+        <h2>コントロールあり</h2>
+        <audio src="./music.mp3" controls></audio>
+        <h2>ループあり</h2>
+        <audio src="./music.mp3" controls loop></audio>
+        <h2>プリロードなし</h2>
+        <!-- auto => 自動 -->
+        <!-- meta =>メタデータのみ読み込み -->
+        <!-- none => 自動読み込みしない -->
+        <audio src="./music.mp3" controls preload="none"></audio>
+      </div>
+    </main>
 
     <script src="main.js" defar></script>
   </body>
