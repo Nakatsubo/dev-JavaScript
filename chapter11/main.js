@@ -52,20 +52,25 @@
 //   container.appendChild(img);
 // };
 
-// 音声をスクリプトで制御
-// loadedmetadata => メタデータが読み込まれたときに発生する。
-// https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/loadedmetadata_event
-const audio = document.querySelector('#myAudio');
-audio.addEventListener('loadedmetadata', () => {
-  console.log(audio.duration);
-  // => 60.048
-}, false);
+// // 音声をスクリプトで制御
+// // loadedmetadata => メタデータが読み込まれたときに発生する。
+// // https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/loadedmetadata_event
+// const audio = document.querySelector('#myAudio');
+// audio.addEventListener('loadedmetadata', () => {
+//   console.log(audio.duration);
+//   // => 60.048
+// }, false);
 
-// スクリプトで制御
-document.querySelector('#btnPlay').addEventListener('click', () => {
-  audio.play();
-});
-document.querySelector('#btnPause').addEventListener('click', () => {
-  audio.pause();
-});
+// // スクリプトで制御
+// document.querySelector('#btnPlay').addEventListener('click', () => {
+//   audio.play();
+// });
+// document.querySelector('#btnPause').addEventListener('click', () => {
+//   audio.pause();
+// });
 
+// const audio = document.querySelector('#myAudio');
+// // 音声のボリュームを変更
+// audio.volume = 1.0;
+// // ミュートの状態を変更
+// audio.muted = true;
