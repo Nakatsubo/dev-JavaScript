@@ -4781,6 +4781,8 @@ function tick() {
 
 ## Chapter11
 
+### 画像データ
+
 - 画像をスクリプトで読み込む
 
 ```
@@ -4845,7 +4847,7 @@ btn.addEventListener('click', () => {
 }, false);
 ```
 
-### Base64
+#### Base64
 Base64は文字列として画像を管理する。画面に表示するには、src属性にBase64文字列を代入する。<br>
 JPGEファイルやPNGファイルはバイナリファイルなので、<strong>テキストエディターでは開けない</strong>。
 
@@ -4854,7 +4856,7 @@ const img = document.querySelector('#myImage');
 img.src = 'data:image/jpeg;base64, ...';
 ```
 
-### Imageオブジェクト(new Image())
+#### Imageオブジェクト(new Image())
 img要素のインスタンスを作成する。document.createElement('img') と記述した時と同じ結果を得る。
 
 ```
@@ -4866,4 +4868,31 @@ for (let i = 0; i < 10; i++) {
   img.src = `./images/photo-${i}.jpg`;
   container.appendChild(img);
 };
+```
+
+### 音声データ
+
+|プロパティ|振る舞い|データ型|
+|-----|-----|-----|
+|src|リソースを指定|文字列|
+|controls|コントロールバーを表示|-|
+|loop|ループを指定|-|
+|preload|プリロードの種類を指定|文字列|
+
+```
+<main class="centering">
+  <div>
+    <h2>プロパティなし</h2>
+    <audio src="./music.mp3"></audio>
+    <h2>コントロールあり</h2>
+    <audio src="./music.mp3" controls></audio>
+    <h2>ループあり</h2>
+    <audio src="./music.mp3" controls loop></audio>
+    <h2>プリロードなし</h2>
+    <!-- auto => 自動 -->
+    <!-- meta =>メタデータのみ読み込み -->
+    <!-- none => 自動読み込みしない -->
+    <audio src="./music.mp3" controls preload="none"></audio>
+  </div>
+</main>
 ```
