@@ -4896,3 +4896,38 @@ for (let i = 0; i < 10; i++) {
   </div>
 </main>
 ```
+
+- 音声をスクリプトで制御
+
+|メソッド|振る舞い|戻り値|
+|-----|-----|-----|
+|play()|再生|Promise|
+|pause()|一時停止|なし|
+
+```
+<main class="centering">
+  <div>
+    <audio id="myAudio" src="./music.mp3" controls></audio>
+  </div>
+  <div>
+    <button id="btnPlay">再生</button>
+    <button id="btnPause">停止</button>
+  </div>
+</main>
+
+// loadedmetadata => メタデータが読み込まれたときに発生する。
+// https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/loadedmetadata_event
+const audio = document.querySelector('#myAudio');
+audio.addEventListener('loadedmetadata', () => {
+  console.log(audio.duration);
+  // => 60.048
+}, false);
+
+// スクリプトで制御
+document.querySelector('#btnPlay').addEventListener('click', () => {
+  audio.play();
+});
+document.querySelector('#btnPause').addEventListener('click', () => {
+  audio.pause();
+});
+```
