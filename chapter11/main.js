@@ -13,29 +13,33 @@
 // img.src = './images/photo.jpg';
 // img.classList.add('loading');
 
-// 画像の遅延ロード
-// Mapオブジェクト => キーと値を組み合わせ、複数のデータをまとめて取り扱う
-const srcMap = new Map();
-window.addEventListener('DOMContentLoaded', () => {
-  const imgs = document.querySelectorAll('img');
+// // 画像の遅延ロード
+// // Mapオブジェクト => キーと値を組み合わせ、複数のデータをまとめて取り扱う
+// const srcMap = new Map();
+// window.addEventListener('DOMContentLoaded', () => {
+//   const imgs = document.querySelectorAll('img');
 
-  imgs.forEach((img) => {
-    // Mapオブジェクトにimg要素のdata-src属性を保存
-    srcMap.set(img, img.dataset.src);
-    // src属性は空にしておく
-    img.removeAttribute('src');
-  });
-}, false);
+//   imgs.forEach((img) => {
+//     // Mapオブジェクトにimg要素のdata-src属性を保存
+//     srcMap.set(img, img.dataset.src);
+//     // src属性は空にしておく
+//     img.removeAttribute('src');
+//   });
+// }, false);
 
-const btn = document.querySelector('button');
-btn.addEventListener('click', () => {
-  const imgs = document.querySelectorAll('img');
-  console.log(srcMap);
-  // => Map(2) {img => "images/photo_a.jpg", img => "images/photo_b.jpg"}
+// const btn = document.querySelector('button');
+// btn.addEventListener('click', () => {
+//   const imgs = document.querySelectorAll('img');
+//   console.log(srcMap);
+//   // => Map(2) {img => "images/photo_a.jpg", img => "images/photo_b.jpg"}
 
-  // Mapオブジェクトに保存していたsrc属性を割り当てる
-  imgs.forEach((img) => {
-    const source = srcMap.get(img);
-    img.src = source;
-  });
-}, false);
+//   // Mapオブジェクトに保存していたsrc属性を割り当てる
+//   imgs.forEach((img) => {
+//     const source = srcMap.get(img);
+//     img.src = source;
+//   });
+// }, false);
+
+// Base64
+const img = document.querySelector('#myImage');
+img.src = 'data:image/jpeg;base64, ...';
