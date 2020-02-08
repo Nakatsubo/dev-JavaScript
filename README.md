@@ -4791,7 +4791,7 @@ imgB.src = 'photo_b.jpg';
 ```
 
 - 画像の読み込み後に処理を実行<br>
-空文字であっても通信が発生するため、HTMLのsrc属性にはじめは値を設定しない。
+src属性は空文字であっても通信が発生するため、HTMLのsrc属性にはじめは値を設定しない。
 
 ```
 const img = document.querySelector('#myImage');
@@ -4800,4 +4800,47 @@ img.onload = () => {
 };
 img.src = 'photo.jpg';
 img.classList.add('loading');
+```
+
+- 画像の遅延ロード<br>
+src属性は空文字であっても通信が発生するため、同時のdata-src属性を用意。<br>
+Mapの保存し必要になったタイミングで戻す。<br>
+<br>
+Mapオブジェクト:
+キーと値を組み合わせ、複数のデータをまとめて取り扱う。(Chapter19 section 277)
+
+```
+<main class="centering">
+  <p>
+    <img data-src="images/photo_a.jpg" width="320" height="214"/>
+    <img data-src="images/photo_b.jpg" width="320" height="214"/>
+  </p>
+  <button class="btn">読み込む</button>
+</main>
+
+// Mapオブジェクト => キーと値を組み合わせ、複数のデータをまとめて取り扱う
+const srcMap = new Map();
+window.addEventListener('DOMContentLoaded', () => {
+  const imgs = document.querySelectorAll('img');
+
+  imgs.forEach((img) => {
+    // Mapオブジェクトにimg要素のdata-src属性を保存
+    srcMap.set(img, img.dataset.src);
+    // src属性は空にしておく
+    img.removeAttribute('src');
+  });
+}, false);
+
+const btn = document.querySelector('button');
+btn.addEventListener('click', () => {
+  const imgs = document.querySelectorAll('img');
+  console.log(srcMap);
+  // => Map(2) {img => "images/photo_a.jpg", img => "images/photo_b.jpg"}
+
+  // Mapオブジェクトに保存していたsrc属性を割り当てる
+  imgs.forEach((img) => {
+    const source = srcMap.get(img);
+    img.src = source;
+  });
+}, false);
 ```
