@@ -40,6 +40,14 @@
 //   });
 // }, false);
 
-// Base64
-const img = document.querySelector('#myImage');
-img.src = 'data:image/jpeg;base64, ...';
+// // Base64
+// const img = document.querySelector('#myImage');
+// img.src = 'data:image/jpeg;base64, ...';
+
+// Imageオブジェクト(new Image())
+const container = document.querySelector('.container');
+for (let i = 0; i < 10; i++) {
+  const img = new Image();
+  img.src = `./images/photo-${i}.jpg`;
+  container.appendChild(img);
+};

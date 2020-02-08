@@ -4853,3 +4853,17 @@ JPGEファイルやPNGファイルはバイナリファイルなので、<strong
 const img = document.querySelector('#myImage');
 img.src = 'data:image/jpeg;base64, ...';
 ```
+
+### Imageオブジェクト(new Image())
+img要素のインスタンスを作成する。document.createElement('img') と記述した時と同じ結果を得る。
+
+```
+<div class="container"></div>
+
+const container = document.querySelector('.container');
+for (let i = 0; i < 10; i++) {
+  const img = new Image();
+  img.src = `./images/photo-${i}.jpg`;
+  container.appendChild(img);
+};
+```
