@@ -4950,3 +4950,18 @@ audio.addEventListener('loadedmetadata', () => {
   // => 60.048
 }, false);
 ```
+
+- 音声のボリュームを変更
+
+|プロパティ|振る舞い|データ型|
+|-----|-----|-----|
+|volume|ボリュームの値|数値|
+|muted|ミュートの状態|真偽値|
+
+```
+const audio = document.querySelector('#myAudio');
+// 音声のボリュームを変更
+audio.volume = 1.0;
+// ミュートの状態を変更
+audio.muted = true;
+```
