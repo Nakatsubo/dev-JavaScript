@@ -36,7 +36,7 @@
 
     <!-- <div class="container"></div> -->
 
-    <main class="centering">
+    <!-- <main class="centering">
       <div>
         <h2>プロパティなし</h2>
         <audio src="./music.mp3"></audio>
@@ -44,14 +44,25 @@
         <audio src="./music.mp3" controls></audio>
         <h2>ループあり</h2>
         <audio src="./music.mp3" controls loop></audio>
-        <h2>プリロードなし</h2>
+        <h2>プリロードなし</h2> -->
         <!-- auto => 自動 -->
         <!-- meta =>メタデータのみ読み込み -->
         <!-- none => 自動読み込みしない -->
-        <audio src="./music.mp3" controls preload="none"></audio>
+        <!-- <audio src="./music.mp3" controls preload="none"></audio>
+      </div>
+    </main> -->
+
+    <main class="centering">
+      <div>
+        <audio id="myAudio" src="./music.mp3" controls></audio>
+      </div>
+      <div>
+        <button id="btnPlay">再生</button>
+        <button id="btnPause">停止</button>
       </div>
     </main>
 
+    </div>
     <script src="main.js" defar></script>
   </body>
 </html>

@@ -44,10 +44,28 @@
 // const img = document.querySelector('#myImage');
 // img.src = 'data:image/jpeg;base64, ...';
 
-// Imageオブジェクト(new Image())
-const container = document.querySelector('.container');
-for (let i = 0; i < 10; i++) {
-  const img = new Image();
-  img.src = `./images/photo-${i}.jpg`;
-  container.appendChild(img);
-};
+// // Imageオブジェクト(new Image())
+// const container = document.querySelector('.container');
+// for (let i = 0; i < 10; i++) {
+//   const img = new Image();
+//   img.src = `./images/photo-${i}.jpg`;
+//   container.appendChild(img);
+// };
+
+// 音声をスクリプトで制御
+// loadedmetadata => メタデータが読み込まれたときに発生する。
+// https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/loadedmetadata_event
+const audio = document.querySelector('#myAudio');
+audio.addEventListener('loadedmetadata', () => {
+  console.log(audio.duration);
+  // => 60.048
+}, false);
+
+// スクリプトで制御
+document.querySelector('#btnPlay').addEventListener('click', () => {
+  audio.play();
+});
+document.querySelector('#btnPause').addEventListener('click', () => {
+  audio.pause();
+});
+
