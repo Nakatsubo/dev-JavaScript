@@ -5010,3 +5010,54 @@ function stop() {
 };
 
 ```
+
+### 動画データ
+
+|プロパティ|振る舞い|データ型|
+|-----|-----|-----|
+|src|リソースを指定|文字列|
+|controls|コントロールバーを表示|-|
+|autoplay|自動再生|-|
+|loop|ループを指定|-|
+|preload|プリロードの種類を指定|文字列|
+|playsinline|インライン再生を指定|-|
+
+```
+<video src="動画ファイルのURL" width="" height=""></video>
+
+<video src="./sample.mp4" width="320" height="240" controls></video>
+```
+
+```
+<main class="centering">
+  <div>
+    <h2>プロパティなし</h2>
+    <video src="./sample.mp4" width="320" height="240"></video>
+    <h2>コントロールあり</h2>
+    <video src="./sample.mp4" width="320" height="240" controls></video>
+    <h2>自動再生あり</h2>
+    <!-- autoplay を有効にするには muted を追記する -->
+    <video src="./sample.mp4" width="320" height="240" autoplay muted></video>
+    <h2>ループあり</h2>
+    <video src="./sample.mp4" width="320" height="240" autoplay loop playsinline muted></video>
+    <h2>プリロードなし</h2>
+    <!-- auto => 自動 -->
+    <!-- meta => メタデータのみ読み込み -->
+    <!-- none => 自動読み込みしない -->
+    <video src="./sample.mp4" preload="none"></video>
+  </div>
+</main>
+```
+
+- <strong>poster属性</strong><br>
+サムネイル画像を表示する。
+
+```
+<main class="centering">
+  <div>
+    <h2>サムネイルあり</h2>
+    <video src="./sample.mp4" width="320" height="240" poster="./images/photo.jpg" controls></video>
+  </div>
+</main>
+```
+

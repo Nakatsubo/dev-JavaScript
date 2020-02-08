@@ -62,9 +62,35 @@
       </div>
     </main> -->
 
-    <main class="centering">
+    <!-- <main class="centering">
       <button onclick="loadAndPlay()">再生する</button>
       <button onclick="stop()">停止する</button>
+    </main> -->
+
+    <!-- <main class="centering">
+      <div>
+        <h2>プロパティなし</h2>
+        <video src="./sample.mp4" width="320" height="240"></video>
+        <h2>コントロールあり</h2>
+        <video src="./sample.mp4" width="320" height="240" controls></video>
+        <h2>自動再生あり</h2> -->
+        <!-- autoplay を有効にするには muted を追記する -->
+        <!-- <video src="./sample.mp4" width="320" height="240" autoplay muted></video>
+        <h2>ループあり</h2>
+        <video src="./sample.mp4" width="320" height="240" autoplay loop playsinline muted></video>
+        <h2>プリロードなし</h2> -->
+        <!-- auto => 自動 -->
+        <!-- meta => メタデータのみ読み込み -->
+        <!-- none => 自動読み込みしない -->
+        <!-- <video src="./sample.mp4" preload="none"></video>
+      </div>
+    </main> -->
+
+    <main class="centering">
+      <div>
+        <h2>サムネイルあり</h2>
+        <video src="./sample.mp4" width="320" height="240" poster="./images/photo.jpg" controls></video>
+      </div>
     </main>
 
     <script src="main.js" defar></script>
