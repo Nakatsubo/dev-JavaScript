@@ -74,3 +74,36 @@
 // audio.volume = 1.0;
 // // ミュートの状態を変更
 // audio.muted = true;
+
+// Web Audio API
+// CROSの設定をしないとエラー
+loadAndPlay();
+
+let source;
+
+// 再生させる
+async function loadAndPlay() {
+  // インスタンスを作成
+  const context = new AudioContext();
+
+  // サウンドファイルを読み込む
+  const data = await fetch('./music.mp3');
+  // ArrayBuffer として扱う
+  const buffer = await data.arrayBuffer();
+  // オーディオデータに変換する
+  const decodedBuffer = await context.decodeAudioData(buffer);
+
+  // ソースを作成
+  source = contex.createBufferSource();
+  // ソースにオーディオデータを割り当てる
+  source.buffer = decodedBuffer;
+  // スピーカーをつなげる
+  source.context(context.destination);
+  // 再生を開始
+  source.start(0);
+};
+
+// 停止させる
+function stop() {
+  source.stop();
+};

@@ -4965,3 +4965,48 @@ audio.volume = 1.0;
 // ミュートの状態を変更
 audio.muted = true;
 ```
+
+#### Web Audio API
+<a href="https://developer.mozilla.org/ja/docs/Web/API/Web_Audio_API" target="_blank" rel="noopener">MDN web docs</a>
+
+```
+HTML
+<main class="centering">
+  <button onclick="loadAndPlay()">再生する</button>
+  <button onclick="stop()">停止する</button>
+</main>
+
+JavaScript
+// => CROSの設定をしないとfetchでエラー
+loadAndPlay();
+
+let source;
+
+// 再生させる
+async function loadAndPlay() {
+  // インスタンスを作成
+  const context = new AudioContext();
+
+  // サウンドファイルを読み込む
+  const data = await fetch('./music.mp3');
+  // ArrayBuffer として扱う
+  const buffer = await data.arrayBuffer();
+  // オーディオデータに変換する
+  const decodedBuffer = await context.decodeAudioData(buffer);
+
+  // ソースを作成
+  source = contex.createBufferSource();
+  // ソースにオーディオデータを割り当てる
+  source.buffer = decodedBuffer;
+  // スピーカーをつなげる
+  source.context(context.destination);
+  // 再生を開始
+  source.start(0);
+};
+
+// 停止させる
+function stop() {
+  source.stop();
+};
+
+```
