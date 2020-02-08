@@ -4931,3 +4931,22 @@ document.querySelector('#btnPause').addEventListener('click', () => {
   audio.pause();
 });
 ```
+
+- 音声の再生位置を変更
+
+|プロパティ|振る舞い|データ型|
+|-----|-----|-----|
+|currentTime|再生ヘッドの値|数値|
+|duration|音声の長さ|数値|
+
+```
+const audio = document.querySelector('#myAudio');
+// 再生ヘッドの値を設定
+audio.currentTime = 1.0;
+
+audio.addEventListener('loadedmetadata', () => {
+  // 音声の長さを取得
+  console.log(audio.duration);
+  // => 60.048
+}, false);
+```
