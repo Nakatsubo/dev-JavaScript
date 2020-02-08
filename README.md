@@ -4844,3 +4844,12 @@ btn.addEventListener('click', () => {
   });
 }, false);
 ```
+
+### Base64
+Base64は文字列として画像を管理する。画面に表示するには、src属性にBase64文字列を代入する。<br>
+JPGEファイルやPNGファイルはバイナリファイルなので、<strong>テキストエディターでは開けない</strong>。
+
+```
+const img = document.querySelector('#myImage');
+img.src = 'data:image/jpeg;base64, ...';
+```
