@@ -4807,8 +4807,8 @@ img.classList.add('loading');
 - 画像の遅延ロード<br>
 src属性は空文字であっても通信が発生するため、同時のdata-src属性を用意。<br>
 Mapの保存し必要になったタイミングで戻す。<br>
-<br>
-Mapオブジェクト:
+
+- Mapオブジェクト<br>
 キーと値を組み合わせ、複数のデータをまとめて取り扱う。(Chapter19 section 277)
 
 ```
