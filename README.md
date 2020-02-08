@@ -4792,7 +4792,7 @@ const imgB = document.querySelector('#myImageB');
 imgB.src = 'photo_b.jpg';
 ```
 
-- 画像の読み込み後に処理を実行<br>
+- <strong>onload</strong> 画像の読み込み後に処理を実行<br>
 src属性は空文字であっても通信が発生するため、HTMLのsrc属性にはじめは値を設定しない。
 
 ```
