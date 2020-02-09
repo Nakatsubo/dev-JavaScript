@@ -108,15 +108,50 @@
 //   source.stop();
 // };
 
-// 動画をスクリプトで制御
-const video = document.querySelector('#myVideo');
-// 再生
-const btnPlay = document.querySelector('#btnPlay');
-btnPlay.addEventListener('click', () => {
-  video.play();
-}, false);
-// 一時停止
-const btnPause = document.querySelector('#btnPause');
-btnPause.addEventListener('click', () => {
-  video.pause();
-}, false);
+// // 動画をスクリプトで制御
+// const video = document.querySelector('#myVideo');
+// // 再生
+// const btnPlay = document.querySelector('#btnPlay');
+// btnPlay.addEventListener('click', () => {
+//   video.play();
+// }, false);
+// // 一時停止
+// const btnPause = document.querySelector('#btnPause');
+// btnPause.addEventListener('click', () => {
+//   video.pause();
+// }, false);
+
+// ウェブカメラ
+let stream;
+
+// 再生時の処理
+async function loadAndPlay() {
+  const video = document.querySelector('#myVideo');
+  stream = await getDeviceStream({
+    video: { width: 640, height: 320 },
+    audio: false
+  });
+  video.srcObject = stream;
+}
+
+// 停止時の処理
+function stop() {
+  const video = document.querySelector('#myVideo');
+  const tracks = stream.getTracks();
+
+  tracks.forEach((track) => {
+    track.stop();
+  });
+  video.srcObject = null;
+}
+
+// ウェブカメラの起動
+function getDeviceStream(option) {
+  if ('getUserMedia' in navigator.mediaDevices) {
+    return navigator.mediaDevices.getUserMedia(option);
+  } else {
+    return new Promise(function(resolve, reject) {
+      navigator.getUserMedia(option, resolve, reject);
+    });
+  };
+};
