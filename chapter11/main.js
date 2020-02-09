@@ -107,3 +107,16 @@
 // function stop() {
 //   source.stop();
 // };
+
+// 動画をスクリプトで制御
+const video = document.querySelector('#myVideo');
+// 再生
+const btnPlay = document.querySelector('#btnPlay');
+btnPlay.addEventListener('click', () => {
+  video.play();
+}, false);
+// 一時停止
+const btnPause = document.querySelector('#btnPause');
+btnPause.addEventListener('click', () => {
+  video.pause();
+}, false);
