@@ -5143,3 +5143,27 @@ function getDeviceStream(option) {
 ```
 
 ## Chapter12
+
+### SVG(スケーラブル・ベクター・グラフィックス)
+頂点、塗り、線の集まりで画像を構成する、ベクター形式の代表的なフォーマット。一方、ドットの集合体で構成する画像をラスター形式という。
+
+- <strong>viewBox属性</strong><br>
+SVGの描画領域を定義する。X座標、Y座標、幅、高さ、の四つの値によって矩形領域を定義する。
+
+```
+<main class="centering">
+  <div>
+    <svg viewBox="0 0 200 200" width="200" height="200" id="mySvg"></svg>
+  </div>
+</main>
+
+const myCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+
+myCircle.setAttribute('cx', '100'); // X座標の中心点
+myCircle.setAttribute('cy', '100'); // Y座標の中心点
+myCircle.setAttribute('r', '100'); // 円の半径
+myCircle.setAttribute('fill', '#FFFF8D'); // 塗り
+
+const mySvg = document.querySelector('#mySvg');
+mySvg.appendChild(myCircle);
+```
