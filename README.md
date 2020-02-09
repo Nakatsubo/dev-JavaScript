@@ -5061,3 +5061,33 @@ function stop() {
 </main>
 ```
 
+- 動画をスクリプトで制御
+
+|プロパティ|振る舞い|戻り値|
+|-----|-----|-----|
+|play()|再生|Promise|
+|pause()|一時停止|なし|
+
+```
+<main class="centering">
+  <div>
+    <video id="myVideo" width="480" height="320" src="./sample.mp4"></video>
+  </div>
+  <div>
+    <button id="btnPlay">再生</button>
+    <button id="btnPause">停止</button>
+  </div>
+</main>
+
+const video = document.querySelector('#myVideo');
+// 再生
+const btnPlay = document.querySelector('#btnPlay');
+btnPlay.addEventListener('click', () => {
+  video.play();
+}, false);
+// 一時停止
+const btnPause = document.querySelector('#btnPause');
+btnPause.addEventListener('click', () => {
+  video.pause();
+}, false);
+```
