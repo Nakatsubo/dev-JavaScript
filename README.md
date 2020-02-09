@@ -5190,3 +5190,19 @@ myCircle.setAttribute('r', 100);
 myCircle.setAttribute('fill', '#FFFF8D');
 myCircle.setAttribute('opacity', 0.5);
 ```
+
+- SVGをマウス操作する
+
+```
+<main class="centering">
+  <div>
+    <svg viewBox="0 0 200 200" width="200" height="200">
+    <circle id="myCircle" cx="100" cy="100" r="95" fill="#BBDEFB" /></svg>
+  </div>
+</main>
+
+const myCircle = document.querySelector('#myCircle');
+myCircle.addEventListener('click', () => {
+  alert('クリックされました');
+});
+```
