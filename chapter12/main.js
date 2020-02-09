@@ -23,3 +23,23 @@
 // myCircle.addEventListener('click', () => {
 //   alert('クリックされました');
 // });
+
+// SVGをアニメーションさせる
+const myCircle = document.querySelector('#myCircle');
+let time = 0;
+
+animate();
+
+function animate() {
+  time += 0.1;
+  // hsl => 色合い, 彩度, 輝度
+  myCircle.style.fill = `hsl(0, 100%, ${time}%)`;
+  // console.log(time);
+  // => (0, 100, 50) => Redになる
+
+  // 繰り返し処理
+  if (time < 50) {
+    // requestAnimationFrame() => 自身の関数内で呼び出し、繰り返し処理
+    requestAnimationFrame(animate);
+  };
+};
