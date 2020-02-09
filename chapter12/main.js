@@ -11,9 +11,15 @@
 // const mySvg = document.querySelector('#mySvg');
 // mySvg.appendChild(myCircle);
 
-// SVGのスタイルを変更する
-// 要素.setAttribute(属性名, 値)
-const myCircle = document.querySelector('#myCircle');
-myCircle.setAttribute('r', 100);
-myCircle.setAttribute('fill', '#FFFF8D');
-myCircle.setAttribute('opacity', 0.5);
+// // SVGのスタイルを変更する
+// // 要素.setAttribute(属性名, 値)
+// const myCircle = document.querySelector('#myCircle');
+// myCircle.setAttribute('r', 100);
+// myCircle.setAttribute('fill', '#FFFF8D');
+// myCircle.setAttribute('opacity', 0.5);
+
+// // SVGをマウス操作する
+// const myCircle = document.querySelector('#myCircle');
+// myCircle.addEventListener('click', () => {
+//   alert('クリックされました');
+// });
