@@ -5150,12 +5150,18 @@ function getDeviceStream(option) {
 - <strong>viewBox属性</strong><br>
 SVGの描画領域を定義する。X座標、Y座標、幅、高さ、の四つの値によって矩形領域を定義する。
 
+- <strong>createElementNS('http://www.w3.org/2000/svg', SVG要素名)</strong><br>
+SVG要素を生成する。
+
 ```
 <main class="centering">
   <div>
     <svg viewBox="0 0 200 200" width="200" height="200" id="mySvg"></svg>
   </div>
 </main>
+
+// createElementNS => 指定された名前空間(NameSpace) URI と修飾名を持つ要素を生成します。
+// https://developer.mozilla.org/ja/docs/Web/API/Document/createElementNS
 
 const myCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 
@@ -5166,4 +5172,21 @@ myCircle.setAttribute('fill', '#FFFF8D'); // 塗り
 
 const mySvg = document.querySelector('#mySvg');
 mySvg.appendChild(myCircle);
+```
+
+- SVGのスタイルを変更する
+
+```
+<main class="centering">
+  <div>
+    <svg viewBox="0 0 200 200" width="200" height="200">
+      <circle id="myCircle" cx="100" cy="100" stroke-width="2" stroke="#FFFFFF" /></svg>
+  </div>
+</main>
+
+// 要素.setAttribute(属性名, 値)
+const myCircle = document.querySelector('#myCircle');
+myCircle.setAttribute('r', 100);
+myCircle.setAttribute('fill', '#FFFF8D');
+myCircle.setAttribute('opacity', 0.5);
 ```
