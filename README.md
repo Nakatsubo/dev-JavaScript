@@ -5370,3 +5370,18 @@ img.onload = () => {
 };
 img.src = 'sample.jpg';
 ```
+
+- getImageData()メソッド キャンバスの画素情報を使う
+
+```
+// context.getImageData(dx, dy, width, height)
+const canvas = document.querySelector('#myCanvas');
+const context = canvas.getContext('2d');
+context.fillStyle = 'red';
+context.fillRect(0, 0, 100, 100);
+const imageData = context.getImageData(0, 0, 100, 100);
+
+console.log(imageData.data);
+// => Uint8ClampedArray(40000) [255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, …]
+// => [R, G, B, A... ]
+```
