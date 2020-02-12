@@ -5315,12 +5315,42 @@ function saveFile() {
 ビットマップベースのグラフィックスを描画する。
 
 ```
-const myCanvas = document.querySelector('#myCanvas');
-// console.log(myCanvas);
+const canvas = document.querySelector('#myCanvas');
+// console.log(canvas);
 
 // getContext() => 描画機能を有効にする
-const context = myCanvas.getContext('2d');
+const context = canvas.getContext('2d');
 
 // fillRect => 矩形を描画する
 context.fillRect(0, 0, 100, 100);
+```
+
+- 塗りと線を描画
+
+|メソッド|振る舞い|
+|-----|-----|
+|context.fillStyle|塗り、スタイルを定義|
+|context.strokeRect(x, y, 幅, 高さ)|矩形領域の境界線を描画|
+|context.fillRect(x, y, 幅, 高さ)|矩形領域を描画|
+
+```
+const canvas = document.querySelector('#myCanvas');
+
+// getContext() => 描画機能を有効にする
+const context = canvas.getContext('2d');
+
+// lineWidth => 境界線の幅を指定
+context.lineWidth = 3;
+
+// fillStyle => 塗り、スタイルを定義
+// fillRectメソッド等の前に指定しないと、反映されない
+// context.fillStyle = 'red';
+// strokeStyle => 境界線の色を指定
+context.strokeStyle = 'red';
+
+// // fillRect => 矩形を描画する
+// context.fillRect(0, 0, 100, 100);
+
+// strokeRect => 矩形の境界線を描画
+context.strokeRect(0, 0, 100, 100);
 ```
