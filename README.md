@@ -5310,3 +5310,17 @@ function saveFile() {
   }
 }
 ```
+
+### canvas
+ビットマップベースのグラフィックスを描画する。
+
+```
+const myCanvas = document.querySelector('#myCanvas');
+// console.log(myCanvas);
+
+// getContext() => 描画機能を有効にする
+const context = myCanvas.getContext('2d');
+
+// fillRect => 矩形を描画する
+context.fillRect(0, 0, 100, 100);
+```
