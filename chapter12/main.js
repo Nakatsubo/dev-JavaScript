@@ -124,15 +124,26 @@
 // // strokeRect => 矩形の境界線を描画
 // context.strokeRect(0, 0, 100, 100);
 
-// 画像を貼り付け
-// context.drawImage(image, dx, dy)
+// // 画像を貼り付け
+// // context.drawImage(image, dx, dy)
+// const canvas = document.querySelector('#myCanvas');
+// const context = canvas.getContext('2d');
+
+// // Imageインスタンスを生成
+// const img = new Image();
+// // imgを読み込んだら描画
+// img.onload = () => {
+//   context.drawImage(img, 0, 0);
+// };
+// img.src = 'sample.jpg';
+
+// キャンバスの画素情報を使う
+// context.getImageData(dx, dy, width, height)
 const canvas = document.querySelector('#myCanvas');
 const context = canvas.getContext('2d');
-
-// Imageインスタンスを生成
-const img = new Image();
-// imgを読み込んだら描画
-img.onload = () => {
-  context.drawImage(img, 0, 0);
-};
-img.src = 'sample.jpg';
+context.fillStyle = 'red';
+context.fillRect(0, 0, 100, 100);
+const imageData = context.getImageData(0, 0, 100, 100);
+console.log(imageData.data);
+// => Uint8ClampedArray(40000) [255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, …]
+// => [R, G, B, A... ]
