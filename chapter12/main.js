@@ -102,24 +102,37 @@
 //   }
 // }
 
-// canvas
-const canvas = document.querySelector('#myCanvas');
-// console.log(canvas);
+// // canvas
+// const canvas = document.querySelector('#myCanvas');
+// // console.log(canvas);
 
-// getContext() => 描画機能を有効にする
+// // getContext() => 描画機能を有効にする
+// const context = canvas.getContext('2d');
+
+// // lineWidth => 境界線の幅を指定
+// context.lineWidth = 3;
+
+// // fillStyle => 塗り、スタイルを定義
+// // fillRectメソッド等の前に指定しないと、反映されない
+// // context.fillStyle = 'red';
+// // strokeStyle => 境界線の色を指定
+// context.strokeStyle = 'red';
+
+// // // fillRect => 矩形を描画する
+// // context.fillRect(0, 0, 100, 100);
+
+// // strokeRect => 矩形の境界線を描画
+// context.strokeRect(0, 0, 100, 100);
+
+// 画像を貼り付け
+// context.drawImage(image, dx, dy)
+const canvas = document.querySelector('#myCanvas');
 const context = canvas.getContext('2d');
 
-// lineWidth => 境界線の幅を指定
-context.lineWidth = 3;
-
-// fillStyle => 塗り、スタイルを定義
-// fillRectメソッド等の前に指定しないと、反映されない
-// context.fillStyle = 'red';
-// strokeStyle => 境界線の色を指定
-context.strokeStyle = 'red';
-
-// // fillRect => 矩形を描画する
-// context.fillRect(0, 0, 100, 100);
-
-// strokeRect => 矩形の境界線を描画
-context.strokeRect(0, 0, 100, 100);
+// Imageインスタンスを生成
+const img = new Image();
+// imgを読み込んだら描画
+img.onload = () => {
+  context.drawImage(img, 0, 0);
+};
+img.src = 'sample.jpg';
