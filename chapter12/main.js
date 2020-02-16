@@ -180,44 +180,69 @@
 //   el.textContent = color;
 // });
 
-// 画像を入力
-const canvas1 = document.querySelector('#canvas-original');
-const context1 = canvas1.getContext('2d');
-const img = new Image();
-img.onload = () => {
-  context1.drawImage(img, 0, 0)
+// // 画像を入力
+// const canvas1 = document.querySelector('#canvas-original');
+// const context1 = canvas1.getContext('2d');
+// const img = new Image();
+// img.onload = () => {
+//   context1.drawImage(img, 0, 0)
 
-  // 画像情報を取得
-  const imageData = context1.getImageData(0, 0, 150, 150);
-  const data = imageData.data;
+//   // 画像情報を取得
+//   const imageData = context1.getImageData(0, 0, 150, 150);
+//   const data = imageData.data;
 
-  // ImageDataオブジェクトを作成
-  const monoImageData = new ImageData(150, 150);
+//   // ImageDataオブジェクトを作成
+//   const monoImageData = new ImageData(150, 150);
 
-  // 画像データの配列を作る
-  // [R, G, B, A, ... ]
-  const monoArr = monoImageData.data;
-  for (let i = 0; i < data.length / 4; i += 1) {
+//   // 画像データの配列を作る
+//   // [R, G, B, A, ... ]
+//   const monoArr = monoImageData.data;
+//   for (let i = 0; i < data.length / 4; i += 1) {
 
-    // 画素情報を取得
-    const r = data[i * 4 + 0];
-    const g = data[i * 4 + 1];
-    const b = data[i * 4 + 2];
-    const a = data[i * 4 + 3];
+//     // 画素情報を取得
+//     const r = data[i * 4 + 0];
+//     const g = data[i * 4 + 1];
+//     const b = data[i * 4 + 2];
+//     const a = data[i * 4 + 3];
 
-    // 平均値を求める（簡易的な計算のため）
-    const color = (r + g + b) / 3;
+//     // 平均値を求める（簡易的な計算のため）
+//     const color = (r + g + b) / 3;
 
-    // 新しい配列に色を指定
-    monoArr[i * 4 + 0] = color;
-    monoArr[i * 4 + 1] = color;
-    monoArr[i * 4 + 2] = color;
-    monoArr[i * 4 + 3] = a;
-  }
-  console.log(monoArr);
+//     // 新しい配列に色を指定
+//     monoArr[i * 4 + 0] = color;
+//     monoArr[i * 4 + 1] = color;
+//     monoArr[i * 4 + 2] = color;
+//     monoArr[i * 4 + 3] = a;
+//   }
+//   console.log(monoArr);
 
-  const canvas2 = document.querySelector('#canvas-effected');
-  const context2 = canvas2.getContext('2d');
-  context2.putImageData(monoImageData, 0, 0);
-};
-img.src = 'sample.jpg';
+//   const canvas2 = document.querySelector('#canvas-effected');
+//   const context2 = canvas2.getContext('2d');
+//   context2.putImageData(monoImageData, 0, 0);
+// };
+// img.src = 'sample.jpg';
+
+// 画像を取得する
+const canvas = document.querySelector('#myCanvas');
+const context = canvas.getContext('2d');
+
+// 画像を描画する
+context.fillStyle = 'red';
+context.fillRect(0, 0, 100, 100);
+context.fillStyle = 'green';
+context.fillRect(25, 25, 50, 50);
+
+const data = canvas.toDataURL();
+console.log(data);
+// => data:image/png;base64,...
+
+const img = document.querySelector('#my-img');
+img.src = data;
+// => 出力結果
+// <main class="centering">
+  // <div>
+    // <canvas id="myCanvas" width="150" height="150"></canvas>
+    // <br>
+    // <img id="my-img" src="data:image/png;base64,...">
+  // </div>
+// </main>
