@@ -5385,3 +5385,38 @@ console.log(imageData.data);
 // => Uint8ClampedArray(40000) [255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, …]
 // => [R, G, B, A... ]
 ```
+
+### 画像のRGBAを調べるサンプル
+
+```
+const canvas = document.querySelector('#myCanvas');
+const context = canvas.getContext('2d');
+const img = new Image();
+img.onload = () => {
+  context.drawImage(img, 0, 0);
+}
+img.src = 'sample.jpg';
+
+// マウスイベント
+canvas.addEventListener('mousemove', (e) => {
+  // マウスの座標を取得
+  const x = e.layerX;
+  const y = e.layerY;
+
+  // ImageDataを取得
+  const imageData = context.getImageData(x, y, 1, 1);
+
+  // 画素配列を取得
+  const data = imageData.data;
+  console.log(data);
+  const r = data[0];
+  const g = data[1];
+  const b = data[2];
+  const a = data[3];
+  const color = `rgba(${r}, ${g}, ${b}, ${a})`;
+
+  const el = document.querySelector('.log');
+  el.style.background = color;
+  el.textContent = color;
+});
+```
