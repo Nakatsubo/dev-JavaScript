@@ -148,35 +148,76 @@
 // // => Uint8ClampedArray(40000) [255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, …]
 // // => [R, G, B, A... ]
 
-// 画像のRGBAを調べるサンプル
-const canvas = document.querySelector('#myCanvas');
-const context = canvas.getContext('2d');
+// // 画像のRGBAを調べるサンプル
+// const canvas = document.querySelector('#myCanvas');
+// const context = canvas.getContext('2d');
+// const img = new Image();
+// img.onload = () => {
+//   context.drawImage(img, 0, 0);
+// }
+// img.src = 'sample.jpg';
+
+// // マウスイベント
+// canvas.addEventListener('mousemove', (e) => {
+//   // マウスの座標を取得
+//   const x = e.layerX;
+//   const y = e.layerY;
+
+//   // ImageDataを取得
+//   const imageData = context.getImageData(x, y, 1, 1);
+
+//   // 画素配列を取得
+//   const data = imageData.data;
+//   console.log(data);
+//   const r = data[0];
+//   const g = data[1];
+//   const b = data[2];
+//   const a = data[3];
+//   const color = `rgba(${r}, ${g}, ${b}, ${a})`;
+
+//   const el = document.querySelector('.log');
+//   el.style.background = color;
+//   el.textContent = color;
+// });
+
+// 画像を入力
+const canvas1 = document.querySelector('#canvas-original');
+const context1 = canvas1.getContext('2d');
 const img = new Image();
 img.onload = () => {
-  context.drawImage(img, 0, 0);
-}
-img.src = 'sample.jpg';
+  context1.drawImage(img, 0, 0)
 
-// マウスイベント
-canvas.addEventListener('mousemove', (e) => {
-  // マウスの座標を取得
-  const x = e.layerX;
-  const y = e.layerY;
-
-  // ImageDataを取得
-  const imageData = context.getImageData(x, y, 1, 1);
-
-  // 画素配列を取得
+  // 画像情報を取得
+  const imageData = context1.getImageData(0, 0, 150, 150);
   const data = imageData.data;
-  console.log(data);
-  const r = data[0];
-  const g = data[1];
-  const b = data[2];
-  const a = data[3];
-  const color = `rgba(${r}, ${g}, ${b}, ${a})`;
 
-  const el = document.querySelector('.log');
-  el.style.background = color;
-  el.textContent = color;
-});
+  // ImageDataオブジェクトを作成
+  const monoImageData = new ImageData(150, 150);
 
+  // 画像データの配列を作る
+  // [R, G, B, A, ... ]
+  const monoArr = monoImageData.data;
+  for (let i = 0; i < data.length / 4; i += 1) {
+
+    // 画素情報を取得
+    const r = data[i * 4 + 0];
+    const g = data[i * 4 + 1];
+    const b = data[i * 4 + 2];
+    const a = data[i * 4 + 3];
+
+    // 平均値を求める（簡易的な計算のため）
+    const color = (r + g + b) / 3;
+
+    // 新しい配列に色を指定
+    monoArr[i * 4 + 0] = color;
+    monoArr[i * 4 + 1] = color;
+    monoArr[i * 4 + 2] = color;
+    monoArr[i * 4 + 3] = a;
+  }
+  console.log(monoArr);
+
+  const canvas2 = document.querySelector('#canvas-effected');
+  const context2 = canvas2.getContext('2d');
+  context2.putImageData(monoImageData, 0, 0);
+};
+img.src = 'sample.jpg';
