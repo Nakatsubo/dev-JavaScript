@@ -5466,3 +5466,31 @@ img.onload = () => {
 };
 img.src = 'sample.jpg';
 ```
+
+- <storong>canvas.toDataURL()</strong> メソッド DataURL形式で出力する
+
+```
+const canvas = document.querySelector('#myCanvas');
+const context = canvas.getContext('2d');
+
+// 画像を描画する
+context.fillStyle = 'red';
+context.fillRect(0, 0, 100, 100);
+context.fillStyle = 'green';
+context.fillRect(25, 25, 50, 50);
+
+const data = canvas.toDataURL();
+console.log(data);
+// => data:image/png;base64,...
+
+const img = document.querySelector('#my-img');
+img.src = data;
+// => 出力結果
+// <main class="centering">
+  // <div>
+    // <canvas id="myCanvas" width="150" height="150"></canvas>
+    // <br>
+    // <img id="my-img" src="data:image/png;base64,...">
+  // </div>
+// </main>
+```
