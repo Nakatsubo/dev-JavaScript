@@ -5,7 +5,7 @@ button {
   cursor: pointer;
 }
 
-/* .header button {
+.header button {
   background-color: rgba(0, 0, 0, 0.1);
   padding: 10px;
   color: #fff;
@@ -17,4 +17,4 @@ button {
 .hGroup {
   display: flex;
   justify-content: center;
-} */
+}
