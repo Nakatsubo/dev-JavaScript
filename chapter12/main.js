@@ -248,70 +248,158 @@
 //   // </div>
 // // </main>
 
+// // 指定したDataURL形式を取得
+// // 変数の初期化
+// const STAGE_W = 300; // 幅
+// const STAGE_H = 300; // 高さ
+// const CENTER_X = STAGE_W / 2; // 中心X座標
+// const CENTER_Y = STAGE_H / 2; // 中心Y座標
+// const MAX = 150; // ループ回数
+
+// // 変数の初期化
+// const canvas = document.getElementById('myCanvas');
+// const context = canvas.getContext('2d');
+// let n = 0; // カウント
+
+// // アニメーションを開始
+// tick();
+
+// function tick() {
+//   // 描画をリセット
+//   context.clearRect(0, 0, STAGE_W, STAGE_H);
+
+//   // 変数
+//   let oldX = CENTER_X;
+//   let oldY = CENTER_Y;
+
+//   // 模様を描く
+//   for (let i = 0; i < MAX; i++) {
+//     context.beginPath();
+//     context.lineWidth = 1;
+//     context.strokeStyle = 'hsl(' + ((i / MAX) * 360 + n * 4000) + ', 100%, 50%)';
+//     context.moveTo(oldX, oldY);
+//     context.lineTo((oldX = CENTER_X + i * Math.cos(i + i * n)), (oldY = CENTER_Y + i * Math.sin(i + i * n)));
+//     context.stroke();
+//   }
+
+//   // カウントを更新
+//   n += 0.00025;
+
+//   // 繰り返し実行
+//   requestAnimationFrame(tick);
+// }
+
+// // toDataURL('image/jpeg') => JPEG 画像を取得
+// const btnJpeg = document.querySelector('#btnJpeg');
+// btnJpeg.addEventListener('click', () => {
+//   const data = canvas.toDataURL('image/jpeg');
+//   cloneToImage(data);
+// });
+
+// // toDataURL('image/png') => PNG 画像を取得
+// const btnPng = document.querySelector('#btnPng');
+// btnPng.addEventListener('click', () => {
+//   const data = canvas.toDataURL('image/png');
+//   cloneToImage(data);
+// });
+
+// // toDataURL('image/webp') => WebP 画像を取得
+// const btnWebp = document.querySelector('#btnWebp');
+// btnWebp.addEventListener('click', () => {
+//   const data = canvas.toDataURL('image/webp');
+//   cloneToImage(data);
+// });
+
+// // img要素にDataURLの文字列を代入
+// function cloneToImage(data) {
+//   document.querySelector('#myImg').src = data;
+// }
+
 // 指定したDataURL形式を取得
-// 変数の初期化
-const STAGE_W = 300; // 幅
-const STAGE_H = 300; // 高さ
-const CENTER_X = STAGE_W / 2; // 中心X座標
-const CENTER_Y = STAGE_H / 2; // 中心Y座標
-const MAX = 150; // ループ回数
+// キャンバス要素の参照を取得
+const canvas1 = document.querySelector('#canvas-original');
+// コンテキストを取得
+const context1 = canvas1.getContext('2d');
+// Imageインスタンスを作成
+const img = new Image();
+// 画像読み込み後の処理
+img.onload = () => {
+  // コンテキストを通してcanvasに描く
+  context1.drawImage(img, 0, 0);
 
-// 変数の初期化
-const canvas = document.getElementById('myCanvas');
-const context = canvas.getContext('2d');
-let n = 0; // カウント
+  // 画素情報を得る
+  const imageData = context1.getImageData(0, 0, 150, 150);
+  const data = imageData.data;
 
-// アニメーションを開始
-tick();
+  const monoImageData = new ImageData(150, 150);
 
-function tick() {
-  // 描画をリセット
-  context.clearRect(0, 0, STAGE_W, STAGE_H);
+  const monoArr = monoImageData.data;
+  for (let i = 0; i < data.length / 4; i += 1) {
+    // 画素情報を取得
+    const r = data[i * 4 + 0];
+    const g = data[i * 4 + 1];
+    const b = data[i * 4 + 2];
+    const a = data[i * 4 + 3];
 
-  // 変数
-  let oldX = CENTER_X;
-  let oldY = CENTER_Y;
+    // 平均値を求める（簡易的な計算のため）
+    const color = (r + g + b) / 3;
 
-  // 模様を描く
-  for (let i = 0; i < MAX; i++) {
-    context.beginPath();
-    context.lineWidth = 1;
-    context.strokeStyle = 'hsl(' + ((i / MAX) * 360 + n * 4000) + ', 100%, 50%)';
-    context.moveTo(oldX, oldY);
-    context.lineTo((oldX = CENTER_X + i * Math.cos(i + i * n)), (oldY = CENTER_Y + i * Math.sin(i + i * n)));
-    context.stroke();
+    // 新しい配列に色を指定
+    monoArr[i * 4 + 0] = color;
+    monoArr[i * 4 + 1] = color;
+    monoArr[i * 4 + 2] = color;
+    monoArr[i * 4 + 3] = a;
   }
 
-  // カウントを更新
-  n += 0.00025;
+  // キャンバス要素の参照を取得
+  const canvas2 = document.querySelector('#canvas-effected');
+  // コンテキストを取得
+  const context2 = canvas2.getContext('2d');
+  // コンテキストに新しい画素情報を割り当てる
+  context2.putImageData(monoImageData, 0, 0);
+};
+// 画像を読み込みを開始する
+img.src = 'sample.jpg';
 
-  // 繰り返し実行
-  requestAnimationFrame(tick);
-}
+const btnDownload = document.querySelector('#btnDownload');
+btnDownload.addEventListener('click', () => {
+  // キャンバス要素の参照を取得
+  const canvas2 = document.querySelector('#canvas-effected');
 
-// toDataURL('image/jpeg') => JPEG 画像を取得
-const btnJpeg = document.querySelector('#btnJpeg');
-btnJpeg.addEventListener('click', () => {
-  const data = canvas.toDataURL('image/jpeg');
-  cloneToImage(data);
+  // ファイルの種類とファイル名を指定
+  const mimeType = 'image/png';
+  const fileName = 'download.png';
+
+  // Base64文字列を取得
+  const base64 = canvas2.toDataURL(mimeType);
+
+  // Base64文字列からUint8Arrayに変換
+  const bin = atob(base64.replace(/^.*,/, ''));
+  const buffer = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) {
+    buffer[i] = bin.charCodeAt(i);
+  }
+
+  // Blobを作成
+  const blob = new Blob([buffer.buffer], {
+    type: mimeType
+  });
+
+  // 画像をダウンロードする
+  if (window.navigator.msSaveBlob) {
+    // for IE
+    window.navigator.msSaveBlob(blob, fileName);
+  } else if (window.URL && window.URL.createObjectURL) {
+    // for Firefox, Chrome, Safari
+    const a = document.createElement('a');
+    a.download = fileName;
+    a.href = window.URL.createObjectURL(blob);
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  } else {
+    // for Other
+    window.open(base64, '_blank');
+  }
 });
-
-// toDataURL('image/png') => PNG 画像を取得
-const btnPng = document.querySelector('#btnPng');
-btnPng.addEventListener('click', () => {
-  const data = canvas.toDataURL('image/png');
-  cloneToImage(data);
-});
-
-// toDataURL('image/webp') => WebP 画像を取得
-const btnWebp = document.querySelector('#btnWebp');
-btnWebp.addEventListener('click', () => {
-  const data = canvas.toDataURL('image/webp');
-  cloneToImage(data);
-});
-
-// img要素にDataURLの文字列を代入
-function cloneToImage(data) {
-  document.querySelector('#myImg').src = data;
-}
 
