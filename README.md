@@ -13,6 +13,7 @@ Let's study & enjoy JavaScript
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter10">Chapter10 Animation</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter11">Chapter11 Media</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter12">Chapter12 SVG, canvas...</a>
+- <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter13">Chapter13 Timing</a>
 
 
 ## Chapter1
@@ -5707,4 +5708,23 @@ btnDownload.addEventListener('click', () => {
     window.open(base64, '_blank');
   }
 });
+```
+
+## Chapter13
+
+- <strong>setTimeout(関数, ミリ秒)</strong> 一定時間後に処理を行う
+
+```
+<main class="centering">
+  <p>コンソールを確認ください</p>
+</main>
+
+// setTimeout(関数, ミリ秒) => 一定時間後に処理を行う
+console.log('起動時の時刻', new Date().toLocaleTimeString());
+setTimeout(() => {
+  console.log('setTimeout後の時刻', new Date().toLocaleString());
+}, 1000);
+// => 実行結果
+// 起動時の時刻 15:15:37
+// setTimeout後の時刻 2020/2/18 15:15:38
 ```
