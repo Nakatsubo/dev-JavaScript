@@ -5778,3 +5778,36 @@ function Timer() {
 // => 2 "2020/2/18 15:36:59"
 // => 3 "2020/2/18 15:37:00"
 ```
+
+### 非同期処理 Promise
+
+- <strong>new Promise(非同期処理をする関数)</strong> プロミスを作成する
+- <strong>Promiseインスタンス.then(コールバック関数)</strong> 成功した時のコールバック関数を呼び出す
+
+```
+const promise = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve();
+  }, 1000);
+});
+promise.then(() => {
+  console.log('次の処理');
+});
+// => 実行結果
+// => 次の処理
+```
+
+- resolve()メソッドには任意の引数を引き渡せる。その引数をthen()メソッド内で使える。
+
+```
+const promise = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve('orange');
+  }, 1000);
+});
+promise.then((value) => {
+  console.log(value);
+});
+// => 実行結果
+// => orange
+```
