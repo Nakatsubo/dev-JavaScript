@@ -5884,3 +5884,49 @@ Promise.all(arrPromise).then(() => {
   console.log('すべての処理が完了しました');
 });
 ```
+
+- Promiseで直列処理<br>
+外部データを取得してから次の処理につなげる場合などに使用する。
+
+```
+// Promiseのみで実装する方法
+Promise.resolve()
+  .then(() =>
+    new Promise((resolve) => {
+      setTimeout(() => {
+        console.log('ひとつめのPromise', new Date().toLocaleTimeString());
+        resolve();
+      }, 1000);
+    })
+  )
+  .then(() =>
+    new Promise((resolve) => {
+      setTimeout(() => {
+        console.log('ふたつめのPromise', new Date().toLocaleTimeString());
+        resolve();
+      }, 1000);
+    })
+  )
+// => 実行結果
+// => ひとつめのPromise 16:40:21
+// => ふたつめのPromise 16:40:22
+
+// async, awaitを使った記述方法
+start();
+
+async function start() {
+  await new Promise((resolve) => {
+    setTimeout(() => {
+      console.log('ひとつめのPromise', new Date().toLocaleTimeString());
+      resolve();
+    }, 1000);
+  })
+
+  await new Promise((resolve) => {
+    setTimeout(() => {
+      console.log('ふたつめのPromise', new Date().toLocaleTimeString());
+      resolve();
+    }, 1000);
+  })
+}
+```

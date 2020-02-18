@@ -83,52 +83,95 @@
 // });
 // // => orange
 
-// Promiseで並列処理
-const arrFunc = [];
-for (let i = 0; i < 5; i++ ) {
-  // Promise実行時の関数を定義
-  const func = (resolve) => {
-    console.log(`処理${i}を開始`, new Date().toLocaleString());
+// // Promiseで並列処理
+// const arrFunc = [];
+// for (let i = 0; i < 5; i++ ) {
+//   // Promise実行時の関数を定義
+//   const func = (resolve) => {
+//     console.log(`処理${i}を開始`, new Date().toLocaleString());
 
-    // 遅延処理の時間をランダムに指定
-    const delayMsec = 2000 * Math.random();
+//     // 遅延処理の時間をランダムに指定
+//     const delayMsec = 2000 * Math.random();
 
-    // 遅延処理
+//     // 遅延処理
+//     setTimeout(() => {
+//       console.log(`処理${i}が完了`, new Date().toLocaleString());
+//       resolve();
+//     }, delayMsec);
+//   };
+
+//   // 配列に関数を入れる
+//   arrFunc.push(func);
+// };
+
+// console.log(arrFunc);
+// // => 実行結果
+// // => (5) [ƒ, ƒ, ƒ, ƒ, ƒ]
+// // => 0: (resolve) => {…}
+// // => 1: (resolve) => {…}
+// // => 2: (resolve) => {…}
+// // => 3: (resolve) => {…}
+// // => 4: (resolve) => {…}
+// // => length: 5
+// // => __proto__: Array(0)
+
+// // Promiseインスタンスを含む配列を作成する
+// const arrPromise = arrFunc.map((func) => new Promise(func));
+// console.log(arrPromise);
+// // => 実行結果
+// // => (5) [Promise, Promise, Promise, Promise, Promise]
+// // => 0: Promise {<resolved>: undefined}
+// // => 1: Promise {<resolved>: undefined}
+// // => 2: Promise {<resolved>: undefined}
+// // => 3: Promise {<resolved>: undefined}
+// // => 4: Promise {<resolved>: undefined}
+// // => length: 5
+// // => __proto__: Array(0)
+
+// // 並列処理を実行
+// Promise.all(arrPromise).then(() => {
+//   console.log('すべての処理が完了しました');
+// });
+
+// Promiseで直列処理
+
+// Promiseのみで実装する方法
+Promise.resolve()
+  .then(() =>
+    new Promise((resolve) => {
+      setTimeout(() => {
+        console.log('ひとつめのPromise', new Date().toLocaleTimeString());
+        resolve();
+      }, 1000);
+    })
+  )
+  .then(() =>
+    new Promise((resolve) => {
+      setTimeout(() => {
+        console.log('ふたつめのPromise', new Date().toLocaleTimeString());
+        resolve();
+      }, 1000);
+    })
+  )
+// => 実行結果
+// => ひとつめのPromise 16:40:21
+// => ふたつめのPromise 16:40:22
+
+// async, awaitを使った記述方法
+start();
+
+async function start() {
+  await new Promise((resolve) => {
     setTimeout(() => {
-      console.log(`処理${i}が完了`, new Date().toLocaleString());
+      console.log('ひとつめのPromise', new Date().toLocaleTimeString());
       resolve();
-    }, delayMsec);
-  };
+    }, 1000);
+  })
 
-  // 配列に関数を入れる
-  arrFunc.push(func);
-};
-
-console.log(arrFunc);
-// => 実行結果
-// => (5) [ƒ, ƒ, ƒ, ƒ, ƒ]
-// => 0: (resolve) => {…}
-// => 1: (resolve) => {…}
-// => 2: (resolve) => {…}
-// => 3: (resolve) => {…}
-// => 4: (resolve) => {…}
-// => length: 5
-// => __proto__: Array(0)
-
-// Promiseインスタンスを含む配列を作成する
-const arrPromise = arrFunc.map((func) => new Promise(func));
-console.log(arrPromise);
-// => 実行結果
-// => (5) [Promise, Promise, Promise, Promise, Promise]
-// => 0: Promise {<resolved>: undefined}
-// => 1: Promise {<resolved>: undefined}
-// => 2: Promise {<resolved>: undefined}
-// => 3: Promise {<resolved>: undefined}
-// => 4: Promise {<resolved>: undefined}
-// => length: 5
-// => __proto__: Array(0)
-
-// 並列処理を実行
-Promise.all(arrPromise).then(() => {
-  console.log('すべての処理が完了しました');
-});
+  await new Promise((resolve) => {
+    setTimeout(() => {
+      console.log('ふたつめのPromise', new Date().toLocaleTimeString());
+      resolve();
+    }, 1000);
+  })
+}
