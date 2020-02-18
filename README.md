@@ -5811,3 +5811,23 @@ promise.then((value) => {
 // => 実行結果
 // => orange
 ```
+
+- <strong>Promiseインスタンス.catch(コールバック関数)</strong> Promiseでの失敗時の処理
+
+```
+let flag = true;
+const promise = new Promise((resolve, reject) => {
+  if (flag === true) {
+    resolve('orange');
+  } else {
+    reject('apple');
+  };
+});
+promise.then((value) => {
+  console.log(value);
+});
+promise.catch((value) => {
+  console.log(value);
+});
+// => orange
+```

@@ -54,14 +54,31 @@
 // // => 実行結果
 // // => 次の処理
 
-// resolve()メソッドには任意の引数を引き渡せる。その引数をthen()メソッド内で使える。
-const promise = new Promise((resolve) => {
-  setTimeout(() => {
+// // resolve()メソッドには任意の引数を引き渡せる。その引数をthen()メソッド内で使える。
+// const promise = new Promise((resolve) => {
+//   setTimeout(() => {
+//     resolve('orange');
+//   }, 1000);
+// });
+// promise.then((value) => {
+//   console.log(value);
+// });
+// // => 実行結果
+// // => orange
+
+// Promiseインスタンス.catch(コールバック関数) => Promiseでの失敗時の処理
+let flag = true;
+const promise = new Promise((resolve, reject) => {
+  if (flag === true) {
     resolve('orange');
-  }, 1000);
+  } else {
+    reject('apple');
+  };
 });
 promise.then((value) => {
   console.log(value);
 });
-// => 実行結果
+promise.catch((value) => {
+  console.log(value);
+});
 // => orange
