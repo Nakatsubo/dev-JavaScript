@@ -5742,3 +5742,39 @@ function Timer() {
 clearTimeout(TimerId);
 // => 処理はキャンセルされる
 ```
+
+- <strong>setInterval(関数, ミリ秒)</strong> 一定時間ごとに処理を実行
+
+```
+// setInterval(関数, ミリ秒) => 一定時間ごとに処理を実行
+console.log('起動時の時刻', new Date().toLocaleTimeString());
+setInterval(() => {
+  console.log('setTimeout後の時刻', new Date().toLocaleTimeString());
+}, 1000);
+// => 実行結果
+// => 起動時の時刻 15:29:28
+// => setTimeout後の時刻 15:29:29
+// => setTimeout後の時刻 15:29:30
+// => setTimeout後の時刻 15:29:31
+// ...
+```
+
+- <strong>clearInterval(関数, ミリ秒)</strong> 一定時間ごとの処理を解除
+
+```
+// clearInterval(関数, ミリ秒) => setInterval()メソッドで呼び出した処理をキャンセルする
+
+const IntervalId = setInterval(Timer, 1000);
+let count = 0;
+function Timer() {
+  count += 1;
+  console.log(count, new Date().toLocaleString());
+  if (count === 3) {
+    clearInterval(IntervalId);
+  };
+};
+// => 実行結果
+// => 1 "2020/2/18 15:36:58"
+// => 2 "2020/2/18 15:36:59"
+// => 3 "2020/2/18 15:37:00"
+```
