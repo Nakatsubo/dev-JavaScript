@@ -66,19 +66,69 @@
 // // => 実行結果
 // // => orange
 
-// Promiseインスタンス.catch(コールバック関数) => Promiseでの失敗時の処理
-let flag = true;
-const promise = new Promise((resolve, reject) => {
-  if (flag === true) {
-    resolve('orange');
-  } else {
-    reject('apple');
+// // Promiseインスタンス.catch(コールバック関数) => Promiseでの失敗時の処理
+// let flag = true;
+// const promise = new Promise((resolve, reject) => {
+//   if (flag === true) {
+//     resolve('orange');
+//   } else {
+//     reject('apple');
+//   };
+// });
+// promise.then((value) => {
+//   console.log(value);
+// });
+// promise.catch((value) => {
+//   console.log(value);
+// });
+// // => orange
+
+// Promiseで並列処理
+const arrFunc = [];
+for (let i = 0; i < 5; i++ ) {
+  // Promise実行時の関数を定義
+  const func = (resolve) => {
+    console.log(`処理${i}を開始`, new Date().toLocaleString());
+
+    // 遅延処理の時間をランダムに指定
+    const delayMsec = 2000 * Math.random();
+
+    // 遅延処理
+    setTimeout(() => {
+      console.log(`処理${i}が完了`, new Date().toLocaleString());
+      resolve();
+    }, delayMsec);
   };
+
+  // 配列に関数を入れる
+  arrFunc.push(func);
+};
+
+console.log(arrFunc);
+// => 実行結果
+// => (5) [ƒ, ƒ, ƒ, ƒ, ƒ]
+// => 0: (resolve) => {…}
+// => 1: (resolve) => {…}
+// => 2: (resolve) => {…}
+// => 3: (resolve) => {…}
+// => 4: (resolve) => {…}
+// => length: 5
+// => __proto__: Array(0)
+
+// Promiseインスタンスを含む配列を作成する
+const arrPromise = arrFunc.map((func) => new Promise(func));
+console.log(arrPromise);
+// => 実行結果
+// => (5) [Promise, Promise, Promise, Promise, Promise]
+// => 0: Promise {<resolved>: undefined}
+// => 1: Promise {<resolved>: undefined}
+// => 2: Promise {<resolved>: undefined}
+// => 3: Promise {<resolved>: undefined}
+// => 4: Promise {<resolved>: undefined}
+// => length: 5
+// => __proto__: Array(0)
+
+// 並列処理を実行
+Promise.all(arrPromise).then(() => {
+  console.log('すべての処理が完了しました');
 });
-promise.then((value) => {
-  console.log(value);
-});
-promise.catch((value) => {
-  console.log(value);
-});
-// => orange
