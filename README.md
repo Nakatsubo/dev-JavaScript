@@ -5934,5 +5934,28 @@ async function start() {
 - Promiseで動的に直列処理
 
 ```
+const listFunctions = [];
+for (let i = 0; i < 5; i++) {
+  // 1秒後に処理する非同期関数
+  const func = (resolve) => {
+    setTimeout(() => {
+      console.log(`関数${i}が完了しました`, new Date().toLocaleTimeString());
+      // Promiseを完了
+      resolve();
+    }, 1000);
+  };
+  listFunctions.push(func);
+};
 
+console.log(listFunctions);
+// => (5) [ƒ, ƒ, ƒ, ƒ, ƒ]
+
+execute();
+
+async function execute() {
+  for (let i = 0; i < listFunctions.length; i++) {
+    const func = listFunctions[i];
+    await new Promise(func);
+  };
+};
 ```
