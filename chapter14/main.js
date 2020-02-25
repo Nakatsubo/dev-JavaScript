@@ -29,23 +29,43 @@
 // //   "b": "Hello, World!"
 // //  }
 
-// オブジェクトの一部をJSONに変換する
-const replacer = (key, value) => {
-  if (typeof value === 'number') {
-    return undefined;
-  };
-  return value;
-};
-const obj = {
-  pref: 'Tokyo',
-  orange: 100,
-  flag: true,
-  apple: 100
-};
-const str = JSON.stringify(obj, replacer, ' ')
-console.log(str);
-// => 出力結果
-// {
-//   "pref": "Tokyo",
-//   "flag": true
-//  }
+// // オブジェクトの一部をJSONに変換する
+// const replacer = (key, value) => {
+//   if (typeof value === 'number') {
+//     return undefined;
+//   };
+//   return value;
+// };
+// const obj = {
+//   pref: 'Tokyo',
+//   orange: 100,
+//   flag: true,
+//   apple: 100
+// };
+// const str = JSON.stringify(obj, replacer, ' ')
+// console.log(str);
+// // => 出力結果
+// // {
+// //   "pref": "Tokyo",
+// //   "flag": true
+// //  }
+
+// // fetch()メソッド
+// fetch('sample.txt')
+//   .then((data) => data.text())
+//   .then((text) => {
+//     console.log(text);
+//   })
+
+const btn = document.querySelector('button');
+btn.addEventListener('click', () => {
+  // ボタンをクリックしたとき
+  async function load() {
+    const data = await fetch('sample.txt');
+    const text = await data.text();
+    console.log(text);
+    // テキストを出力
+    document.querySelector('#log').innerHTML = text;
+  }
+  load();
+});
