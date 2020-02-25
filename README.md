@@ -14,6 +14,7 @@ Let's study & enjoy JavaScript
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter11">Chapter11 Media</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter12">Chapter12 SVG, canvas...</a>
 - <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter13">Chapter13 Timing</a>
+- <a href="https://github.com/NakatsuboYusuke/dev-JavaScript#chapter14">Chapter14 Network</a>
 
 
 ## Chapter1
@@ -5959,3 +5960,51 @@ async function execute() {
   };
 };
 ```
+
+## Chapter14
+
+### JSON
+汎用的なデータ方式で、サーバーとの通信や外部ファイルとしてデータを保存する場合に使用する。
+
+- JSONで最後のカンマはエラーとなる
+
+```
+{
+  "name": [1, 2, 3, 4,]
+}
+// => エラー
+```
+
+- 文字列はダブルクォートで囲む
+
+```
+{
+  name: [1, 2, 3, 4]
+}
+// => エラー
+```
+
+```
+{
+  'name': [1, 2, 3, 4]
+}
+// => エラー
+```
+
+### JSONをパースする
+<strong>JSON.parse(文字列)</strong> でJSON形式の文字列を、JSONオブジェクトに変換する。
+
+```
+const jsonString = `{ "students": 40, "grade": 4, "name": "C組" }`;
+// 文字列をJSONオブジェクトに変換
+const data = JSON.parse(jsonString);
+console.log(data);
+// => Object
+console.log(data.students);
+// => 40
+console.log(data.grade);
+// => 4
+console.log(data.name);
+// => C組
+```
+
