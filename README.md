@@ -6019,6 +6019,32 @@ console.log(str);
 // => {"a":1000,"b":"Hello, World!"}
 ```
 
+- オブジェクトの一部をJSONに変換する<br>
+<strong>JSON.stringify(オブジェクト, replacer)</strong> でJavaScriptオブジェクトの一部を、JSON形式の文字列に変換する。<br>
+第二引数には、リプレイサーとして利用する関数を指定する。
+
+```
+const replacer = (key, value) => {
+  if (typeof value === 'number') {
+    return undefined;
+  };
+  return value;
+};
+const obj = {
+  pref: 'Tokyo',
+  orange: 100,
+  flag: true,
+  apple: 100
+};
+const str = JSON.stringify(obj, replacer, ' ')
+console.log(str);
+// => 出力結果
+// {
+//   "pref": "Tokyo",
+//   "flag": true
+//  }
+```
+
 - オブジェクトにインデントをつけてJSONに変換する<br>
 <strong>JSON.stringify(オブジェクト, null, ' ')</strong> でJavaScriptオブジェクトを、JSON形式の文字列に変換する。<br>
 第三引数には、インデントとして利用する文字列を指定する。
