@@ -5992,7 +5992,7 @@ async function execute() {
 ```
 
 ### JSONをパースする
-<strong>JSON.parse(文字列)</strong> でJSON形式の文字列を、JSONオブジェクトに変換する。
+<strong>JSON.parse(文字列)</strong> でJSON形式の文字列を、JavaScriptオブジェクトに変換する。
 
 ```
 const jsonString = `{ "students": 40, "grade": 4, "name": "C組" }`;
@@ -6008,3 +6008,13 @@ console.log(data.name);
 // => C組
 ```
 
+### オブジェクトをJSONに変換する
+<strong>JSON.stringify(オブジェクト)</strong> でJavaScriptオブジェクトを、JSON形式の文字列に変換する。
+
+```
+const data = { a: 1000, b: 'Hello, World!' }
+// オブジェクトをJSONに変換する
+const str = JSON.stringify(data);
+console.log(str);
+// => {"a":1000,"b":"Hello, World!"}
+```
