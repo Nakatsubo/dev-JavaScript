@@ -6018,3 +6018,19 @@ const str = JSON.stringify(data);
 console.log(str);
 // => {"a":1000,"b":"Hello, World!"}
 ```
+
+- オブジェクトにインデントをつけてJSONに変換する<br>
+<strong>JSON.stringify(オブジェクト, null, ' ')</strong> でJavaScriptオブジェクトを、JSON形式の文字列に変換する。<br>
+第三引数には、インデントとして利用する文字列を指定する。
+
+```
+const data = { a: 1000, b: 'Hello, World!' }
+// オブジェクトをJSONに変換する
+const str = JSON.stringify(data, null, ' ');
+console.log(str);
+// => 出力結果
+// {
+//   "a": 1000,
+//   "b": "Hello, World!"
+//  }
+```

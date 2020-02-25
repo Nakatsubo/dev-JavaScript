@@ -11,9 +11,20 @@
 // console.log(data.name);
 // // => C組
 
-// オブジェクトをJSONに変換する
+// // オブジェクトをJSONに変換する
+// const data = { a: 1000, b: 'Hello, World!' }
+// // オブジェクトをJSONに変換する
+// const str = JSON.stringify(data);
+// console.log(str);
+// // => {"a":1000,"b":"Hello, World!"}
+
+// オブジェクトにインデントをつけてJSONに変換する
 const data = { a: 1000, b: 'Hello, World!' }
 // オブジェクトをJSONに変換する
-const str = JSON.stringify(data);
+const str = JSON.stringify(data, null, ' ');
 console.log(str);
-// => {"a":1000,"b":"Hello, World!"}
+// => 出力結果
+// {
+//   "a": 1000,
+//   "b": "Hello, World!"
+//  }
