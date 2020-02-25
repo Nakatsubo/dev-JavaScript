@@ -5930,3 +5930,9 @@ async function start() {
   })
 }
 ```
+
+- Promiseで動的に直列処理
+
+```
+
+```
