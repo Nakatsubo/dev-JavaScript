@@ -6060,3 +6060,28 @@ console.log(str);
 //   "b": "Hello, World!"
 //  }
 ```
+
+### fetch()メソッド
+URL(外部ファイル)からデータを取得する。Promiseのthen()メソッドを利用する。
+
+```
+<main>
+  <button>読み込む</button>
+  <div id="log">
+    (ここに読み込んだデータが表示されます)
+  </div>
+</main>
+
+const btn = document.querySelector('button');
+btn.addEventListener('click', () => {
+  // ボタンをクリックしたとき
+  async function load() {
+    const data = await fetch('sample.txt');
+    const text = await data.text();
+    console.log(text);
+    // テキストを出力
+    document.querySelector('#log').innerHTML = text;
+  }
+  load();
+});
+```
